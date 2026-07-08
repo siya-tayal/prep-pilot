@@ -3,48 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRE & GMAT Free Resource Hub</title>
+<title>Stumblebee — everything you need to know about the GRE</title>
+<meta name="description" content="Free, interactive GRE Math lessons and the best free GRE & GMAT resources on the web. GMAT prep coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  .hero-section {
+    position: relative;
+    padding-top: 8px;
+  }
+
+  .doodles { position: absolute; inset: 0; overflow: visible; pointer-events: none; z-index: 0; }
+  .doodles svg { position: absolute; }
+
+  .hero-card {
+    position: relative;
+    z-index: 1;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 64px 40px 48px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-card h1 {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    max-width: 780px;
+    margin: 0 auto 18px;
+  }
+
+  .hero-card .motto {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto 30px;
+  }
+
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+
+  .wordmark-big {
+    position: relative;
+    z-index: 1;
+    margin-top: -6px;
+    text-align: center;
+    line-height: 0.82;
+    padding: 0 10px 8px;
+  }
+
+  .wordmark-big span {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: clamp(3.2rem, 15vw, 11.5rem);
+    color: var(--white);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .wordmark-big .bee-big {
+    display: inline-block;
+    vertical-align: middle;
+    width: clamp(3.4rem, 15vw, 11.5rem);
+    height: clamp(3.4rem, 15vw, 11.5rem);
+  }
+
+  .stat-strip {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    padding: 8px 0 56px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-strip .stat { text-align: center; }
+  .stat-strip .stat .num { font-family: "Fredoka", sans-serif; font-size: 2.1rem; font-weight: 600; }
+  .stat-strip .stat .label { font-size: 0.85rem; color: var(--ink-soft); font-weight: 600; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.15s ease;
+    position: relative;
+  }
+
+  .feature-card:hover { transform: translateY(-4px); }
+
+  .feature-card .icon-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .feature-card.f-yellow .icon-badge { background: var(--yellow-soft); }
+  .feature-card.f-black .icon-badge { background: var(--ink); }
+
+  .feature-card h3 { font-size: 1.25rem; }
+  .feature-card p { color: var(--ink-soft); font-size: 0.92rem; }
+
+  .feature-card .go {
+    margin-top: auto;
+    font-weight: 700;
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .soon-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: var(--ink);
+    color: var(--yellow);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .why-section {
+    padding: 72px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-inner {
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 56px 40px;
+    color: var(--white);
+  }
+
+  .why-inner h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    color: var(--white);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .why-item { text-align: center; }
+  .why-item .n {
+    width: 40px; height: 40px; border-radius: 999px;
+    background: var(--yellow); color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Fredoka", sans-serif; font-weight: 600;
+    margin: 0 auto 14px;
+  }
+  .why-item h4 { color: var(--white); font-size: 1.05rem; margin-bottom: 8px; }
+  .why-item p { color: #C9C4B6; font-size: 0.9rem; }
+
+  @media (max-width: 860px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .stat-strip { gap: 28px; }
+  }
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <h1>GRE &amp; GMAT Free Resource Hub</h1>
-    <p class="tagline">The most comprehensive collection of <strong>free</strong> prep resources — practice tests, question banks, vocab, video courses, and communities. No paywalls, no signups required (unless noted).</p>
-  </div>
-</header>
+<div class="wrap">
+  <nav class="site-nav">
+    <a href="index.html" class="brand">
+      <svg class="bee-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
+        <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="9" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(-20 9 11)"/>
+        <ellipse cx="23" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(20 23 11)"/>
+        <circle cx="16" cy="9" r="2" fill="#18140C"/>
+        <path d="M15 8 L12 4M17 8 L20 4" stroke="#18140C" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      stumblebee
+    </a>
+    <div class="nav-links">
+      <a href="gre-math.html">GRE Math</a>
+      <a href="resources.html">Resources</a>
+      <a href="gmat.html" class="tag-soon">GMAT <span class="pill">SOON</span></a>
+    </div>
+    <a href="gre-math.html" class="btn btn-black btn-sm">Start Learning</a>
+  </nav>
+</div>
 
-<main class="wrap">
-
-  <section class="controls">
-    <div class="tabs" id="examTabs">
-      <button class="tab active" data-exam="all">All</button>
-      <button class="tab" data-exam="GRE">GRE</button>
-      <button class="tab" data-exam="GMAT">GMAT</button>
+<main>
+  <div class="wrap hero-section">
+    <div class="doodles" aria-hidden="true">
+      <svg width="70" height="70" style="left:2%; top:6%;" viewBox="0 0 70 70"><g opacity="0.9"><ellipse cx="35" cy="40" rx="16" ry="12" fill="#18140C"/><path d="M22 36 Q35 30 48 36" stroke="#FFC629" stroke-width="4" stroke-linecap="round"/><path d="M23 45 Q35 51 47 45" stroke="#FFC629" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="24" r="4" fill="#18140C"/></g></svg>
+      <svg width="34" height="34" style="left:14%; top:60%;" viewBox="0 0 24 24"><path d="M12 2 L14 9 L21 10 L15.5 14.5 L17.5 21 L12 17 L6.5 21 L8.5 14.5 L3 10 L10 9 Z" fill="#18140C"/></svg>
+      <svg width="56" height="56" style="right:4%; top:10%;" viewBox="0 0 70 70"><g opacity="0.9"><ellipse cx="35" cy="40" rx="16" ry="12" fill="#18140C"/><path d="M22 36 Q35 30 48 36" stroke="#FFC629" stroke-width="4" stroke-linecap="round"/><path d="M23 45 Q35 51 47 45" stroke="#FFC629" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="24" r="4" fill="#18140C"/></g></svg>
+      <svg width="30" height="30" style="right:12%; top:66%;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#18140C" stroke-width="2.5"/></svg>
+      <svg width="44" height="44" style="left:44%; top:2%;" viewBox="0 0 24 24"><path d="M12 2 L14 9 L21 10 L15.5 14.5 L17.5 21 L12 17 L6.5 21 L8.5 14.5 L3 10 L10 9 Z" fill="#18140C" opacity="0.85"/></svg>
     </div>
 
-    <input type="search" id="searchInput" placeholder="Search resources (e.g. vocab, quant, official practice test)..." aria-label="Search resources">
+    <div class="hero-card">
+      <span class="eyebrow">GRE prep, decoded</span>
+      <h1 style="margin-top:18px;">Find everything you need to know about the GRE, right over here.</h1>
+      <p class="motto">We're glad you stumbled onto our website 🐝 — free, interactive GRE Math lessons built like a real course, plus the best free resources on the internet for GRE and (soon) GMAT prep.</p>
+      <div class="hero-cta">
+        <a href="gre-math.html" class="btn btn-black">Start GRE Math →</a>
+        <a href="resources.html" class="btn btn-outline">Browse free resources</a>
+      </div>
+    </div>
 
-    <div class="chips" id="categoryChips"></div>
-  </section>
+    <div class="wordmark-big" aria-hidden="true">
+      <span>stumble</span><span>b</span><svg class="bee-big" viewBox="0 0 100 100"><ellipse cx="50" cy="55" rx="30" ry="24" fill="#FFFFFF"/><path d="M22 48 Q50 36 78 48" stroke="#FFC629" stroke-width="10" stroke-linecap="round"/><path d="M24 65 Q50 78 76 65" stroke="#FFC629" stroke-width="10" stroke-linecap="round"/><ellipse cx="28" cy="30" rx="16" ry="12" fill="#FFFFFF" fill-opacity="0.5" transform="rotate(-20 28 30)"/><ellipse cx="72" cy="30" rx="16" ry="12" fill="#FFFFFF" fill-opacity="0.5" transform="rotate(20 72 30)"/><circle cx="50" cy="24" r="6" fill="#FFFFFF"/></svg><span>e</span>
+    </div>
 
-  <p class="result-count" id="resultCount"></p>
+    <div class="stat-strip">
+      <div class="stat"><div class="num">19</div><div class="label">GRE Math chapters</div></div>
+      <div class="stat"><div class="num">40+</div><div class="label">interactive practice Qs</div></div>
+      <div class="stat"><div class="num">30+</div><div class="label">free resources curated</div></div>
+      <div class="stat"><div class="num">$0</div><div class="label">cost, always</div></div>
+    </div>
 
-  <section class="grid" id="resourceGrid"></section>
+    <div class="feature-grid">
+      <a href="gre-math.html" class="feature-card f-yellow">
+        <div class="icon-badge">📐</div>
+        <h3>GRE Math</h3>
+        <p>All 19 Quant chapters — Numbers through Probability — with clean explanations, worked examples, and interactive graphics you can actually play with.</p>
+        <span class="go">Explore chapters →</span>
+      </a>
+      <a href="resources.html" class="feature-card f-yellow">
+        <div class="icon-badge">🔗</div>
+        <h3>Free Resources</h3>
+        <p>The most comprehensive list of genuinely free GRE & GMAT resources — official practice tests, vocab, video courses, and communities.</p>
+        <span class="go">Browse resources →</span>
+      </a>
+      <a href="gmat.html" class="feature-card f-black" style="background:var(--ink); color:var(--white);">
+        <span class="soon-badge">Coming soon</span>
+        <div class="icon-badge" style="background:var(--yellow);">🎯</div>
+        <h3 style="color:var(--white);">GMAT</h3>
+        <p style="color:#C9C4B6;">The same interactive treatment is coming for GMAT Quant and Verbal. Get notified the day it lands.</p>
+        <span class="go" style="color:var(--yellow);">Learn more →</span>
+      </a>
+    </div>
+  </div>
 
-  <p class="empty-state" id="emptyState" hidden>No resources match your filters. Try clearing the search or category.</p>
-
+  <div class="wrap why-section">
+    <div class="why-inner">
+      <h2>Built to feel like Khan Academy, focused entirely on the GRE.</h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="n">1</div>
+          <h4>Learn the concept</h4>
+          <p>Every lesson breaks concepts down the way a great tutor would — definitions, how to spot them, and real examples.</p>
+        </div>
+        <div class="why-item">
+          <div class="n">2</div>
+          <h4>See it, don't just read it</h4>
+          <p>Flip cards, sliders, and live diagrams for the topics that are easier to understand visually than in a paragraph.</p>
+        </div>
+        <div class="why-item">
+          <div class="n">3</div>
+          <h4>Practice immediately</h4>
+          <p>Real GRE-style Quantitative Comparison, Multiple Choice, and Multiple Selection questions with full step-by-step explanations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>All resources here are free or offer a substantial free tier. Prep companies change their sites often — if a link is stale, search the resource name directly.</p>
-    <p class="muted">Built for students, by a student. Not affiliated with ETS, GMAC, or any listed company.</p>
+    <div class="footer-inner">
+      <a href="index.html" class="brand" style="font-size:1.15rem;">
+        <svg class="bee-icon" style="width:22px;height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
+          <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+          <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        stumblebee
+      </a>
+      <div class="footer-links">
+        <a href="gre-math.html">GRE Math</a>
+        <a href="resources.html">Resources</a>
+        <a href="gmat.html">GMAT</a>
+      </div>
+      <p class="footer-copy">Built for students, by a student. Not affiliated with ETS, GMAC, or any listed company. © 2026 Stumblebee.</p>
+    </div>
   </div>
 </footer>
 
-<script src="data.js"></script>
-<script src="script.js"></script>
 </body>
 </html>

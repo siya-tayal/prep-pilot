@@ -13,21 +13,21 @@ const examTabs = document.getElementById("examTabs");
 
 function buildChips() {
   const allChip = document.createElement("button");
-  allChip.className = "chip active";
+  allChip.className = "res-chip active";
   allChip.textContent = "All Categories";
   allChip.dataset.category = "";
   chipsContainer.appendChild(allChip);
 
   CATEGORIES.forEach(cat => {
     const chip = document.createElement("button");
-    chip.className = "chip";
+    chip.className = "res-chip";
     chip.textContent = cat;
     chip.dataset.category = cat;
     chipsContainer.appendChild(chip);
   });
 
   chipsContainer.addEventListener("click", e => {
-    const btn = e.target.closest(".chip");
+    const btn = e.target.closest(".res-chip");
     if (!btn) return;
     state.category = btn.dataset.category || null;
     [...chipsContainer.children].forEach(c => c.classList.toggle("active", c === btn));
@@ -36,7 +36,7 @@ function buildChips() {
 }
 
 examTabs.addEventListener("click", e => {
-  const btn = e.target.closest(".tab");
+  const btn = e.target.closest(".res-tab");
   if (!btn) return;
   state.exam = btn.dataset.exam;
   [...examTabs.children].forEach(t => t.classList.toggle("active", t === btn));
@@ -64,11 +64,11 @@ function render() {
 
   filtered.forEach(r => {
     const card = document.createElement("article");
-    card.className = "card";
+    card.className = "res-card";
     card.innerHTML = `
-      <div class="card-badges">
-        <span class="badge exam-${r.exam}">${r.exam}</span>
-        <span class="badge category">${r.category}</span>
+      <div class="res-badges">
+        <span class="res-badge exam-${r.exam}">${r.exam}</span>
+        <span class="res-badge category">${r.category}</span>
       </div>
       <h3>${r.title}</h3>
       <p>${r.desc}</p>
