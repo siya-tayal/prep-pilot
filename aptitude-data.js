@@ -69,7 +69,7 @@ function scoreAptitude(answers) {
   let recommendation, reason;
   if (programType === "mba") {
     recommendation = "GMAT";
-    reason = "You're applying mainly to MBA programs — the GMAT is still the exam most business schools expect, even though a growing number also accept the GRE.";
+    reason = "You're applying mainly to MBA programs, and the GMAT is still the exam most business schools expect, even though a growing number also accept the GRE.";
   } else if (programType === "other") {
     recommendation = "GRE";
     reason = "You're applying to non-business graduate programs, where the GRE is accepted far more broadly than the GMAT.";
@@ -77,8 +77,8 @@ function scoreAptitude(answers) {
     const quantLean = quantCorrect > verbalCorrect || (quantCorrect === verbalCorrect && workStylePref === "quant");
     recommendation = quantLean ? "GMAT" : "GRE";
     reason = quantLean
-      ? "Your answers leaned quantitative and logic-driven — the GMAT's data-heavy format (and lighter emphasis on vocabulary) tends to suit that strength."
-      : "Your answers leaned verbal — the GRE's broader vocabulary and reading emphasis (and its wider acceptance beyond business programs) tends to suit that strength.";
+      ? "Your answers leaned quantitative and logic-driven, and the GMAT's data-heavy format (and lighter emphasis on vocabulary) tends to suit that strength."
+      : "Your answers leaned verbal, and the GRE's broader vocabulary and reading emphasis (and its wider acceptance beyond business programs) tends to suit that strength.";
   }
 
   return {

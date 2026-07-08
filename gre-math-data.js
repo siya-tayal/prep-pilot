@@ -22,7 +22,7 @@ const GRE_MATH_CHAPTERS = [
       id: "ch1-l1", title: "Types of Numbers", video: { id: "0M8isaEu1EU", title: "Number Systems (Natural, Integer, Rational, Irrational, & Real Numbers)", channel: "MrBrownCS" },
       widget: "numberSystemFlowchart",
       blocks: [
-        { type: "html", content: "<p>Click any box in the diagram above to flip it and reveal its definition. Every number on the GRE belongs somewhere on this tree — knowing the tree cold means you'll never be tricked by a \"which of the following is irrational\" question again.</p>" },
+        { type: "html", content: "<p>Click any box in the diagram above to flip it and reveal its definition. Every number on the GRE belongs somewhere on this tree, and knowing the tree cold means you'll never be tricked by a \"which of the following is irrational\" question again.</p>" },
         { type: "concepts", items: [
           { name: "Number System", definition: "The collection of all types of numbers used in mathematics.", identify: "If it represents a quantity or value, it belongs to the number system.", set: "All numbers: Natural, Whole, Integers, Rational, Irrational, Real, Complex.", examples: ["5", "-8", "3.14", "√2", "4 + 3i"] },
           { name: "Complex Numbers", definition: "Numbers that have a real part and/or an imaginary part.", identify: "Contains $i$, or can be written as $a + bi$.", set: "$\\mathbb{C} = \\{a + bi \\mid a, b \\in \\mathbb{R}\\}$", examples: ["2 + 3i", "-5i", "7", "-8 + i"] },
@@ -47,22 +47,22 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch1-l2", title: "Divisibility Rules", video: { id: "uO9DjoNzihI", title: "Divisibility Rules With Examples | Math is Fun", channel: "Mathematics is Fun" },
       blocks: [
-        { type: "html", content: "<p>Memorize these — they turn 30-second long division into 3-second pattern checks. Click any row to flip it and see a worked example.</p>" },
+        { type: "html", content: "<p>Memorize these: they turn 30-second long division into 3-second pattern checks. Click any row to flip it and see a worked example.</p>" },
         { type: "flip-table", rows: [
-          { key: "2", rule: "Last digit is even (0, 2, 4, 6, 8).", example: "128 — last digit 8 is even, so 128 is divisible by 2 (128 ÷ 2 = 64)." },
-          { key: "3", rule: "Sum of all digits is divisible by 3.", example: "156 — digit sum 1+5+6 = 12, divisible by 3, so 156 ÷ 3 = 52." },
-          { key: "4", rule: "Last two digits form a number divisible by 4.", example: "316 — last two digits \"16\", and 16 ÷ 4 = 4, so 316 is divisible by 4." },
-          { key: "5", rule: "Last digit is 0 or 5.", example: "245 — last digit is 5, so 245 ÷ 5 = 49." },
-          { key: "6", rule: "Divisible by both 2 and 3.", example: "138 — even, and digit sum 1+3+8 = 12 is divisible by 3, so 138 ÷ 6 = 23." },
-          { key: "7", rule: "Double the last digit, subtract it from the rest; repeat until you can tell if the result is divisible by 7.", example: "203 — double the last digit: 3×2=6. Subtract from the rest: 20−6=14, which is divisible by 7, so 203 ÷ 7 = 29." },
-          { key: "8", rule: "Last three digits form a number divisible by 8.", example: "1,928 — last three digits \"928\", and 928 ÷ 8 = 116, so 1,928 is divisible by 8." },
-          { key: "9", rule: "Sum of all digits is divisible by 9.", example: "549 — digit sum 5+4+9 = 18, divisible by 9, so 549 ÷ 9 = 61." },
-          { key: "10", rule: "Last digit is 0.", example: "370 — last digit is 0, so 370 ÷ 10 = 37." },
-          { key: "11", rule: "Alternating sum of digits (from the right) is divisible by 11.", example: "2,728 — alternating sum from the right: 8−2+7−2 = 11, divisible by 11, so 2,728 ÷ 11 = 248." },
-          { key: "12", rule: "Divisible by both 3 and 4.", example: "156 — digit sum 1+5+6=12 (div. by 3) and last two digits 56÷4=14 (div. by 4), so 156 ÷ 12 = 13." }
+          { key: "2", rule: "Last digit is even (0, 2, 4, 6, 8).", example: "128: last digit 8 is even, so 128 is divisible by 2 (128 ÷ 2 = 64)." },
+          { key: "3", rule: "Sum of all digits is divisible by 3.", example: "156: digit sum 1+5+6 = 12, divisible by 3, so 156 ÷ 3 = 52." },
+          { key: "4", rule: "Last two digits form a number divisible by 4.", example: "316: last two digits \"16\", and 16 ÷ 4 = 4, so 316 is divisible by 4." },
+          { key: "5", rule: "Last digit is 0 or 5.", example: "245: last digit is 5, so 245 ÷ 5 = 49." },
+          { key: "6", rule: "Divisible by both 2 and 3.", example: "138: even, and digit sum 1+3+8 = 12 is divisible by 3, so 138 ÷ 6 = 23." },
+          { key: "7", rule: "Double the last digit, subtract it from the rest; repeat until you can tell if the result is divisible by 7.", example: "203: double the last digit: 3×2=6. Subtract from the rest: 20−6=14, which is divisible by 7, so 203 ÷ 7 = 29." },
+          { key: "8", rule: "Last three digits form a number divisible by 8.", example: "1,928: last three digits \"928\", and 928 ÷ 8 = 116, so 1,928 is divisible by 8." },
+          { key: "9", rule: "Sum of all digits is divisible by 9.", example: "549: digit sum 5+4+9 = 18, divisible by 9, so 549 ÷ 9 = 61." },
+          { key: "10", rule: "Last digit is 0.", example: "370: last digit is 0, so 370 ÷ 10 = 37." },
+          { key: "11", rule: "Alternating sum of digits (from the right) is divisible by 11.", example: "2,728: alternating sum from the right: 8−2+7−2 = 11, divisible by 11, so 2,728 ÷ 11 = 248." },
+          { key: "12", rule: "Divisible by both 3 and 4.", example: "156: digit sum 1+5+6=12 (div. by 3) and last two digits 56÷4=14 (div. by 4), so 156 ÷ 12 = 13." }
         ]},
         { type: "reveal", label: "Try it: Is 81,925,361,407 divisible by 11?", prompt: "Use the alternating-digit-sum rule for 11.", answer: "No. From the right, the alternating sum of digits is $(7+4+6+5+9+8) - (0+1+3+2+1) = 39 - 7 = 32$. Since $32$ is not a multiple of $11$, the number is **not** divisible by 11." },
-        { type: "reveal", label: "Try it: Is 10,000,000,032 divisible by 44?", prompt: "44 = 4 × 11 — check both.", answer: "Yes. Divisible by 4: the last two digits, \"32\", are divisible by 4. Divisible by 11: the alternating digit sum from the right is $(2+0+0+0+0+1) - (3+0+0+0+0) = 3 - 3 = 0$, which is a multiple of 11. Since it's divisible by both 4 and 11, it's divisible by 44." }
+        { type: "reveal", label: "Try it: Is 10,000,000,032 divisible by 44?", prompt: "44 = 4 × 11, so check both.", answer: "Yes. Divisible by 4: the last two digits, \"32\", are divisible by 4. Divisible by 11: the alternating digit sum from the right is $(2+0+0+0+0+1) - (3+0+0+0+0) = 3 - 3 = 0$, which is a multiple of 11. Since it's divisible by both 4 and 11, it's divisible by 44." }
       ]
     },
     {
@@ -93,9 +93,9 @@ const GRE_MATH_CHAPTERS = [
             options: [ {key:"A", text:"32"}, {key:"B", text:"16"}, {key:"C", text:"8"}, {key:"D", text:"4"}, {key:"E", text:"Both C and D"} ],
             correct: "E",
             steps: [
-              "$32 = 2^5$. Since $x^2$ is a perfect square, every exponent in its prime factorization must be even — so $x^2$ must actually contain at least six factors of 2 (the next even number after 5), meaning $x^2 \\geq 2^6 \\cdot m$.",
+              "$32 = 2^5$. Since $x^2$ is a perfect square, every exponent in its prime factorization must be even, so $x^2$ must actually contain at least six factors of 2 (the next even number after 5), meaning $x^2 \\geq 2^6 \\cdot m$.",
               "That gives $x \\geq 2^3 \\cdot \\sqrt{m} = 8 \\cdot (\\text{integer})$, so $x$ must be a multiple of 8.",
-              "Any multiple of 8 is automatically a multiple of 4 as well — so both 8 and 4 are guaranteed factors of $x$."
+              "Any multiple of 8 is automatically a multiple of 4 as well, so both 8 and 4 are guaranteed factors of $x$."
             ]
           },
           {
@@ -105,11 +105,11 @@ const GRE_MATH_CHAPTERS = [
             correct: ["C","D","E"],
             steps: [
               "Let $p = 3a$ and $q = 3b$ for integers $a, b$.",
-              "A: $p+q = 3(a+b)$ — divisible by 3 but not guaranteed to be divisible by 9 (e.g. $p=3, q=12 \\Rightarrow 15$).",
-              "B: $p - q = 3(a-b)$ — same issue, not always divisible by 9.",
-              "C: $p \\times q = 9ab$ — explicitly has a factor of 9. Always divisible.",
-              "D: $p^2+q^2 = 9a^2+9b^2 = 9(a^2+b^2)$ — always divisible by 9.",
-              "E: $3p+6q = 9a+18b = 9(a+2b)$ — always divisible by 9."
+              "A: $p+q = 3(a+b)$, divisible by 3 but not guaranteed to be divisible by 9 (e.g. $p=3, q=12 \\Rightarrow 15$).",
+              "B: $p - q = 3(a-b)$, same issue, not always divisible by 9.",
+              "C: $p \\times q = 9ab$, which explicitly has a factor of 9. Always divisible.",
+              "D: $p^2+q^2 = 9a^2+9b^2 = 9(a^2+b^2)$, always divisible by 9.",
+              "E: $3p+6q = 9a+18b = 9(a+2b)$, always divisible by 9."
             ]
           }
         ]}
@@ -120,7 +120,7 @@ const GRE_MATH_CHAPTERS = [
       blocks: [
         { type: "html", content: "<h4>The Remainder Formula</h4><p>For any integer dividend $A$ divided by a positive integer divisor $D$:</p>$$A = D \\cdot Q + R, \\quad 0 \\leq R < D$$" },
         { type: "html", content: "<h4>Arithmetic of Remainders</h4><p>If $A \\div D$ leaves remainder $R_1$ and $B \\div D$ leaves remainder $R_2$:</p><ul><li><strong>Addition:</strong> $(A+B) \\div D$ leaves the same remainder as $(R_1+R_2) \\div D$.</li><li><strong>Multiplication:</strong> $(A \\times B) \\div D$ leaves the same remainder as $(R_1 \\times R_2) \\div D$.</li><li><strong>Powers:</strong> $A^k \\div D$ leaves the same remainder as $(R_1)^k \\div D$.</li></ul><p class='note'>If the resulting $R_1+R_2$ or $R_1 \\times R_2$ is $\\geq D$, divide that new number by $D$ again to get the true final remainder.</p>" },
-        { type: "html", content: "<h4>Cyclicity</h4><p>The GRE loves large exponents (e.g. $7^{43} \\div 5$). Find the repeating remainder pattern instead of computing the whole power:</p><p>$7^1 \\div 5 \\Rightarrow R=2$, &nbsp; $7^2 \\div 5 \\Rightarrow R=4$, &nbsp; $7^3 \\div 5 \\Rightarrow R=3$, &nbsp; $7^4 \\div 5 \\Rightarrow R=1$ — pattern repeats every 4 powers: 2, 4, 3, 1.</p>" },
+        { type: "html", content: "<h4>Cyclicity</h4><p>The GRE loves large exponents (e.g. $7^{43} \\div 5$). Find the repeating remainder pattern instead of computing the whole power:</p><p>$7^1 \\div 5 \\Rightarrow R=2$, &nbsp; $7^2 \\div 5 \\Rightarrow R=4$, &nbsp; $7^3 \\div 5 \\Rightarrow R=3$, &nbsp; $7^4 \\div 5 \\Rightarrow R=1$: the pattern repeats every 4 powers: 2, 4, 3, 1.</p>" },
         { type: "html", content: "<h4>Odd and Even Integers (Parity)</h4><ul><li>An even number can be written as $2n$; an odd number as $2n+1$, for integer $n$.</li><li><strong>Trap:</strong> 0 is even. Consecutive integers always alternate parity.</li></ul>" },
         { type: "table", headers: ["Operation", "Rule", "Example"], rows: [
           ["Even ± Even", "Even", "4 + 2 = 6"],
@@ -152,10 +152,10 @@ const GRE_MATH_CHAPTERS = [
             correct: "E",
             steps: [
               "$3x$ has the same parity as $x$; $-5y$ has the same parity as $y$; $z^2$ has the same parity as $z$. So the requirement becomes $x - y + z = \\text{Odd}$.",
-              "Test C: if $x,y$ both odd, $x-y$ = Even, so $z$ must be Odd — meaning C's claim (\"z is even\") is false.",
-              "Test D: if $z$ is even, $(x-y)$ must be Odd, meaning $x,y$ have different parities — the opposite of D's claim.",
-              "Test A: if $x,y$ both even, $x-y$ = Even, so $z$ must be Odd — contradicts A.",
-              "Test B: if $z$ is odd, $(x-y)$ must be Even, meaning $x,y$ share the same parity — contradicts B.",
+              "Test C: if $x,y$ both odd, $x-y$ = Even, so $z$ must be Odd, meaning C's claim (\"z is even\") is false.",
+              "Test D: if $z$ is even, $(x-y)$ must be Odd, meaning $x,y$ have different parities, the opposite of D's claim.",
+              "Test A: if $x,y$ both even, $x-y$ = Even, so $z$ must be Odd, contradicting A.",
+              "Test B: if $z$ is odd, $(x-y)$ must be Even, meaning $x,y$ share the same parity, contradicting B.",
               "Every option fails, so the answer is E."
             ]
           },
@@ -182,11 +182,11 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Base traps, principal roots, estimation, and number-line reasoning.",
   lessons: [
     {
-      id: "ch2-l1", title: "Exponents and Roots — Advanced Concepts", video: { id: "1QH_-bwvBSs", title: "GRE Tips and Tricks | Exponents and Roots", channel: "PrepScholar GRE" },
+      id: "ch2-l1", title: "Exponents and Roots: Advanced Concepts", video: { id: "1QH_-bwvBSs", title: "GRE Tips and Tricks | Exponents and Roots", channel: "PrepScholar GRE" },
       blocks: [
         { type: "html", content: "<h4>The Negative & Fractional Base Traps</h4><ul><li>$(-x)^n$ vs. $-x^n$: $(-3)^2 = 9$, but $-3^2 = -9$. The negative is only included if it's explicitly inside parentheses.</li><li><strong>Parity of exponents:</strong> if $x^n = y^n$ and $n$ is even, then $x=y$ or $x=-y$. If $n$ is odd, then $x=y$.</li><li><strong>Bases between 0 and 1:</strong> raising $x$ to a higher power <em>decreases</em> its value when $0<x<1$ (e.g. $0.5^2 = 0.25 < 0.5$).</li></ul>" },
-        { type: "html", content: "<h4>Factoring Out Large Exponents</h4><p>You cannot combine powers when adding/subtracting terms with large exponents — factor out the lowest power instead.</p><p><em>Simplify:</em> $3^{15} + 3^{16} + 3^{17}$</p>$$3^{15}(1 + 3 + 3^2) = 3^{15}(13)$$" },
-        { type: "html", content: "<h4>The Principal Root Rule</h4><p>On the GRE, $\\sqrt{x}$ exclusively denotes the positive (principal) square root.</p><ul><li>If $x^2 = 16$, then $x = \\pm 4$.</li><li>If $x = \\sqrt{16}$, then $x = 4$ only.</li><li>Consequently, $\\sqrt{x^2} = |x|$ — it does <strong>not</strong> simplify to $x$ unless $x \\geq 0$ is guaranteed.</li></ul>" },
+        { type: "html", content: "<h4>Factoring Out Large Exponents</h4><p>You cannot combine powers when adding/subtracting terms with large exponents; factor out the lowest power instead.</p><p><em>Simplify:</em> $3^{15} + 3^{16} + 3^{17}$</p>$$3^{15}(1 + 3 + 3^2) = 3^{15}(13)$$" },
+        { type: "html", content: "<h4>The Principal Root Rule</h4><p>On the GRE, $\\sqrt{x}$ exclusively denotes the positive (principal) square root.</p><ul><li>If $x^2 = 16$, then $x = \\pm 4$.</li><li>If $x = \\sqrt{16}$, then $x = 4$ only.</li><li>Consequently, $\\sqrt{x^2} = |x|$: it does <strong>not</strong> simplify to $x$ unless $x \\geq 0$ is guaranteed.</li></ul>" },
         { type: "html", content: "<h4>Rules of Simplification</h4><ul><li><strong>Mult/Div:</strong> $\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}$ and $\\frac{\\sqrt{a}}{\\sqrt{b}}=\\sqrt{\\frac{a}{b}}$ (for non-negative reals).</li><li><strong>Add/Subtract:</strong> $\\sqrt{a}+\\sqrt{b} \\neq \\sqrt{a+b}$. You can only combine roots with identical radicands: $3\\sqrt{2}+5\\sqrt{2}=8\\sqrt{2}$.</li></ul>" },
         { type: "practice", questions: [
           {
@@ -218,8 +218,8 @@ const GRE_MATH_CHAPTERS = [
             correct: [],
             steps: [
               "Rewrite as $\\frac{1}{x^3} > \\frac{1}{x^2}$.",
-              "Testing each integer choice (−2, −1, 0, 1, 2) shows none satisfy the inequality — $x=0$ is undefined, and every other integer fails.",
-              "The inequality only holds for a positive fraction less than 1 (e.g. $x=\\tfrac12$), which no integer choice can satisfy — none of the listed options work."
+              "Testing each integer choice (−2, −1, 0, 1, 2) shows none satisfy the inequality: $x=0$ is undefined, and every other integer fails.",
+              "The inequality only holds for a positive fraction less than 1 (e.g. $x=\\tfrac12$), which no integer choice can satisfy, so none of the listed options work."
             ]
           }
         ]}
@@ -269,7 +269,7 @@ const GRE_MATH_CHAPTERS = [
             steps: [
               "Let the initial price be $P$. Apply the sequential multipliers: $P \\times 1.25 \\times 0.80 = 80$.",
               "$1.25 \\times 0.80 = \\frac{5}{4}\\times\\frac{4}{5} = 1$.",
-              "So $P = 80$ — a 25% increase followed by a 20% decrease nets to exactly 0% change."
+              "So $P = 80$: a 25% increase followed by a 20% decrease nets to exactly 0% change."
             ]
           }
         ]}
@@ -286,8 +286,8 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch4-l1", title: "Ratios and Rates", video: { id: "Y4fgwWEGQlg", title: "SAT Math Part 29 - Ratios and Proportions Word Problems", channel: "The Organic Chemistry Tutor" },
       blocks: [
-        { type: "html", content: "<h4>Combining Ratios (The Bridge Principle)</h4><p>If two ratios share a common element, rescale so that element matches before merging.</p><p>If $A:B = 2:3$ and $B:C=4:5$ — the shared element is $B$. LCM of 3 and 4 is 12, so rescale: $A:B=8:12$ and $B:C=12:15$. Merged: $A:B:C = 8:12:15$.</p>" },
-        { type: "html", content: "<h4>Advanced Work Rates</h4><p>When multiple entities work together, their individual <em>rates</em> add — not their times.</p>$$\\frac{1}{T_{\\text{combined}}} = \\frac{1}{t_1}+\\frac{1}{t_2}+\\frac{1}{t_3}+\\cdots$$" },
+        { type: "html", content: "<h4>Combining Ratios (The Bridge Principle)</h4><p>If two ratios share a common element, rescale so that element matches before merging.</p><p>If $A:B = 2:3$ and $B:C=4:5$, the shared element is $B$. LCM of 3 and 4 is 12, so rescale: $A:B=8:12$ and $B:C=12:15$. Merged: $A:B:C = 8:12:15$.</p>" },
+        { type: "html", content: "<h4>Advanced Work Rates</h4><p>When multiple entities work together, their individual <em>rates</em> add, not their times.</p>$$\\frac{1}{T_{\\text{combined}}} = \\frac{1}{t_1}+\\frac{1}{t_2}+\\frac{1}{t_3}+\\cdots$$" },
         { type: "practice", questions: [
           {
             kind: "MS", title: "Question · Multiple Selection",
@@ -296,7 +296,7 @@ const GRE_MATH_CHAPTERS = [
             correct: ["A","B","C"],
             steps: [
               "A: removing a portion of a uniform mixture doesn't change the relative ratio of what's left, so $X:Y$ stays $3:5$. True.",
-              "B: 32 liters removed, 32 liters added back — net volume change is 0. True.",
+              "B: 32 liters removed, 32 liters added back, so net volume change is 0. True.",
               "C: originally $Z$ was $\\frac{8x}{16x}=50\\%$ of the mixture. Removing a proportional slice loses some $Z$, but replacing all 32L with pure $Z$ pushes its concentration above the original 50%. True."
             ]
           }
@@ -314,7 +314,7 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch5-l1", title: "Absolute Value", video: { id: "4YRtjY0bPV0", title: "How to Solve Absolute Value Equations | The Two-Case Method Explained", channel: "CodeLucky" },
       blocks: [
-        { type: "html", content: "<h4>Geometric Definition</h4><p>$|x-a|$ represents the <strong>distance</strong> between $x$ and the fixed point $a$ on the number line.</p><p>$|x-5|\\leq 3$ means \"the distance between $x$ and 5 is at most 3\" — so $x \\in [2, 8]$.</p>" },
+        { type: "html", content: "<h4>Geometric Definition</h4><p>$|x-a|$ represents the <strong>distance</strong> between $x$ and the fixed point $a$ on the number line.</p><p>$|x-5|\\leq 3$ means \"the distance between $x$ and 5 is at most 3,\" so $x \\in [2, 8]$.</p>" },
         { type: "html", content: "<h4>Algebraic Properties</h4><ul><li><strong>Square root identity:</strong> $\\sqrt{x^2}=|x|$</li><li><strong>Triangle inequality:</strong> $|x+y|\\leq|x|+|y|$, with equality iff $x$ and $y$ share the same sign ($xy \\geq 0$).</li></ul>" },
         { type: "practice", questions: [
           {
@@ -352,8 +352,8 @@ const GRE_MATH_CHAPTERS = [
             correct: "A",
             steps: [
               "Simplify each fraction, then check whether the denominator's only prime factors are 2 and 5.",
-              "A: $\\frac{9}{120}=\\frac{3}{40}$, $40=2^3\\times5$ — only 2s and 5s. Terminates.",
-              "B: $45 = 3^2 \\times 5$ — repeats. C: $14=2\\times7$ — repeats. D: $70=2\\times5\\times7$ — repeats. E: $15=3\\times5$ — repeats.",
+              "A: $\\frac{9}{120}=\\frac{3}{40}$, $40=2^3\\times5$, only 2s and 5s. Terminates.",
+              "B: $45 = 3^2 \\times 5$, repeats. C: $14=2\\times7$, repeats. D: $70=2\\times5\\times7$, repeats. E: $15=3\\times5$, repeats.",
               "Only A terminates."
             ]
           }
@@ -403,7 +403,7 @@ const GRE_MATH_CHAPTERS = [
       id: "ch8-l1", title: "Advanced Base Manipulations & Sign Traps", video: { id: "m4sX4FQOyoo", title: "Negative Exponents and Fractional Exponents - Examples", channel: "Patrick J" },
       blocks: [
         { type: "html", content: "<h4>The Three Critical Base Exceptions</h4><p>The rule \"if $b^x=b^y$ then $x=y$\" breaks down if:</p><ol><li>$b=1$: $1^5=1^{12}$, but $5\\neq12$.</li><li>$b=0$: $0^2=0^{33}$, but $2\\neq33$.</li><li>$b=-1$: $(-1)^2=(-1)^4=1$, but $2\\neq4$.</li></ol>" },
-        { type: "html", content: "<h4>Exponential Inequalities (0 < base < 1)</h4><p>If $0<b<1$ and $b^x>b^y$, then $x<y$ — raising a fractional base to a higher power makes it <em>smaller</em>.</p><p><em>Example:</em> $(0.5)^2=0.25$ and $(0.5)^3=0.125$. Since $0.25>0.125$, the lower exponent gave the larger value.</p>" },
+        { type: "html", content: "<h4>Exponential Inequalities (0 < base < 1)</h4><p>If $0<b<1$ and $b^x>b^y$, then $x<y$: raising a fractional base to a higher power makes it <em>smaller</em>.</p><p><em>Example:</em> $(0.5)^2=0.25$ and $(0.5)^3=0.125$. Since $0.25>0.125$, the lower exponent gave the larger value.</p>" },
         { type: "practice", questions: [
           {
             kind: "QC", title: "Question · Quantitative Comparison",
@@ -414,7 +414,7 @@ const GRE_MATH_CHAPTERS = [
             steps: [
               "Base is $0.4$, between 0 and 1, so equating exponents flips the inequality: $x^2-5 < 4x$.",
               "Rearrange: $x^2-4x-5<0 \\Rightarrow (x-5)(x+1)<0$, valid for $-1<x<5$.",
-              "Since $x$ is an integer, $x \\in \\{0,1,2,3,4\\}$ — $x$ could be 0 or positive, so the relationship cannot be determined."
+              "Since $x$ is an integer, $x \\in \\{0,1,2,3,4\\}$, and $x$ could be 0 or positive, so the relationship cannot be determined."
             ]
           }
         ]}
@@ -459,7 +459,7 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch10-l1", title: "Compound Inequalities and Absolute Range Limits", video: { id: "AKSnaGHiFMc", title: "Compound Inequalities | Graphing, Writing, and Solving", channel: "Math with Mr. J" },
       blocks: [
-        { type: "html", content: "<h4>Multi-Variable Product Logic</h4><ul><li>If $ab>0$, $a$ and $b$ share the same sign.</li><li>If $ab<0$, $a$ and $b$ have opposite signs.</li><li><strong>The division trap:</strong> if $a>b$, it is <em>not</em> always true that $\\frac1a<\\frac1b$ — this only holds if $a,b$ share the same sign. If $a=2, b=-3$: $\\frac12 > -\\frac13$.</li></ul>" },
+        { type: "html", content: "<h4>Multi-Variable Product Logic</h4><ul><li>If $ab>0$, $a$ and $b$ share the same sign.</li><li>If $ab<0$, $a$ and $b$ have opposite signs.</li><li><strong>The division trap:</strong> if $a>b$, it is <em>not</em> always true that $\\frac1a<\\frac1b$; this only holds if $a,b$ share the same sign. If $a=2, b=-3$: $\\frac12 > -\\frac13$.</li></ul>" },
         { type: "practice", questions: [
           {
             kind: "MC", title: "Question · Multiple Choice",
@@ -468,8 +468,8 @@ const GRE_MATH_CHAPTERS = [
             correct: "D",
             steps: [
               "Both $x,y$ are negative and $x$ is further left (more negative). Test $x=-3, y=-2$.",
-              "$\\frac{x}{y}=\\frac{-3}{-2}=1.5$ — a positive quotient of two negatives with $|x|>|y|$ always exceeds 1.",
-              "A fails ($9<4$ is false), B fails ($-0.33<-0.5$ is false) — D is the only guaranteed truth."
+              "$\\frac{x}{y}=\\frac{-3}{-2}=1.5$: a positive quotient of two negatives with $|x|>|y|$ always exceeds 1.",
+              "A fails ($9<4$ is false), B fails ($-0.33<-0.5$ is false), so D is the only guaranteed truth."
             ]
           }
         ]}
@@ -510,7 +510,7 @@ const GRE_MATH_CHAPTERS = [
 // ================= CHAPTER 12 =================
 {
   id: "ch12", number: 12, title: "Solving Simultaneous Equations and Inequalities",
-  blurb: "One, none, or infinite solutions — spotted from the coefficients alone.",
+  blurb: "One, none, or infinite solutions, spotted from the coefficients alone.",
   lessons: [
     {
       id: "ch12-l1", title: "Infinite vs. Zero Solution Configurations", video: { id: "9itGIP8gns4", title: "Solving Systems of Linear Equations Using Substitution and Elimination", channel: "Mario's Math Tutoring" },
@@ -526,7 +526,7 @@ const GRE_MATH_CHAPTERS = [
             steps: [
               "No-solution condition: $\\frac{A_1}{A_2}=\\frac{B_1}{B_2}$, i.e. $\\frac{3}{k}=\\frac{-4}{8}$.",
               "Cross-multiply: $-4k = 24 \\Rightarrow k=-6$.",
-              "Check $\\frac{C_1}{C_2}$: $\\frac{12}{20}=\\frac35$, while $\\frac{3}{-6}=-\\frac12 \\neq \\frac35$ — confirms parallel, non-coincident lines."
+              "Check $\\frac{C_1}{C_2}$: $\\frac{12}{20}=\\frac35$, while $\\frac{3}{-6}=-\\frac12 \\neq \\frac35$, confirming parallel, non-coincident lines."
             ]
           }
         ]}
@@ -541,7 +541,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Overlapping groups and mixture balance equations.",
   lessons: [
     {
-      id: "ch13-l1", title: "Matrix Setups for Weighted Mixtures", video: { id: "8rYOIVhIL9w", title: "Algebra Mixture Word Problems Explained — Step-by-Step Solution & Example", channel: "TabletClass Math" },
+      id: "ch13-l1", title: "Matrix Setups for Weighted Mixtures", video: { id: "8rYOIVhIL9w", title: "Algebra Mixture Word Problems Explained: Step-by-Step Solution & Example", channel: "TabletClass Math" },
       blocks: [
         { type: "html", content: "<h4>The Overlapping Group Formula</h4>$$\\text{Total} = \\text{Group A} + \\text{Group B} - \\text{Both} + \\text{Neither}$$" },
         { type: "html", content: "<h4>Fluid Mixture Balance Equation</h4><p>The total amount of pure substance stays constant when mixing:</p>$$C_1 V_1 + C_2 V_2 = C_{\\text{final}}(V_1+V_2)$$<p>where $C$ = concentration, $V$ = volume.</p>" },
@@ -613,7 +613,7 @@ const GRE_MATH_CHAPTERS = [
         { type: "html", content: "<p>When $l_1 \\parallel l_2$ and a transversal $T$ crosses both, 8 angles form but only <strong>two unique measures</strong> exist. Click any angle in the diagram above to see every angle that must equal it, and drag the slider to change the transversal's tilt.</p>" },
         { type: "html", content: "<h4>The Binary Angle Grouping Rule</h4><ul><li>All <strong>Group Acute</strong> angles are equal.</li><li>All <strong>Group Obtuse</strong> angles are equal.</li><li>Any acute-group angle + any obtuse-group angle is always supplementary: $\\alpha+\\beta=180°$.</li></ul>" },
         { type: "html", content: "<h4>Structural Categorizations</h4><ul><li><strong>Alternate interior angles</strong> (opposite sides of the transversal, between the parallel lines) are equal.</li><li><strong>Alternate exterior angles</strong> (opposite sides, outside the parallel lines) are equal.</li><li><strong>Corresponding angles</strong> (matching relative position at each intersection) are equal.</li><li><strong>Consecutive interior angles</strong> (same side, between the lines) are supplementary.</li></ul>" },
-        { type: "html", content: "<h4>Proving Parallelism</h4><p>Never assume two lines are parallel just because they look it. You can only conclude $l_1 \\parallel l_2$ if:</p><ol><li>A pair of alternate interior angles is equal, <strong>or</strong></li><li>A pair of corresponding angles is equal, <strong>or</strong></li><li>A pair of consecutive interior angles sums to $180°$.</li></ol><p class='note'><strong>Auxiliary line shortcut:</strong> for a \"crook\" or \"V-shape\" between two parallel lines, draw a third auxiliary parallel line through the vertex of the bend — this splits the unknown angle into two solvable parts.</p>" },
+        { type: "html", content: "<h4>Proving Parallelism</h4><p>Never assume two lines are parallel just because they look it. You can only conclude $l_1 \\parallel l_2$ if:</p><ol><li>A pair of alternate interior angles is equal, <strong>or</strong></li><li>A pair of corresponding angles is equal, <strong>or</strong></li><li>A pair of consecutive interior angles sums to $180°$.</li></ol><p class='note'><strong>Auxiliary line shortcut:</strong> for a \"crook\" or \"V-shape\" between two parallel lines, draw a third auxiliary parallel line through the vertex of the bend; this splits the unknown angle into two solvable parts.</p>" },
         { type: "practice", questions: [
           {
             kind: "QC", title: "Question · Quantitative Comparison",
@@ -623,8 +623,8 @@ const GRE_MATH_CHAPTERS = [
             correct: "D",
             steps: [
               "Check the given constraint: does the problem state $L_1 \\parallel L_2$?",
-              "It only says the lines are \"cut by transversal $T$\" — parallelism is never confirmed.",
-              "Without that guarantee, consecutive interior angles don't have to sum to $180°$, so $x$ could be many values — the relationship cannot be determined."
+              "It only says the lines are \"cut by transversal $T$\": parallelism is never confirmed.",
+              "Without that guarantee, consecutive interior angles don't have to sum to $180°$, so $x$ could be many values, and the relationship cannot be determined."
             ]
           }
         ]}
@@ -641,9 +641,9 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch16-l1", title: "Central Tendency", video: { id: "e3uY2LraXts", title: "Mean, Median, Mode, and Range", channel: "Math with Mr. J" },
       blocks: [
-        { type: "html", content: "<h4>The Algebraic Mean</h4>$$\\mu = \\frac{\\sum_{i=1}^{n}x_i}{n} \\quad\\Longrightarrow\\quad \\text{Sum} = \\text{Mean}\\times n$$<p class='note'><strong>Strategy:</strong> when tracking changes to an average, convert means into <em>sums</em> — sums can be added and subtracted algebraically, averages cannot.</p>" },
+        { type: "html", content: "<h4>The Algebraic Mean</h4>$$\\mu = \\frac{\\sum_{i=1}^{n}x_i}{n} \\quad\\Longrightarrow\\quad \\text{Sum} = \\text{Mean}\\times n$$<p class='note'><strong>Strategy:</strong> when tracking changes to an average, convert means into <em>sums</em>; sums can be added and subtracted algebraically, averages cannot.</p>" },
         { type: "html", content: "<h4>The Weighted Mean</h4><p>Combining two groups of sizes $n_1, n_2$ with averages $M_1, M_2$:</p>$$M_c = \\frac{n_1 M_1 + n_2 M_2}{n_1+n_2}$$<p><strong>Balancing rule:</strong> $M_c$ always lies closer to the average of the larger group.</p>" },
-        { type: "html", content: "<h4>Median & Mode</h4><ul><li><strong>Median</strong> (odd $n$): the value at position $\\frac{n+1}{2}$.</li><li><strong>Median</strong> (even $n$): the average of the values at positions $\\frac{n}{2}$ and $\\frac{n}{2}+1$.</li><li><strong>Mode:</strong> the most frequent value — a set can have zero, one, or many modes.</li></ul>" },
+        { type: "html", content: "<h4>Median & Mode</h4><ul><li><strong>Median</strong> (odd $n$): the value at position $\\frac{n+1}{2}$.</li><li><strong>Median</strong> (even $n$): the average of the values at positions $\\frac{n}{2}$ and $\\frac{n}{2}+1$.</li><li><strong>Mode:</strong> the most frequent value; a set can have zero, one, or many modes.</li></ul>" },
         { type: "practice", questions: [
           {
             kind: "MC", title: "Question · Multiple Choice",
@@ -654,8 +654,8 @@ const GRE_MATH_CHAPTERS = [
               "Order the 7 integers $x_1<x_2<\\cdots<x_7$, with median $x_4=35$ and max $x_7=80$.",
               "Total sum $= 40 \\times 7 = 280$.",
               "To maximize $x_6$, minimize $x_1,x_2,x_3,x_5$: smallest distinct positives $x_1{=}1, x_2{=}2, x_3{=}3$, and $x_5$ must just exceed the median, so $x_5=36$.",
-              "$(1+2+3)+35+36+x_6+80=280 \\Rightarrow x_6=123$ — but $x_6$ must stay below $x_7=80$, so 123 isn't achievable.",
-              "Since all integers are distinct and $x_6<x_7=80$, the true ceiling is $x_6=79$. Check it's achievable: with $x_6=79$, the remaining three values $x_1,x_2,x_3$ must sum to $280-(35+36+79+80)=50$ — easily done with e.g. 10, 15, 25."
+              "$(1+2+3)+35+36+x_6+80=280 \\Rightarrow x_6=123$, but $x_6$ must stay below $x_7=80$, so 123 isn't achievable.",
+              "Since all integers are distinct and $x_6<x_7=80$, the true ceiling is $x_6=79$. Check it's achievable: with $x_6=79$, the remaining three values $x_1,x_2,x_3$ must sum to $280-(35+36+79+80)=50$, easily done with e.g. 10, 15, 25."
             ]
           }
         ]}
@@ -664,8 +664,8 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch16-l2", title: "Dispersion", video: { id: "ApT_UJfIeAc", title: "Standard deviation Simply Explained", channel: "Kirkman's Academy" },
       blocks: [
-        { type: "html", content: "<h4>Range and IQR</h4><ul><li><strong>Range</strong> $=$ Max $-$ Min. Very sensitive to outliers.</li><li><strong>Quartiles:</strong> $Q_1$ (25th percentile), $Q_2$ (median), $Q_3$ (75th percentile).</li><li><strong>IQR</strong> $= Q_3-Q_1$ — spread of the middle 50%, resistant to outliers.</li></ul>" },
-        { type: "html", content: "<h4>Standard Deviation — Structural Rules</h4><p>You'll almost never compute $\\sigma$ from its formula directly. Instead, master these:</p><ul><li><strong>Shifting:</strong> adding/subtracting a constant $k$ to every term shifts the mean by $k$ but leaves $\\sigma$ <strong>unchanged</strong>.</li><li><strong>Scaling:</strong> multiplying every term by a positive constant $k$ multiplies both the mean and $\\sigma$ by $k$.</li><li><strong>Clustering:</strong> the closer data points sit to the mean, the smaller $\\sigma$.</li></ul>" },
+        { type: "html", content: "<h4>Range and IQR</h4><ul><li><strong>Range</strong> $=$ Max $-$ Min. Very sensitive to outliers.</li><li><strong>Quartiles:</strong> $Q_1$ (25th percentile), $Q_2$ (median), $Q_3$ (75th percentile).</li><li><strong>IQR</strong> $= Q_3-Q_1$: spread of the middle 50%, resistant to outliers.</li></ul>" },
+        { type: "html", content: "<h4>Standard Deviation: Structural Rules</h4><p>You'll almost never compute $\\sigma$ from its formula directly. Instead, master these:</p><ul><li><strong>Shifting:</strong> adding/subtracting a constant $k$ to every term shifts the mean by $k$ but leaves $\\sigma$ <strong>unchanged</strong>.</li><li><strong>Scaling:</strong> multiplying every term by a positive constant $k$ multiplies both the mean and $\\sigma$ by $k$.</li><li><strong>Clustering:</strong> the closer data points sit to the mean, the smaller $\\sigma$.</li></ul>" },
         { type: "practice", questions: [
           {
             kind: "MC", title: "Question · Multiple Choice",
@@ -674,7 +674,7 @@ const GRE_MATH_CHAPTERS = [
             correct: "B",
             steps: [
               "Multiplying by $-3$ scales the spread by $|-3|=3$ (standard deviation is never negative). New $\\sigma = 3\\sigma$.",
-              "Adding 10 shifts every point equally — zero effect on spread.",
+              "Adding 10 shifts every point equally, so it has zero effect on spread.",
               "Final standard deviation: $3\\sigma$."
             ]
           }
@@ -693,7 +693,7 @@ const GRE_MATH_CHAPTERS = [
       id: "ch17-l1", title: "Deconstructing Advanced Charts", video: { id: "1MXcyrNkprk", title: "Mastering Data Visualization: Histograms, Bar Charts, Box Plots, and Scatter Plots Explained", channel: "Fatima's Digital Space" },
       widget: "boxplotCompare",
       blocks: [
-        { type: "html", content: "<h4>Boxplots (5-Number Summary)</h4><p>A boxplot splits data into four quartile zones, each holding exactly <strong>25% of the data points</strong> — regardless of the zone's physical width.</p><ul><li><strong>Whiskers</strong> extend to the min and max.</li><li><strong>The box</strong> spans $Q_1$ to $Q_3$; its width is the IQR.</li><li><strong>The internal line</strong> marks the median ($Q_2$).</li></ul><p>Hover over either boxplot above to see its exact five-number summary.</p>" },
+        { type: "html", content: "<h4>Boxplots (5-Number Summary)</h4><p>A boxplot splits data into four quartile zones, each holding exactly <strong>25% of the data points</strong>, regardless of the zone's physical width.</p><ul><li><strong>Whiskers</strong> extend to the min and max.</li><li><strong>The box</strong> spans $Q_1$ to $Q_3$; its width is the IQR.</li><li><strong>The internal line</strong> marks the median ($Q_2$).</li></ul><p>Hover over either boxplot above to see its exact five-number summary.</p>" },
         { type: "html", content: "<h4>Scatterplots</h4><p>Track the relationship between two variables. The <strong>line of best fit</strong> represents the trend; points above it exceed the model's prediction. Correlation can be positive, negative, or zero.</p>" },
         { type: "html", content: "<h4>Frequency Distributions</h4><p>In a histogram, the y-axis is the frequency count within each x-axis bin. To find the median, find total frequency $N$ and locate the bin containing the $\\frac{N}{2}$ position.</p>" },
         { type: "practice", questions: [
@@ -704,7 +704,7 @@ const GRE_MATH_CHAPTERS = [
             correct: "E",
             steps: [
               "Range A $= 95-40=55$; Range B $=90-50=40$. Since $55>40$, statement A is true.",
-              "Statement C: the zone from $Q_1$ to $Q_2$ always holds 25% of the data, and so does $Q_2$ to $Q_3$ — same pool, same class, so the actual counts match. True.",
+              "Statement C: the zone from $Q_1$ to $Q_2$ always holds 25% of the data, and so does $Q_2$ to $Q_3$, the same pool and same class, so the actual counts match. True.",
               "Since both A and C hold, the answer is E."
             ]
           }
@@ -737,7 +737,7 @@ const GRE_MATH_CHAPTERS = [
         { type: "practice", questions: [
           {
             kind: "MC", title: "Question · Multiple Choice (Conditional Probability)",
-            context: "40% of a population has high blood pressure. Of those, 70% eat a high-sodium diet. Of those without high blood pressure, 20% eat a high-sodium diet. A random person eats a high-sodium diet — what's the probability they have high blood pressure?",
+            context: "40% of a population has high blood pressure. Of those, 70% eat a high-sodium diet. Of those without high blood pressure, 20% eat a high-sodium diet. A random person eats a high-sodium diet. What's the probability they have high blood pressure?",
             options: [ {key:"A", text:"7/10"}, {key:"B", text:"7/25"}, {key:"C", text:"14/25"}, {key:"D", text:"7/11"}, {key:"E", text:"4/11"} ],
             correct: "A",
             steps: [
@@ -785,8 +785,8 @@ const GRE_MATH_CHAPTERS = [
 
 // ================= CHAPTER 20 =================
 {
-  id: "ch20", number: 20, title: "Geometry — Triangles, Circles & Solids",
-  blurb: "Triangles, circles, polygons, and 3D solids — the shapes the GRE loves to test.",
+  id: "ch20", number: 20, title: "Geometry: Triangles, Circles & Solids",
+  blurb: "Triangles, circles, polygons, and 3D solids, the shapes the GRE loves to test.",
   lessons: [
     {
       id: "ch20-l1", title: "Triangles", video: { id: "IAsesh9oLhQ", title: "Pythagorean Theorem: Right Triangle Basics and Applications", channel: "IXL" },
@@ -877,7 +877,7 @@ const GRE_MATH_CHAPTERS = [
           ["Parallelogram", "Opposite sides parallel & equal; opposite angles equal; diagonals bisect each other."],
           ["Rectangle", "A parallelogram with four right angles; diagonals are equal in length."],
           ["Rhombus", "A parallelogram with four equal sides; diagonals are perpendicular bisectors of each other."],
-          ["Square", "A rectangle and a rhombus at once — all sides equal, all angles 90°."],
+          ["Square", "A rectangle and a rhombus at once: all sides equal, all angles 90°."],
           ["Trapezoid", "Exactly one pair of parallel sides (the \"bases\")."]
         ]},
         { type: "practice", questions: [
@@ -921,7 +921,7 @@ const GRE_MATH_CHAPTERS = [
             steps: [
               "Surface area $= 4\\pi r^2 = 4\\pi(9) = 36\\pi$.",
               "Volume $= \\frac43 \\pi r^3 = \\frac43 \\pi (27) = 36\\pi$.",
-              "At $r=3$, these happen to come out numerically equal — both are $36\\pi$. (Careful: they're different quantities with different units in real life, but the GRE is only asking you to compare the two computed values.)"
+              "At $r=3$, these happen to come out numerically equal: both are $36\\pi$. (Careful: they're different quantities with different units in real life, but the GRE is only asking you to compare the two computed values.)"
             ]
           }
         ]}

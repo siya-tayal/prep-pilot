@@ -1,0 +1,15 @@
+{
+  "name": "Stumblebee — GRE & GMAT Prep",
+  "short_name": "Stumblebee",
+  "description": "Free, interactive GRE and GMAT prep with lessons, vocabulary flashcards, and progress tracking.",
+  "start_url": "course",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFC629",
+  "theme_color": "#FFC629",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

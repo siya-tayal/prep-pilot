@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard — Stumblebee</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<meta name="theme-color" content="#FFC629">
+<title>Dashboard: Stumblebee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -76,6 +80,11 @@
 <script src="exam-lock.js"></script>
 <script src="gre-math-data.js"></script>
 <script src="gmat-quant-data.js"></script>
+<script src="gmat-di-data.js"></script>
+<script src="gmat-verbal-data.js"></script>
+<script src="vocab-data.js"></script>
+<script src="vocab-srs.js"></script>
+<script src="daily-goal.js"></script>
 <script src="nav.js"></script>
 <script>
   function getProgressSet(exam, sub) {
@@ -157,19 +166,56 @@
       return `<div class="dash-section-title">${sec.icon} ${sec.label}</div><div class="chapter-progress-list">${rows}</div>`;
     }).join("");
 
+    let vocabBlock = "";
+    if (exam === "GRE" && typeof VOCAB_WORDS !== "undefined") {
+      const vocabMastered = VocabSRS.masteredWords().length;
+      const vocabTotal = VOCAB_WORDS.length;
+      totalDone += vocabMastered;
+      totalLessons += vocabTotal;
+      const vocabPct = Math.round((vocabMastered / vocabTotal) * 100);
+      vocabBlock = `
+        <div class="dash-section-title">📚 Vocabulary</div>
+        <a href="vocab" class="chapter-progress-row" style="text-decoration:none; color:inherit; display:flex;">
+          <div class="cp-num">📖</div>
+          <div class="cp-title">${vocabMastered} of ${vocabTotal} words mastered</div>
+          <div class="cp-track"><div class="cp-fill" style="width:${vocabPct}%;"></div></div>
+          <div class="cp-fraction">${vocabPct}%</div>
+        </a>`;
+    }
+
     const overallPct = totalLessons ? Math.round((totalDone / totalLessons) * 100) : 0;
+
+    let goalBlock = "";
+    if (typeof DailyGoal !== "undefined") {
+      const plan = DailyGoal.computePlan(exam);
+      if (plan) {
+        const doneToday = DailyGoal.getTodayCompleted();
+        const goalMet = doneToday >= plan.perDay;
+        const goalPct = Math.min(100, Math.round((doneToday / plan.perDay) * 100));
+        goalBlock = `
+          <div class="dash-section-title">🎯 Today's goal</div>
+          <div class="chapter-progress-row" style="align-items:center;">
+            <div class="cp-num">${goalMet ? "✅" : "📌"}</div>
+            <div class="cp-title">${goalMet ? `Done for today, nice work.` : `${doneToday} of ${plan.perDay} today`} &mdash; ${plan.daysLeft} day${plan.daysLeft === 1 ? "" : "s"} left, ${plan.remaining} left overall</div>
+            <div class="cp-track"><div class="cp-fill" style="width:${goalPct}%;"></div></div>
+            <div class="cp-fraction">${doneToday}/${plan.perDay}</div>
+          </div>`;
+      }
+    }
 
     root.innerHTML = `
       <div class="dash-hero">
         <div>
           <span class="eyebrow" style="background:var(--yellow);">${exam} progress</span>
-          <h1 style="margin-top:14px;">You've completed ${totalDone} of ${totalLessons} lessons.</h1>
+          <h1 style="margin-top:14px;">You've completed ${totalDone} of ${totalLessons} lessons and words.</h1>
         </div>
         <div class="honeypot-wrap">
           ${honeyPotSVG(overallPct)}
           <div class="dash-ring-label"><div class="big">${overallPct}%</div><div class="small">honey pot filled</div></div>
         </div>
       </div>
+      ${goalBlock}
+      ${vocabBlock}
       ${sectionBlocks}
     `;
   }

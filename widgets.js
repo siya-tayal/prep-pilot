@@ -1,4 +1,4 @@
-// Stumblebee — custom interactive widgets for GRE Math lessons.
+// Stumblebee custom interactive widgets for GRE Math lessons.
 // Each widget is a function(container) that renders itself into `container`.
 
 window.StumblebeeWidgets = {};
@@ -88,7 +88,7 @@ window.StumblebeeWidgets.numberSystemFlowchart = function (container) {
         children: [ { name: "Imaginary Numbers", def: "Real part is zero: bi, b ≠ 0." } ] },
       { name: "Real Numbers", def: "Any number that can sit on the number line.",
         children: [
-          { name: "Irrational Numbers", def: "Can't be written as a fraction — decimal never ends or repeats." },
+          { name: "Irrational Numbers", def: "Can't be written as a fraction; decimal never ends or repeats." },
           { name: "Rational Numbers", def: "Can be written as p/q, integers, q ≠ 0.",
             children: [
               { name: "Fractional Numbers", def: "Rational numbers that aren't integers." },
@@ -132,7 +132,7 @@ window.StumblebeeWidgets.numberSystemFlowchart = function (container) {
 
   const wrap = document.createElement("div");
   wrap.className = "sb-tree-scroll";
-  wrap.innerHTML = `<div class="sb-tree-hint">Click any box to flip it and reveal its definition — click again to flip back. Scroll → to see the full tree.</div>`;
+  wrap.innerHTML = `<div class="sb-tree-hint">Click any box to flip it and reveal its definition. Click again to flip back. Scroll → to see the full tree.</div>`;
   const rootUl = document.createElement("ul");
   rootUl.className = "sb-tree";
   rootUl.appendChild(buildNode(TREE));
@@ -149,7 +149,7 @@ window.StumblebeeWidgets.angleHashtag = function (container) {
   let selected = null;
 
   container.innerHTML = `
-    <div class="sb-widget-title">Parallel lines cut by a transversal — click an angle</div>
+    <div class="sb-widget-title">Parallel lines cut by a transversal: click an angle</div>
     <div class="sb-angle-wrap">
       <svg class="sb-angle-svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"></svg>
       <div class="sb-angle-info" id="angleInfo">Click any labeled angle to see which other angles must equal it, and why.</div>
@@ -243,7 +243,7 @@ window.StumblebeeWidgets.angleHashtag = function (container) {
     }
     const other = 180 - selected;
     const count = [...svg.querySelectorAll(".angle-label")].filter(g => parseInt(g.dataset.value, 10) === selected).length;
-    info.innerHTML = `<b>${selected}°</b> is highlighted on ${count} of the 8 angles. Because $l_1 \\parallel l_2$, a transversal only ever produces <strong>two</strong> distinct angle measures — every other angle here measures either <b>${selected}°</b> or its supplement, <b>${other}°</b>. Any two highlighted angles are equal by vertical angles, corresponding angles, or alternate interior/exterior angles.`;
+    info.innerHTML = `<b>${selected}°</b> is highlighted on ${count} of the 8 angles. Because $l_1 \\parallel l_2$, a transversal only ever produces <strong>two</strong> distinct angle measures: every other angle here measures either <b>${selected}°</b> or its supplement, <b>${other}°</b>. Any two highlighted angles are equal by vertical angles, corresponding angles, or alternate interior/exterior angles.`;
     sbRenderMath(info);
   }
 
@@ -267,7 +267,7 @@ window.StumblebeeWidgets.quadraticGrapher = function (container) {
   const xMin = -10, xMax = 10, yMin = -10, yMax = 10;
 
   container.innerHTML = `
-    <div class="sb-widget-title">Drag the sliders — watch the roots and vertex update live</div>
+    <div class="sb-widget-title">Drag the sliders and watch the roots and vertex update live</div>
     <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
       <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" id="quadSvg"></svg>
       <div style="flex:1; min-width:220px;">
@@ -334,7 +334,7 @@ window.StumblebeeWidgets.quadraticGrapher = function (container) {
 
     readout.innerHTML = `
       <div><b>Δ = b² − 4ac = ${disc.toFixed(2)}</b></div>
-      <div style="margin-top:6px;">${disc > 0 ? "2 real roots" : disc === 0 ? "1 real root" : "0 real roots"} — ${rootsText}</div>
+      <div style="margin-top:6px;">${disc > 0 ? "2 real roots" : disc === 0 ? "1 real root" : "0 real roots"}: ${rootsText}</div>
       <div style="margin-top:6px;">Vertex: (${vx.toFixed(2)}, ${vy.toFixed(2)})</div>
     `;
   }
@@ -381,7 +381,7 @@ window.StumblebeeWidgets.sequenceExplorer = function (container) {
       terms.push(mode === "arithmetic" ? a1 + (i - 1) * step : a1 * Math.pow(step, i - 1));
     }
     chipsEl.innerHTML = terms.slice(0, 8).map((t, i) => `
-      <span class="cc-example" style="${i + 1 === n ? 'background:var(--ink);color:var(--yellow);' : ''}">a<sub>${i+1}</sub> = ${Number.isFinite(t) ? Math.round(t*100)/100 : "—"}</span>
+      <span class="cc-example" style="${i + 1 === n ? 'background:var(--ink);color:var(--yellow);' : ''}">a<sub>${i+1}</sub> = ${Number.isFinite(t) ? Math.round(t*100)/100 : "-"}</span>
     `).join("");
 
     const nthVal = mode === "arithmetic" ? a1 + (n - 1) * step : a1 * Math.pow(step, n - 1);
@@ -455,7 +455,7 @@ window.StumblebeeWidgets.boxplotCompare = function (container) {
   svg.querySelectorAll(".boxplot-g").forEach(g => {
     g.addEventListener("mouseenter", () => {
       const s = sets[parseInt(g.dataset.idx, 10)];
-      tip.innerHTML = `<b>${s.label}</b> — Min ${s.min}, Q1 ${s.q1}, Median ${s.med}, Q3 ${s.q3}, Max ${s.max} &nbsp;·&nbsp; IQR = ${s.q3-s.q1} &nbsp;·&nbsp; Range = ${s.max-s.min}`;
+      tip.innerHTML = `<b>${s.label}</b>: Min ${s.min}, Q1 ${s.q1}, Median ${s.med}, Q3 ${s.q3}, Max ${s.max} &nbsp;·&nbsp; IQR = ${s.q3-s.q1} &nbsp;·&nbsp; Range = ${s.max-s.min}`;
     });
   });
 };
@@ -470,8 +470,8 @@ window.StumblebeeWidgets.combinatoricsCalculator = function (container) {
       <div class="sb-slider-row">r<input type="number" class="sb-num-input" id="rInput" value="2" min="0" max="20"></div>
     </div>
     <div class="sb-result-grid">
-      <div class="sb-result-card"><div class="rlabel">P(n, r) — order matters</div><div class="rvalue" id="permOut">30</div></div>
-      <div class="sb-result-card"><div class="rlabel">C(n, r) — order doesn't matter</div><div class="rvalue" id="combOut">15</div></div>
+      <div class="sb-result-card"><div class="rlabel">P(n, r): order matters</div><div class="rvalue" id="permOut">30</div></div>
+      <div class="sb-result-card"><div class="rlabel">C(n, r): order doesn't matter</div><div class="rvalue" id="combOut">15</div></div>
     </div>
   `;
 
@@ -484,7 +484,7 @@ window.StumblebeeWidgets.combinatoricsCalculator = function (container) {
     r = Math.max(0, Math.min(20, r));
     const permOut = container.querySelector("#permOut");
     const combOut = container.querySelector("#combOut");
-    if (r > n) { permOut.textContent = "—"; combOut.textContent = "—"; return; }
+    if (r > n) { permOut.textContent = "-"; combOut.textContent = "-"; return; }
     permOut.textContent = Math.round(fact(n) / fact(n - r));
     combOut.textContent = Math.round(fact(n) / (fact(r) * fact(n - r)));
   }
@@ -502,7 +502,7 @@ window.StumblebeeWidgets.reflectionTool = function (container) {
   let px = 4, py = 3;
 
   container.innerHTML = `
-    <div class="sb-widget-title">Drag the black point — watch all four reflections move</div>
+    <div class="sb-widget-title">Drag the black point and watch all four reflections move</div>
     <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" class="sb-refl-svg"></svg>
     <div class="sb-legend">
       <span><span class="dot" style="background:#18140C;"></span>Original (x, y)</span>
@@ -780,7 +780,7 @@ window.StumblebeeWidgets.dataSufficiencyCoach = function (container) {
     let body = "";
     if (step === 1) {
       body = `
-        <p class="sb-ds-q">Imagine you're evaluating a real DS question. Ignoring Statement (2) entirely — is <b>Statement (1) alone</b> enough to answer the question?</p>
+        <p class="sb-ds-q">Imagine you're evaluating a real DS question. Ignoring Statement (2) entirely, is <b>Statement (1) alone</b> enough to answer the question?</p>
         <div class="sb-toggle-group">
           <button class="btn btn-black btn-sm" data-ans="yes">Yes, sufficient</button>
           <button class="btn btn-outline btn-sm" data-ans="no">No, not sufficient</button>
@@ -794,7 +794,7 @@ window.StumblebeeWidgets.dataSufficiencyCoach = function (container) {
         </div>`;
     } else if (step === 3) {
       body = `
-        <p class="sb-ds-q">Neither statement worked alone. Now use <b>both statements together</b> — is that enough?</p>
+        <p class="sb-ds-q">Neither statement worked alone. Now use <b>both statements together</b>. Is that enough?</p>
         <div class="sb-toggle-group">
           <button class="btn btn-black btn-sm" data-ans="yes">Yes, sufficient</button>
           <button class="btn btn-outline btn-sm" data-ans="no">No, still not enough</button>
@@ -825,4 +825,100 @@ window.StumblebeeWidgets.dataSufficiencyCoach = function (container) {
   }
 
   render();
+};
+
+// ================= 12. Data Insights chart explorer =================
+
+window.StumblebeeWidgets.diChartExplorer = function (container) {
+  const data = [
+    { city: "City A", y2009: 10, y2023: 22 },
+    { city: "City B", y2009: 15, y2023: 18 },
+    { city: "City C", y2009: 8, y2023: 8 },
+    { city: "City D", y2009: 20, y2023: 15 }
+  ];
+  const W = 460, H = 260, PAD = 40;
+  const maxVal = Math.max(...data.flatMap(d => [d.y2009, d.y2023]));
+  const groupW = (W - 2 * PAD) / data.length;
+
+  container.innerHTML = `
+    <div class="sb-widget-title">Library visitors by city (thousands): hover a bar</div>
+    <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"></svg>
+    <div class="sb-readout" id="diReadout" style="margin-top:10px;">Hover over a bar to see its exact value.</div>
+    <div class="sb-legend">
+      <span><span class="dot" style="background:#2F6FED;"></span>2009</span>
+      <span><span class="dot" style="background:#FFC629;"></span>2023</span>
+    </div>
+  `;
+  const svg = container.querySelector("svg");
+  const readout = container.querySelector("#diReadout");
+  const baseY = H - PAD;
+
+  function valToY(v) { return baseY - (v / maxVal) * (H - 2 * PAD); }
+
+  let markup = `<line x1="${PAD}" y1="${baseY}" x2="${W-PAD}" y2="${baseY}" stroke="#D8CDA9"/>`;
+  data.forEach((d, i) => {
+    const gx = PAD + i * groupW;
+    const barW = groupW * 0.28;
+    const x1 = gx + groupW * 0.18;
+    const x2 = gx + groupW * 0.54;
+    const h1 = baseY - valToY(d.y2009);
+    const h2 = baseY - valToY(d.y2023);
+    const pctChange = Math.round(((d.y2023 - d.y2009) / d.y2009) * 100);
+    markup += `
+      <rect class="di-bar" data-info="${d.city}, 2009: ${d.y2009}k visitors" x="${x1}" y="${valToY(d.y2009)}" width="${barW}" height="${h1}" fill="#2F6FED" rx="3"/>
+      <rect class="di-bar" data-info="${d.city}, 2023: ${d.y2023}k visitors (${pctChange >= 0 ? "+" : ""}${pctChange}% vs 2009)" x="${x2}" y="${valToY(d.y2023)}" width="${barW}" height="${h2}" fill="#FFC629" rx="3"/>
+      <text x="${gx + groupW/2}" y="${H-16}" font-size="12" text-anchor="middle" fill="#5B5546">${d.city}</text>
+    `;
+  });
+  svg.innerHTML = markup;
+
+  svg.querySelectorAll(".di-bar").forEach(bar => {
+    bar.style.cursor = "pointer";
+    bar.addEventListener("mouseenter", () => { readout.innerHTML = `<b>${bar.dataset.info}</b>`; });
+  });
+};
+
+// ================= 13. CR logic tree =================
+
+window.StumblebeeWidgets.crLogicTree = function (container) {
+  const TREE = {
+    name: "Read the Question Stem",
+    def: "Identify what type of question this is (strengthen, weaken, assumption, flaw, inference) before you even read the argument.",
+    children: [
+      { name: "Find the Conclusion", def: "Locate what the author actually wants you to believe. Ask: what is being claimed here?",
+        children: [
+          { name: "Pre-think the Gap", def: "Before looking at answers, ask why the conclusion might not follow from the evidence. This is the flaw or the missing assumption.",
+            children: [
+              { name: "If Strengthen", def: "Look for the answer that closes the gap, the missing link that makes the conclusion more likely to be true." },
+              { name: "If Weaken", def: "Look for the answer that widens the gap, a fact that makes the conclusion less likely to be true." },
+              { name: "Match the Answer", def: "Compare your pre-thought reasoning to the choices and eliminate anything out of scope or reversed in logic." }
+            ] }
+        ] }
+    ]
+  };
+
+  function buildNode(node) {
+    const li = document.createElement("li");
+    const card = document.createElement("div");
+    card.className = "flip-node";
+    card.innerHTML = `<div class="fn-front">${node.name}</div><div class="fn-back">${node.def}</div>`;
+    card.addEventListener("click", () => card.classList.toggle("flipped"));
+    li.appendChild(card);
+    if (node.children && node.children.length) {
+      const ul = document.createElement("ul");
+      node.children.forEach(c => ul.appendChild(buildNode(c)));
+      li.appendChild(ul);
+    }
+    return li;
+  }
+
+  const wrap = document.createElement("div");
+  wrap.className = "sb-tree-scroll";
+  wrap.innerHTML = `<div class="sb-tree-hint">Click any box to flip it and reveal the tip. Follow the tree top to bottom.</div>`;
+  const rootUl = document.createElement("ul");
+  rootUl.className = "sb-tree";
+  rootUl.appendChild(buildNode(TREE));
+  wrap.appendChild(rootUl);
+  container.innerHTML = "";
+  container.appendChild(wrap);
 };

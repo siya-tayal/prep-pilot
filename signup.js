@@ -102,7 +102,7 @@ function renderOtp() {
   container.innerHTML = `
     <div class="auth-step">
       <h2>Verify it's you</h2>
-      <p class="step-sub">We'll send a 6-digit code — pick where.</p>
+      <p class="step-sub">We'll send a 6-digit code. Pick where.</p>
 
       <div class="channel-row">
         <div class="radio-pill ${STATE.otpChannel === "email" ? "selected" : ""}" data-channel="email">📧 Email</div>
@@ -138,11 +138,11 @@ function renderOtp() {
 
   function renderVerifyBox(code, dest) {
     verifyArea.innerHTML = `
-      <div class="otp-dev-banner">This is a prototype with no real SMS/email service — here's the code we'd have sent to <b>${dest}</b>: <b>${code}</b></div>
+      <div class="otp-dev-banner">This is a prototype with no real SMS/email service, so here's the code we'd have sent to <b>${dest}</b>: <b>${code}</b></div>
       <div class="otp-inputs">
         ${[0,1,2,3,4,5].map(i => `<input type="text" inputmode="numeric" maxlength="1" data-i="${i}">`).join("")}
       </div>
-      <div class="error-text" id="otpError" style="text-align:center; display:none;">That code doesn't match — try again.</div>
+      <div class="error-text" id="otpError" style="text-align:center; display:none;">That code doesn't match. Try again.</div>
     `;
     const inputs = [...verifyArea.querySelectorAll("input")];
     inputs.forEach((inp, i) => {
@@ -309,7 +309,7 @@ function renderExam() {
   container.innerHTML = `
     <div class="auth-step">
       <h2>What are you preparing for?</h2>
-      <p class="step-sub">Pick one — you can only change this later from Settings.</p>
+      <p class="step-sub">Pick one. You can only change this later from Settings.</p>
       <div class="exam-choice-grid">
         <div class="exam-choice-card" data-choice="GRE">
           <span class="ec-icon">📐</span>

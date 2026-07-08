@@ -1,4 +1,4 @@
-// Stumblebee — unified course engine.
+// Stumblebee unified course engine.
 // Handles: exam gate -> subsection picker -> chapter/lesson viewer.
 
 const QC_OPTIONS = [
@@ -108,7 +108,7 @@ function renderExamGate() {
     <div class="gate-card center">
       <span class="eyebrow">Step 1 of 2</span>
       <h1 style="margin-top:16px;">Which exam are you studying for?</h1>
-      <p class="muted" style="max-width:480px; margin:14px auto 30px;">Pick one to unlock its lessons. You can only switch later from Settings — so choose the one you're actually taking!</p>
+      <p class="muted" style="max-width:480px; margin:14px auto 30px;">Pick one to unlock its lessons. You can only switch later from Settings, so choose the one you're actually taking!</p>
       <div class="exam-pick-grid">
         <button class="exam-pick-card" data-exam="GRE">
           <div class="epc-title">GRE</div>
@@ -148,7 +148,7 @@ function renderSubsectionPicker(exam) {
   screenShell(`
     <div class="gate-card">
       <span class="eyebrow">Step 2 of 2</span>
-      <h1 style="margin-top:16px;">${subject.fullLabel} — pick a section</h1>
+      <h1 style="margin-top:16px;">${subject.fullLabel}: pick a section</h1>
       <p class="muted" style="max-width:520px; margin:14px 0 30px;">Choose which part of the ${exam} you want to study. You can come back and pick another section any time.</p>
       <div class="sub-grid">${cardsHtml}</div>
     </div>
@@ -297,9 +297,9 @@ function renderConceptsBlock(block) {
   const cards = block.items.map(it => `
     <div class="concept-card">
       <h5>${it.name}</h5>
-      <div class="cc-row"><b>Definition —</b> ${it.definition}</div>
-      ${it.identify ? `<div class="cc-row"><b>Spot it —</b> ${it.identify}</div>` : ""}
-      ${it.set ? `<div class="cc-row"><b>Set —</b> ${it.set}</div>` : ""}
+      <div class="cc-row"><b>Definition:</b> ${it.definition}</div>
+      ${it.identify ? `<div class="cc-row"><b>Spot it:</b> ${it.identify}</div>` : ""}
+      ${it.set ? `<div class="cc-row"><b>Set:</b> ${it.set}</div>` : ""}
       ${it.examples ? `<div class="cc-examples">${it.examples.map(e => `<span class="cc-example">${e}</span>`).join("")}</div>` : ""}
     </div>`).join("");
   return `<div class="lesson-block concept-grid">${cards}</div>`;
@@ -409,7 +409,7 @@ function gradeSingleChoice(card, chosenKey) {
   const feedback = card.querySelector(".q-feedback");
   feedback.hidden = false;
   const isRight = chosenKey === correct;
-  feedback.textContent = isRight ? "Correct!" : `Not quite — the correct answer is ${correct}.`;
+  feedback.textContent = isRight ? "Correct!" : `Not quite. The correct answer is ${correct}.`;
   feedback.className = "q-feedback " + (isRight ? "is-correct" : "is-incorrect");
   card.querySelector(".q-explanation").hidden = false;
 }
@@ -428,7 +428,7 @@ function gradeMultiSelect(card) {
   const isRight = selected.length === correct.length && selected.every(k => correct.includes(k));
   const feedback = card.querySelector(".q-feedback");
   feedback.hidden = false;
-  feedback.textContent = isRight ? "Correct!" : `Not quite — the correct selection${correct.length === 1 ? " is" : "s are"} ${correct.length ? correct.join(", ") : "none of the above"}.`;
+  feedback.textContent = isRight ? "Correct!" : `Not quite. The correct selection${correct.length === 1 ? " is" : "s are"} ${correct.length ? correct.join(", ") : "none of the above"}.`;
   feedback.className = "q-feedback " + (isRight ? "is-correct" : "is-incorrect");
   card.querySelector(".q-submit-row").style.display = "none";
   card.querySelector(".q-explanation").hidden = false;
@@ -523,10 +523,17 @@ function renderLesson(lessonId) {
   renderMath(main);
   setActiveSidebarLink(lesson.id);
 
+  if (window.PersonalBests) {
+    const broken = PersonalBests.recordTopicStarted(`${CURRENT_EXAM}-${CURRENT_SUB}-${lesson.id}`);
+    if (broken.length) PersonalBests.showToast(broken);
+  }
+
   document.getElementById("markCompleteBtn").addEventListener("click", () => {
     const p = getProgress(CURRENT_EXAM, CURRENT_SUB);
-    if (p.has(lesson.id)) p.delete(lesson.id); else p.add(lesson.id);
+    const wasDone = p.has(lesson.id);
+    if (wasDone) p.delete(lesson.id); else p.add(lesson.id);
     saveProgress(CURRENT_EXAM, CURRENT_SUB, p);
+    if (!wasDone && window.DailyGoal) DailyGoal.recordCompletion();
     refreshSidebarState();
     renderLesson(lesson.id);
   });

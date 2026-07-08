@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Settings — Stumblebee</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<meta name="theme-color" content="#FFC629">
+<title>Settings: Stumblebee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -38,7 +42,7 @@
         <h3>Current exam</h3>
         <p>This is locked everywhere else on the site.</p>
       </div>
-      <div id="currentExamDisplay" class="current-exam-badge">—</div>
+      <div id="currentExamDisplay" class="current-exam-badge">-</div>
     </div>
 
     <div class="settings-row" style="flex-direction:column; align-items:stretch;">
@@ -50,6 +54,14 @@
         <button class="btn btn-outline btn-sm" id="switchBtn">Change exam</button>
       </div>
       <div id="otpSwitchPanel" style="display:none; margin-top:18px;"></div>
+    </div>
+
+    <div class="settings-row" style="flex-direction:column; align-items:stretch;">
+      <div>
+        <h3>Test date & daily goal</h3>
+        <p>Optional. Set your test date and we'll split what's left into a daily target, shown on your dashboard.</p>
+      </div>
+      <div id="goalPlanArea" style="margin-top:14px;"></div>
     </div>
 
     <div class="settings-row">
@@ -85,6 +97,13 @@
 </footer>
 
 <script src="exam-lock.js"></script>
+<script src="gre-math-data.js"></script>
+<script src="gmat-quant-data.js"></script>
+<script src="gmat-di-data.js"></script>
+<script src="gmat-verbal-data.js"></script>
+<script src="vocab-data.js"></script>
+<script src="vocab-srs.js"></script>
+<script src="daily-goal.js"></script>
 <script src="nav.js"></script>
 <script>
   const params = new URLSearchParams(window.location.search);
@@ -95,7 +114,7 @@
   if (lockedParam) {
     document.getElementById("lockedNotice").textContent = `You tried to open ${lockedParam}, but you're locked to ${current}. Change it below if you'd like.`;
   } else if (!current) {
-    document.getElementById("lockedNotice").textContent = "You haven't picked an exam yet — head to the homepage to choose one.";
+    document.getElementById("lockedNotice").textContent = "You haven't picked an exam yet. Head to the homepage to choose one.";
   } else {
     document.getElementById("lockedNotice").textContent = `You're currently set up for ${current}.`;
   }
@@ -127,9 +146,9 @@
 
   function renderVerifyBox(code, dest) {
     otpPanel.innerHTML = `
-      <div class="otp-dev-banner">Prototype mode — no real SMS/email is sent. Code for <b>${dest}</b>: <b>${code}</b></div>
+      <div class="otp-dev-banner">Prototype mode: no real SMS/email is sent. Code for <b>${dest}</b>: <b>${code}</b></div>
       <div class="otp-inputs">${[0,1,2,3,4,5].map(i => `<input type="text" inputmode="numeric" maxlength="1" data-i="${i}">`).join("")}</div>
-      <div class="error-text" id="switchOtpError" style="text-align:center; display:none;">That code doesn't match — try again.</div>
+      <div class="error-text" id="switchOtpError" style="text-align:center; display:none;">That code doesn't match. Try again.</div>
     `;
     const inputs = [...otpPanel.querySelectorAll("input")];
     inputs.forEach((inp, i) => {
@@ -166,6 +185,61 @@
       document.getElementById("resetWarn").classList.add("shown");
     }
   });
+
+  function renderGoalPlan() {
+    const area = document.getElementById("goalPlanArea");
+    const settings = DailyGoal.getSettings();
+    const plan = current ? DailyGoal.computePlan(current) : null;
+
+    area.innerHTML = `
+      <div class="field-group">
+        <label>Test date</label>
+        <input type="date" id="testDateInput" value="${settings.testDate || ""}" ${current ? "" : "disabled"}>
+        <div class="hint">${current ? "" : "Pick an exam first to set a goal plan."}</div>
+      </div>
+      ${plan ? `
+        <div class="sb-readout" style="margin:14px 0;">
+          <b>${plan.daysLeft} day${plan.daysLeft === 1 ? "" : "s"} left.</b> ${plan.remaining} lessons/words remaining &rarr; aim for <b>${plan.perDay} per day</b> to finish in time.
+        </div>
+        <label style="display:flex; align-items:flex-start; gap:10px; font-size:0.88rem; cursor:pointer; margin-bottom:14px;">
+          <input type="checkbox" id="reminderOptIn" ${plan.reminderOptIn ? "checked" : ""} style="margin-top:3px;">
+          <span>Remind me at 11am and 9pm, in my time zone (<b>${DailyGoal.detectTimezone()}</b>), if I have not hit today's goal yet.</span>
+        </label>
+        <div class="otp-dev-banner" style="text-align:left;">This is a prototype without a live email server, so reminders are not actually sent yet. Your goal and preference are saved, and today's progress toward it shows right on your dashboard.</div>
+      ` : ""}
+      <div style="display:flex; gap:10px; margin-top:14px;">
+        <button class="btn btn-black btn-sm" id="saveGoalBtn" ${current ? "" : "disabled"}>Save</button>
+        ${settings.testDate ? `<button class="btn btn-outline btn-sm" id="clearGoalBtn">Clear test date</button>` : ""}
+      </div>
+    `;
+
+    const dateInput = document.getElementById("testDateInput");
+    if (dateInput) {
+      dateInput.addEventListener("change", () => {
+        const s = DailyGoal.getSettings();
+        s.testDate = dateInput.value;
+        DailyGoal.saveSettings(s);
+        renderGoalPlan();
+      });
+    }
+    const saveBtn = document.getElementById("saveGoalBtn");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", () => {
+        const s = DailyGoal.getSettings();
+        s.testDate = dateInput.value;
+        const optIn = document.getElementById("reminderOptIn");
+        s.reminderOptIn = optIn ? optIn.checked : false;
+        DailyGoal.saveSettings(s);
+        renderGoalPlan();
+      });
+    }
+    const clearBtn = document.getElementById("clearGoalBtn");
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => { DailyGoal.clearTestDate(); renderGoalPlan(); });
+    }
+  }
+
+  renderGoalPlan();
 </script>
 </body>
 </html>

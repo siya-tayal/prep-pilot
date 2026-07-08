@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stumblebee — everything you need to know about the GRE</title>
-<meta name="description" content="Free, interactive GRE Math lessons and the best free GRE & GMAT resources on the web. GMAT prep coming soon.">
+<title>Stumblebee, everything you need to know about the GRE and GMAT</title>
+<meta name="description" content="Free, interactive GRE and GMAT lessons plus the best free prep resources on the web.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<meta name="theme-color" content="#FFC629">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -193,10 +197,78 @@
   .why-item h4 { color: var(--white); font-size: 1.05rem; margin-bottom: 8px; }
   .why-item p { color: #C9C4B6; font-size: 0.9rem; }
 
+  .pwa-section { padding-bottom: 24px; position: relative; z-index: 1; }
+  .pwa-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .pwa-card-text { flex: 1; min-width: 260px; }
+  .phone-mock {
+    background: var(--ink);
+    border-radius: 28px;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 140px;
+  }
+  .phone-mock-icon { width: 64px; height: 64px; border-radius: 16px; }
+  .phone-mock-label { color: var(--white); font-size: 0.78rem; font-weight: 600; }
+
+  .pwa-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,17,10,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .pwa-modal-backdrop.shown { display: flex; }
+  .pwa-modal {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .pwa-modal-close {
+    position: absolute;
+    top: 18px; right: 18px;
+    background: var(--cream);
+    border: none;
+    border-radius: 999px;
+    width: 34px; height: 34px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .pwa-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+  .pwa-step { display: flex; gap: 14px; align-items: flex-start; }
+  .pwa-step .step-num {
+    width: 28px; height: 28px; border-radius: 999px; background: var(--yellow);
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+    font-family: "Fredoka", sans-serif; flex-shrink: 0; font-size: 0.9rem;
+  }
+  .pwa-step .step-icon { font-size: 1.3rem; }
+
   @media (max-width: 860px) {
     .feature-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
     .stat-strip { gap: 28px; }
+    .pwa-card { flex-direction: column; text-align: center; }
+    .pwa-card-text p { margin-left: auto; margin-right: auto; }
   }
 </style>
 </head>
@@ -217,7 +289,7 @@
     <div class="hero-card">
       <span class="eyebrow">GRE + GMAT prep, decoded</span>
       <h1 style="margin-top:18px;">Find everything you need to know about the GRE and GMAT, right over here.</h1>
-      <p class="motto">We're glad you stumbled onto our website 🐝 — free, interactive Quant lessons built like a real course for both exams, plus the best free resources on the internet.</p>
+      <p class="motto">We're glad you stumbled onto our website 🐝, with free, interactive Quant lessons built like a real course for both exams, plus the best free resources on the internet.</p>
       <div class="hero-cta">
         <a href="signup" class="btn btn-black">Get started free →</a>
         <a href="resources" class="btn btn-outline">Browse free resources</a>
@@ -235,25 +307,25 @@
       <div class="stat"><div class="num">$0</div><div class="label">cost, always</div></div>
     </div>
 
-    <p class="credibility-line">Built after consulting <strong>6 students</strong> who scored <strong>327+ on the GRE</strong> and <strong>760+ on the GMAT</strong> — so the advice in here is the same stuff that actually worked for them.</p>
+    <p class="credibility-line">Built after consulting <strong>6 students</strong> who scored <strong>327+ on the GRE</strong> and <strong>760+ on the GMAT</strong>, so the advice in here is the same stuff that actually worked for them.</p>
 
     <div class="feature-grid">
       <a href="course?exam=GRE" class="feature-card f-yellow">
         <div class="icon-badge">📐</div>
         <h3>GRE</h3>
-        <p>Quantitative Reasoning fully built out — Numbers through Geometry — with clean explanations, worked examples, and interactive graphics you can actually play with.</p>
+        <p>Quantitative Reasoning fully built out, from Numbers through Geometry, with clean explanations, worked examples, and interactive graphics you can actually play with.</p>
         <span class="go">Explore GRE →</span>
       </a>
       <a href="course?exam=GMAT" class="feature-card f-yellow">
         <div class="icon-badge">🎯</div>
         <h3>GMAT</h3>
-        <p>Quantitative Reasoning for the GMAT Focus Edition, including a dedicated Data Sufficiency trainer — the format that trips up everyone at first.</p>
+        <p>Quantitative Reasoning for the GMAT Focus Edition, including a dedicated Data Sufficiency trainer, the format that trips up everyone at first.</p>
         <span class="go">Explore GMAT →</span>
       </a>
       <a href="resources" class="feature-card f-black" style="background:var(--ink); color:var(--white);">
         <div class="icon-badge" style="background:var(--yellow);">🔗</div>
         <h3 style="color:var(--white);">Free Resources</h3>
-        <p style="color:#C9C4B6;">The most comprehensive list of genuinely free GRE & GMAT resources — official practice tests, vocab, video courses, and communities.</p>
+        <p style="color:#C9C4B6;">The most comprehensive list of genuinely free GRE & GMAT resources: official practice tests, vocab, video courses, and communities.</p>
         <span class="go" style="color:var(--yellow);">Browse resources →</span>
       </a>
     </div>
@@ -266,7 +338,7 @@
         <div class="why-item">
           <div class="n">1</div>
           <h4>Learn the concept</h4>
-          <p>Every lesson breaks concepts down the way a great tutor would — definitions, how to spot them, and real examples.</p>
+          <p>Every lesson breaks concepts down the way a great tutor would: definitions, how to spot them, and real examples.</p>
         </div>
         <div class="why-item">
           <div class="n">2</div>
@@ -281,7 +353,31 @@
       </div>
     </div>
   </div>
+
+  <div class="wrap pwa-section">
+    <div class="pwa-card">
+      <div class="pwa-card-text">
+        <span class="eyebrow">No app store needed</span>
+        <h2 style="margin-top:14px;">Want the app without the storage?</h2>
+        <p class="muted" style="margin:12px 0 22px; max-width:440px;">Add Stumblebee to your home screen and it opens full-screen, just like a real app, with the bee icon and everything. No download, no storage used.</p>
+        <button class="btn btn-black" id="pwaShowMeBtn">Show me how →</button>
+      </div>
+      <div class="pwa-card-visual">
+        <div class="phone-mock">
+          <img src="icon-192.png" alt="Stumblebee app icon" class="phone-mock-icon">
+          <span class="phone-mock-label">Stumblebee</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
+
+<div class="pwa-modal-backdrop" id="pwaModalBackdrop">
+  <div class="pwa-modal">
+    <button class="pwa-modal-close" id="pwaModalClose" aria-label="Close">&times;</button>
+    <div id="pwaModalContent"></div>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -307,5 +403,73 @@
 <script src="auth.js"></script>
 <script src="exam-lock.js"></script>
 <script src="nav.js"></script>
+<script>
+  let deferredInstallPrompt = null;
+  window.addEventListener("beforeinstallprompt", e => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+  });
+
+  function detectPlatform() {
+    const ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/.test(ua)) return "ios";
+    if (/Android/.test(ua)) return "android";
+    return "desktop";
+  }
+
+  function pwaModalContentFor(platform) {
+    if (platform === "ios") {
+      return `
+        <span class="eyebrow">iPhone or iPad</span>
+        <h2 style="margin-top:14px;">Add Stumblebee to your home screen</h2>
+        <div class="pwa-steps">
+          <div class="pwa-step"><span class="step-num">1</span><div><span class="step-icon">⬆️</span> Tap the <b>Share</b> button in Safari's toolbar.</div></div>
+          <div class="pwa-step"><span class="step-num">2</span><div><span class="step-icon">➕</span> Scroll down and tap <b>Add to Home Screen</b>.</div></div>
+          <div class="pwa-step"><span class="step-num">3</span><div><span class="step-icon">✅</span> Tap <b>Add</b> in the top right. The bee icon now lives on your home screen.</div></div>
+        </div>
+      `;
+    }
+    if (platform === "android") {
+      return `
+        <span class="eyebrow">Android</span>
+        <h2 style="margin-top:14px;">Add Stumblebee to your home screen</h2>
+        <div class="pwa-steps">
+          <div class="pwa-step"><span class="step-num">1</span><div><span class="step-icon">⋮</span> Tap the <b>three-dot menu</b> in Chrome's toolbar.</div></div>
+          <div class="pwa-step"><span class="step-num">2</span><div><span class="step-icon">📲</span> Tap <b>Install app</b> or <b>Add to Home screen</b>.</div></div>
+          <div class="pwa-step"><span class="step-num">3</span><div><span class="step-icon">✅</span> Confirm, and the bee icon lands on your home screen.</div></div>
+        </div>
+        <button class="btn btn-black" id="pwaNativeInstallBtn" style="width:100%; margin-top:22px; display:none;">Install now →</button>
+      `;
+    }
+    return `
+      <span class="eyebrow">Desktop</span>
+      <h2 style="margin-top:14px;">Install Stumblebee as an app</h2>
+      <div class="pwa-steps">
+        <div class="pwa-step"><span class="step-num">1</span><div><span class="step-icon">⊕</span> Look for the <b>install icon</b> in your browser's address bar (Chrome or Edge).</div></div>
+        <div class="pwa-step"><span class="step-num">2</span><div><span class="step-icon">✅</span> Click it, then click <b>Install</b>.</div></div>
+      </div>
+      <button class="btn btn-black" id="pwaNativeInstallBtn" style="width:100%; margin-top:22px; display:none;">Install now →</button>
+    `;
+  }
+
+  const backdrop = document.getElementById("pwaModalBackdrop");
+  document.getElementById("pwaShowMeBtn").addEventListener("click", () => {
+    const platform = detectPlatform();
+    document.getElementById("pwaModalContent").innerHTML = pwaModalContentFor(platform);
+    backdrop.classList.add("shown");
+    const nativeBtn = document.getElementById("pwaNativeInstallBtn");
+    if (nativeBtn && deferredInstallPrompt) {
+      nativeBtn.style.display = "block";
+      nativeBtn.addEventListener("click", async () => {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        backdrop.classList.remove("shown");
+      });
+    }
+  });
+  document.getElementById("pwaModalClose").addEventListener("click", () => backdrop.classList.remove("shown"));
+  backdrop.addEventListener("click", e => { if (e.target === backdrop) backdrop.classList.remove("shown"); });
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// Stumblebee — exam lock utility.
+// Stumblebee exam lock utility.
 // Once a student picks GRE or GMAT, the choice is locked until they visit Settings.
 
 const EXAM_LOCK_KEY = "stumblebee_exam_v1";
@@ -38,8 +38,8 @@ const SUBJECTS = {
     fullLabel: "GMAT Focus Edition",
     sections: [
       { key: "quant", label: "Quantitative Reasoning", icon: "📐", status: "live", chaptersVar: "GMAT_QUANT_CHAPTERS" },
-      { key: "verbal", label: "Verbal Reasoning", icon: "📖", status: "soon" },
-      { key: "di", label: "Data Insights", icon: "📊", status: "soon" }
+      { key: "verbal", label: "Verbal Reasoning", icon: "📖", status: "live", chaptersVar: "GMAT_VERBAL_CHAPTERS" },
+      { key: "di", label: "Data Insights", icon: "📊", status: "live", chaptersVar: "GMAT_DI_CHAPTERS" }
     ]
   }
 };

@@ -1,4 +1,4 @@
-// Stumblebee — shared dynamic nav bar. Renders into <div id="siteNavRoot">.
+// Stumblebee shared dynamic nav bar. Renders into <div id="siteNavRoot">.
 // Reflects the exam lock: the non-selected exam is greyed out and can only
 // be changed from Settings.
 
@@ -43,6 +43,7 @@ function renderNav() {
         <div class="nav-links">
           ${examLink("GRE")}
           ${examLink("GMAT")}
+          <a href="${exam && exam !== "GRE" ? "settings?locked=GRE" : "vocab"}" class="nav-link ${page === "vocab" ? "active" : ""} ${exam && exam !== "GRE" ? "tag-soon" : ""}">Vocab${exam && exam !== "GRE" ? ' <span class="pill">🔒</span>' : ""}</a>
           <a href="resources" class="nav-link ${page === "resources" ? "active" : ""}">Resources</a>
           <a href="dashboard" class="nav-link ${page === "dashboard" ? "active" : ""}">Dashboard</a>
         </div>

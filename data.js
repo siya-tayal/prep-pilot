@@ -29,7 +29,7 @@ const RESOURCES = [
     title: "ETS Free GRE Prep Hub",
     exam: "GRE",
     category: "Official",
-    desc: "ETS's official prep landing page — practice materials, sample questions, and the free 'Quick Quiz' app.",
+    desc: "ETS's official prep landing page: practice materials, sample questions, and the free 'Quick Quiz' app.",
     url: "https://www.ets.org/gre/test-takers/general-test/prepare.html"
   },
   {
@@ -65,7 +65,7 @@ const RESOURCES = [
 
   // ---------- GRE: Quant ----------
   {
-    title: "Khan Academy — Math",
+    title: "Khan Academy: Math",
     exam: "GRE",
     category: "Quant",
     desc: "Not GRE-specific, but the best free resource for rebuilding arithmetic, algebra, geometry, and data analysis fundamentals tested on Quant.",
@@ -91,7 +91,7 @@ const RESOURCES = [
     title: "GregMat Free GRE Verbal Course",
     exam: "GRE",
     category: "Verbal",
-    desc: "Video lessons on Text Completion, Sentence Equivalence, and Reading Comprehension strategy — all free.",
+    desc: "Video lessons on Text Completion, Sentence Equivalence, and Reading Comprehension strategy, all free.",
     url: "https://www.gregmat.com"
   },
 
@@ -109,7 +109,7 @@ const RESOURCES = [
     title: "GregMat YouTube Channel",
     exam: "GRE",
     category: "Video Courses",
-    desc: "Hundreds of free GRE video lessons and full practice problem walkthroughs — arguably the most complete free GRE video library online.",
+    desc: "Hundreds of free GRE video lessons and full practice problem walkthroughs, arguably the most complete free GRE video library online.",
     url: "https://www.youtube.com/@GregMat"
   },
   {
@@ -154,7 +154,7 @@ const RESOURCES = [
 
   // ---------- GRE: Communities ----------
   {
-    title: "Reddit — r/GRE",
+    title: "Reddit: r/GRE",
     exam: "GRE",
     category: "Communities",
     desc: "Active community for score reports, study advice, shared resources, and Q&A with recent test-takers.",
@@ -173,7 +173,7 @@ const RESOURCES = [
     title: "mba.com Free GMAT Exam Prep",
     exam: "GMAT",
     category: "Official",
-    desc: "GMAC's official free prep hub — includes the free GMAT Official Starter Kit with practice questions and one full-length adaptive test.",
+    desc: "GMAC's official free prep hub: includes the free GMAT Official Starter Kit with practice questions and one full-length adaptive test.",
     url: "https://www.mba.com/exams/gmat-exam/prepare-for-the-gmat-exam/free-gmat-exam-prep"
   },
   {
@@ -189,7 +189,7 @@ const RESOURCES = [
     title: "GMAT Club",
     exam: "GMAT",
     category: "Question Banks",
-    desc: "The largest GMAT community online — free question bank, daily 'Question of the Day', free practice tests, and error-log tools.",
+    desc: "The largest GMAT community online: free question bank, daily 'Question of the Day', free practice tests, and error-log tools.",
     url: "https://gmatclub.com"
   },
   {
@@ -218,7 +218,7 @@ const RESOURCES = [
 
   // ---------- GMAT: Quant ----------
   {
-    title: "Khan Academy — Math",
+    title: "Khan Academy: Math",
     exam: "GMAT",
     category: "Quant",
     desc: "Rebuild core arithmetic, algebra, and geometry fundamentals that underlie GMAT Quant questions.",
@@ -268,7 +268,7 @@ const RESOURCES = [
 
   // ---------- GMAT: Communities ----------
   {
-    title: "Reddit — r/GMAT",
+    title: "Reddit: r/GMAT",
     exam: "GMAT",
     category: "Communities",
     desc: "Active subreddit for study advice, score reports, and shared free resources.",

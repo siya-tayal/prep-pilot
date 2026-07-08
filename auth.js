@@ -1,6 +1,6 @@
-// Stumblebee — auth prototype.
+// Stumblebee auth prototype.
 // No real backend: users are stored in localStorage. Passwords are hashed
-// (SHA-256) before storage, never kept in plain text. OTP is simulated —
+// (SHA-256) before storage, never kept in plain text. OTP is simulated:
 // there's no SMS/email provider here, so the "sent" code is shown directly
 // on screen in a clearly-labeled prototype banner instead of actually
 // texting/emailing anyone.
@@ -73,7 +73,7 @@ const Auth = {
 
 // ---------- Simulated OTP ----------
 // Generates a 6-digit code and holds it in memory for the caller to compare
-// against. There is no real delivery channel — the UI must display the code
+// against. There is no real delivery channel, so the UI must display the code
 // itself, clearly labeled as a prototype stand-in for SMS/email.
 
 const OTP = {

@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — Signups | Stumblebee</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<meta name="theme-color" content="#FFC629">
+<title>Admin: Signups | Stumblebee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -32,7 +36,7 @@
 <main class="wrap admin-wrap">
   <h1 style="margin-bottom:10px;">Signups</h1>
   <div class="admin-warn">
-    <strong>Prototype note:</strong> there's no real backend here — this table reads directly from this browser's <code>localStorage</code>, so it only shows signups made <em>on this device/browser</em>. Passwords are stored as SHA-256 hashes, never in plain text.
+    <strong>Prototype note:</strong> there's no real backend here. This table reads directly from this browser's <code>localStorage</code>, so it only shows signups made <em>on this device/browser</em>. Passwords are stored as SHA-256 hashes, never in plain text.
   </div>
 
   <div class="admin-card">
@@ -70,8 +74,8 @@
         <td>${u.email}</td>
         <td>${u.phone}</td>
         <td>${u.country}</td>
-        <td>${u.enrolled ? (u.university || "—") : "Not enrolled"}</td>
-        <td>${u.gradDate || "—"}</td>
+        <td>${u.enrolled ? (u.university || "-") : "Not enrolled"}</td>
+        <td>${u.gradDate || "-"}</td>
         <td><span class="badge-exam">${u.examChoice}</span></td>
         <td>${u.aptitudeResult ? "Yes" : "No"}</td>
         <td>${fmtDate(u.signupDate)}</td>

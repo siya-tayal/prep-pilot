@@ -1,6 +1,6 @@
 // Country list (UN member states + common territories) and a curated set of
 // well-known universities per major study-abroad country. This is not
-// exhaustive — students whose school isn't listed can type it in manually.
+// exhaustive; students whose school isn't listed can type it in manually.
 
 const COUNTRIES = [
 "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria",
@@ -25,7 +25,7 @@ const COUNTRIES = [
 "Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
 ];
 
-// Curated — not exhaustive. Students can always type their own via "My school isn't listed".
+// Curated, not exhaustive. Students can always type their own via "My school isn't listed".
 const UNIVERSITIES_BY_COUNTRY = {
   "United States": ["Harvard University","Stanford University","Massachusetts Institute of Technology","University of California, Berkeley","University of California, Los Angeles","Columbia University","University of Michigan","New York University","University of Texas at Austin","University of Southern California","University of Pennsylvania","Cornell University","University of Illinois Urbana-Champaign","Georgia Institute of Technology","University of Washington","Purdue University","Ohio State University","Arizona State University","University of Florida","Northeastern University"],
   "India": ["Indian Institute of Technology Bombay","Indian Institute of Technology Delhi","Indian Institute of Technology Madras","Indian Institute of Technology Kanpur","Indian Institute of Technology Kharagpur","Indian Institute of Science","Delhi University","University of Mumbai","Anna University","BITS Pilani","VIT University","Manipal Academy of Higher Education","SRM Institute of Science and Technology","Jawaharlal Nehru University","Amity University"],

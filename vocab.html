@@ -7,21 +7,21 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <meta name="theme-color" content="#FFC629">
-<title>Your Course: Stumblebee</title>
-<meta name="description" content="Interactive GRE and GMAT lessons.">
+<title>Vocabulary: Stumblebee</title>
+<meta name="description" content="Learn GRE vocabulary with smart flashcards that focus on the words you actually need to review.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="course.css">
+<link rel="stylesheet" href="vocab.css">
 <script src="auth.js"></script>
 <script src="auth-gate.js"></script>
 </head>
-<body class="course-body">
+<body class="course-body" data-page="vocab">
 
 <div id="siteNavRoot"></div>
 
-<div id="courseRoot"></div>
+<main class="wrap vocab-wrap" id="vocabRoot"></main>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -35,26 +35,20 @@
         stumblebee
       </a>
       <div class="footer-links">
-        <a href="resources">Resources</a>
+        <a href="course">GRE / GMAT</a>
         <a href="dashboard">Dashboard</a>
-        <a href="settings">Settings</a>
       </div>
-      <p class="footer-copy">Built for students, by a student. © 2026 Stumblebee.</p>
+      <p class="footer-copy">© 2026 Stumblebee.</p>
     </div>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <script src="exam-lock.js"></script>
-<script src="gre-math-data.js"></script>
-<script src="gmat-quant-data.js"></script>
-<script src="gmat-di-data.js"></script>
-<script src="gmat-verbal-data.js"></script>
-<script src="widgets.js"></script>
+<script src="vocab-data.js"></script>
+<script src="vocab-srs.js"></script>
 <script src="personal-bests.js"></script>
 <script src="daily-goal.js"></script>
 <script src="nav.js"></script>
-<script src="course.js"></script>
+<script src="vocab.js"></script>
 </body>
 </html>
