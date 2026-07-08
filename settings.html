@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="course.css">
+<link rel="stylesheet" href="auth.css">
 <style>
   .settings-wrap { padding: 48px 0 80px; }
   .settings-card { background: var(--white); border-radius: var(--radius-lg); padding: 44px; max-width: 620px; margin: 0 auto; }
@@ -19,6 +20,8 @@
   .warn-box { background: var(--red-bg); color: #8A2A22; border-radius: 12px; padding: 14px 18px; font-size: 0.86rem; margin-top: 16px; display:none; }
   .warn-box.shown { display: block; }
 </style>
+<script src="auth.js"></script>
+<script src="auth-gate.js"></script>
 </head>
 <body class="course-body" data-page="settings">
 
@@ -38,12 +41,15 @@
       <div id="currentExamDisplay" class="current-exam-badge">—</div>
     </div>
 
-    <div class="settings-row">
-      <div>
-        <h3>Switch exam</h3>
-        <p>Changes what you see under GRE/GMAT. Your lesson progress for each exam is kept separately, so nothing is lost.</p>
+    <div class="settings-row" style="flex-direction:column; align-items:stretch;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; width:100%;">
+        <div>
+          <h3>Switch exam</h3>
+          <p>Requires a one-time code to confirm it's really you. Your lesson progress for each exam is kept separately, so nothing is lost.</p>
+        </div>
+        <button class="btn btn-outline btn-sm" id="switchBtn">Change exam</button>
       </div>
-      <button class="btn btn-outline btn-sm" id="switchBtn">Change exam</button>
+      <div id="otpSwitchPanel" style="display:none; margin-top:18px;"></div>
     </div>
 
     <div class="settings-row">
@@ -94,11 +100,62 @@
     document.getElementById("lockedNotice").textContent = `You're currently set up for ${current}.`;
   }
 
-  document.getElementById("switchBtn").addEventListener("click", () => {
-    if (confirm("Switch exams? Your progress for each exam is saved separately, so switching back later won't lose anything.")) {
-      ExamLock.clear();
-      window.location.href = "course";
-    }
+  const otpPanel = document.getElementById("otpSwitchPanel");
+  const switchBtn = document.getElementById("switchBtn");
+  let otpChannel = "email";
+
+  function renderChannelPicker() {
+    const user = Auth.currentUser();
+    if (!user) { window.location.href = "login?next=settings"; return; }
+    otpPanel.style.display = "block";
+    otpPanel.innerHTML = `
+      <div class="channel-row">
+        <div class="radio-pill ${otpChannel === "email" ? "selected" : ""}" data-channel="email">📧 Email</div>
+        <div class="radio-pill ${otpChannel === "phone" ? "selected" : ""}" data-channel="phone">📱 Phone</div>
+      </div>
+      <button class="btn btn-outline btn-sm" id="sendSwitchOtp" style="width:100%;">Send code to ${otpChannel === "email" ? user.email : user.phone}</button>
+    `;
+    otpPanel.querySelectorAll(".radio-pill").forEach(p => {
+      p.addEventListener("click", () => { otpChannel = p.dataset.channel; renderChannelPicker(); });
+    });
+    document.getElementById("sendSwitchOtp").addEventListener("click", () => {
+      const dest = otpChannel === "email" ? user.email : user.phone;
+      const code = OTP.generate(otpChannel, dest);
+      renderVerifyBox(code, dest);
+    });
+  }
+
+  function renderVerifyBox(code, dest) {
+    otpPanel.innerHTML = `
+      <div class="otp-dev-banner">Prototype mode — no real SMS/email is sent. Code for <b>${dest}</b>: <b>${code}</b></div>
+      <div class="otp-inputs">${[0,1,2,3,4,5].map(i => `<input type="text" inputmode="numeric" maxlength="1" data-i="${i}">`).join("")}</div>
+      <div class="error-text" id="switchOtpError" style="text-align:center; display:none;">That code doesn't match — try again.</div>
+    `;
+    const inputs = [...otpPanel.querySelectorAll("input")];
+    inputs.forEach((inp, i) => {
+      inp.addEventListener("input", () => {
+        inp.value = inp.value.replace(/\D/g, "");
+        if (inp.value && inputs[i + 1]) inputs[i + 1].focus();
+        const entered = inputs.map(x => x.value).join("");
+        if (entered.length === 6) {
+          if (OTP.verify(entered)) {
+            ExamLock.clear();
+            window.location.href = "course";
+          } else {
+            document.getElementById("switchOtpError").style.display = "block";
+          }
+        }
+      });
+      inp.addEventListener("keydown", e => {
+        if (e.key === "Backspace" && !inp.value && inputs[i - 1]) inputs[i - 1].focus();
+      });
+    });
+    inputs[0].focus();
+  }
+
+  switchBtn.addEventListener("click", () => {
+    if (otpPanel.style.display === "block") { otpPanel.style.display = "none"; return; }
+    renderChannelPicker();
   });
 
   document.getElementById("resetProgressBtn").addEventListener("click", () => {

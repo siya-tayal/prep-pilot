@@ -463,12 +463,32 @@ function wireInteractions(container) {
 
 function findLesson(lessonId) { return FLAT.find(f => f.lesson.id === lessonId); }
 
+function renderVideoCard(video) {
+  if (!video) return "";
+  const watchUrl = `https://www.youtube.com/watch?v=${video.id}`;
+  return `
+    <a class="video-card" href="${watchUrl}" target="_blank" rel="noopener noreferrer">
+      <div class="video-card-cover">
+        <svg class="video-play-icon" viewBox="0 0 68 48" width="52" height="37"><path d="M66.5,7.7c-0.8-2.9-2.4-4.5-5.3-5.3C55.9,1,34,1,34,1S12.1,1,6.8,2.4C3.9,3.2,2.3,4.8,1.5,7.7C0.1,13,0,24,0,24 s0.1,11,1.5,16.3c0.8,2.9,2.4,4.5,5.3,5.3C12.1,47,34,47,34,47s21.9,0,27.2-1.4c2.9-0.8,4.5-2.4,5.3-5.3C67.9,35,68,24,68,24 S67.9,13,66.5,7.7z" fill="#18140C"/><path d="M 45,24 27,14 27,34" fill="#FFFFFF"/></svg>
+        <div class="video-card-doodles" aria-hidden="true">
+          <span class="vd vd1"></span><span class="vd vd2"></span><span class="vd vd3"></span>
+        </div>
+      </div>
+      <div class="video-card-info">
+        <div class="video-card-eyebrow">▶ Watch a video explanation</div>
+        <div class="video-card-title">${video.title}</div>
+        <div class="video-card-channel">${video.channel} · YouTube</div>
+      </div>
+    </a>`;
+}
+
 function renderLesson(lessonId) {
   const found = findLesson(lessonId) || FLAT[0];
   const { chapter, lesson } = found;
   const main = document.getElementById("courseMain");
 
   const widgetSlot = lesson.widget ? `<div class="widget-slot" id="widgetSlot"></div>` : "";
+  const videoCard = renderVideoCard(lesson.video);
   const blocksHtml = (lesson.blocks || []).map(renderBlock).join("");
 
   const flatIndex = FLAT.indexOf(found);
@@ -482,6 +502,7 @@ function renderLesson(lessonId) {
       <h1>${lesson.title}</h1>
       ${chapter.blurb ? `<p class="blurb">${chapter.blurb}</p>` : ""}
     </div>
+    ${videoCard}
     ${widgetSlot}
     ${blocksHtml}
     <div class="lesson-footer">

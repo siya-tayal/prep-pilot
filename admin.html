@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Signups | Stumblebee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="course.css">
+<style>
+  body.course-body { background: var(--cream); }
+  .admin-wrap { padding: 40px 0 80px; }
+  .admin-card { background: var(--white); border-radius: var(--radius-lg); padding: 36px; overflow-x: auto; }
+  .admin-warn {
+    background: var(--yellow-soft); border-radius: 12px; padding: 14px 18px; font-size: 0.86rem;
+    margin-bottom: 24px;
+  }
+  .admin-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+  table.admin-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 900px; }
+  table.admin-table th, table.admin-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  table.admin-table th { font-family: "Fredoka", sans-serif; background: var(--cream); position: sticky; top: 0; }
+  table.admin-table tr:hover td { background: var(--cream); }
+  .empty-admin { text-align: center; padding: 60px 20px; color: var(--ink-faint); }
+  .badge-exam { font-size: 0.72rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--yellow-soft); }
+</style>
+</head>
+<body class="course-body" data-page="admin">
+
+<div id="siteNavRoot"></div>
+
+<main class="wrap admin-wrap">
+  <h1 style="margin-bottom:10px;">Signups</h1>
+  <div class="admin-warn">
+    <strong>Prototype note:</strong> there's no real backend here — this table reads directly from this browser's <code>localStorage</code>, so it only shows signups made <em>on this device/browser</em>. Passwords are stored as SHA-256 hashes, never in plain text.
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-toolbar">
+      <span id="countLabel" class="muted"></span>
+      <div style="display:flex; gap:10px;">
+        <button class="btn btn-outline btn-sm" id="exportCsvBtn">Export CSV</button>
+        <button class="btn btn-outline btn-sm" id="exportJsonBtn">Export JSON</button>
+      </div>
+    </div>
+    <div id="tableArea"></div>
+  </div>
+</main>
+
+<script src="auth.js"></script>
+<script src="exam-lock.js"></script>
+<script src="nav.js"></script>
+<script>
+  function fmtDate(iso) {
+    try { return new Date(iso).toLocaleString(); } catch (e) { return iso; }
+  }
+
+  function render() {
+    const users = Auth.getUsers();
+    document.getElementById("countLabel").textContent = `${users.length} signup${users.length === 1 ? "" : "s"}`;
+
+    if (!users.length) {
+      document.getElementById("tableArea").innerHTML = `<div class="empty-admin">No one has signed up on this browser yet.</div>`;
+      return;
+    }
+
+    const rows = users.map(u => `
+      <tr>
+        <td>${u.fullName}</td>
+        <td>${u.email}</td>
+        <td>${u.phone}</td>
+        <td>${u.country}</td>
+        <td>${u.enrolled ? (u.university || "—") : "Not enrolled"}</td>
+        <td>${u.gradDate || "—"}</td>
+        <td><span class="badge-exam">${u.examChoice}</span></td>
+        <td>${u.aptitudeResult ? "Yes" : "No"}</td>
+        <td>${fmtDate(u.signupDate)}</td>
+      </tr>`).join("");
+
+    document.getElementById("tableArea").innerHTML = `
+      <table class="admin-table">
+        <thead><tr>
+          <th>Name</th><th>Email</th><th>Phone</th><th>Country</th><th>University</th>
+          <th>Grad date</th><th>Exam</th><th>Took aptitude test</th><th>Signed up</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  function toCsv(users) {
+    const headers = ["fullName","email","phone","country","enrolled","university","gradDate","examChoice","tookAptitudeTest","signupDate"];
+    const lines = [headers.join(",")];
+    users.forEach(u => {
+      const row = [
+        u.fullName, u.email, u.phone, u.country, u.enrolled, u.university || "",
+        u.gradDate, u.examChoice, !!u.aptitudeResult, u.signupDate
+      ].map(v => `"${String(v).replace(/"/g, '""')}"`);
+      lines.push(row.join(","));
+    });
+    return lines.join("\n");
+  }
+
+  function download(filename, content, type) {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById("exportCsvBtn").addEventListener("click", () => {
+    download("stumblebee_signups.csv", toCsv(Auth.getUsers()), "text/csv");
+  });
+  document.getElementById("exportJsonBtn").addEventListener("click", () => {
+    download("stumblebee_signups.json", JSON.stringify(Auth.getUsers(), null, 2), "application/json");
+  });
+
+  render();
+</script>
+</body>
+</html>

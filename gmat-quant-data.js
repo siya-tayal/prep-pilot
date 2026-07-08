@@ -10,7 +10,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Integers, primes, divisibility, and remainders — the GMAT's favorite building blocks.",
   lessons: [
     {
-      id: "gm1-l1", title: "Integers, Primes & Divisibility",
+      id: "gm1-l1", title: "Integers, Primes & Divisibility", video: { id: "UHYsHLxqEm4", title: "GMAT 700 Level Number Properties Data Sufficiency | Prime Numbers", channel: "Wizako GMAT Prep" },
       blocks: [
         { type: "html", content: "<h4>Core Definitions</h4><ul><li><strong>Integers:</strong> $\\{..., -2,-1,0,1,2,...\\}$ — no fractions or decimals.</li><li><strong>Prime numbers:</strong> exactly two positive factors (1 and itself). 2 is the only even prime.</li><li><strong>Consecutive integers:</strong> always alternate even/odd.</li></ul>" },
         { type: "html", content: "<h4>LCM and GCF</h4><p>For two integers, prime-factorize both:</p><ul><li><strong>GCF</strong> takes the <em>lowest</em> shared power of each common prime.</li><li><strong>LCM</strong> takes the <em>highest</em> power of every prime that appears in either number.</li><li><strong>Identity:</strong> $\\text{GCF}(x,y) \\times \\text{LCM}(x,y) = x \\times y$</li></ul>" },
@@ -49,7 +49,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Converting between forms and handling successive percent changes.",
   lessons: [
     {
-      id: "gm2-l1", title: "Percent Change & Conversions",
+      id: "gm2-l1", title: "Percent Change & Conversions", video: { id: "b4OhlA98l4k", title: "Free GMAT Prep Hour: Fractions, Decimals, Percents & Ratios", channel: "Manhattan Prep GMAT" },
       blocks: [
         { type: "html", content: "<h4>Successive Percent Changes</h4><p>Chain the multipliers — never just add/subtract the percentages:</p>$$\\text{Final} = \\text{Initial} \\times (1 \\pm r_1) \\times (1 \\pm r_2) \\times \\cdots$$" },
         { type: "html", content: "<h4>Quick Conversions</h4><p>$x\\%$ of $y$ is $\\dfrac{xy}{100}$ — and notably, <strong>$x\\%$ of $y$ always equals $y\\%$ of $x$</strong>, since both reduce to $\\frac{xy}{100}$.</p>" },
@@ -88,7 +88,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Splitting quantities by ratio and combining rates.",
   lessons: [
     {
-      id: "gm3-l1", title: "Ratios and Rates",
+      id: "gm3-l1", title: "Ratios and Rates", video: { id: "Y4fgwWEGQlg", title: "SAT Math Part 29 - Ratios and Proportions Word Problems", channel: "The Organic Chemistry Tutor" },
       blocks: [
         { type: "html", content: "<h4>Part-to-Whole from a Ratio</h4><p>If $A:B = m:n$, split the total into $m+n$ equal \"parts\" — each part is worth $\\frac{\\text{total}}{m+n}$.</p>" },
         { type: "html", content: "<h4>Rate = Distance / Time</h4><p>You need <em>two</em> of the three quantities (distance, rate, time) to find the third — one alone is never enough.</p>" },
@@ -126,7 +126,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Base rules, even vs. odd roots, and the traps hiding in each.",
   lessons: [
     {
-      id: "gm4-l1", title: "Exponent & Root Rules",
+      id: "gm4-l1", title: "Exponent & Root Rules", video: { id: "m4sX4FQOyoo", title: "Negative Exponents and Fractional Exponents - Examples", channel: "Patrick J" },
       blocks: [
         { type: "html", content: "<h4>Core Rules</h4><ul><li>$x^a \\cdot x^b = x^{a+b}$, &nbsp; $\\dfrac{x^a}{x^b}=x^{a-b}$, &nbsp; $(x^a)^b = x^{ab}$</li><li>$\\sqrt{x^2}=|x|$ — even roots only return the non-negative value.</li><li>Odd roots (like $\\sqrt[3]{\\cdot}$) preserve sign and are always unique: $\\sqrt[3]{x^3}=x$ for any real $x$.</li></ul>" },
         { type: "practice", questions: [
@@ -160,7 +160,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Solving for unknowns and manipulating inequalities without flipping signs by accident.",
   lessons: [
     {
-      id: "gm5-l1", title: "Equations and Inequalities",
+      id: "gm5-l1", title: "Equations and Inequalities", video: { id: "DrZJKdXlZ3I", title: "How To Solve Linear Inequalities, Basic Introduction, Algebra", channel: "The Organic Chemistry Tutor" },
       blocks: [
         { type: "html", content: "<h4>Solving Linear Equations</h4><p>Isolate the variable by performing the same operation to both sides. Distribute carefully before combining like terms.</p>" },
         { type: "html", content: "<h4>Inequality Rule</h4><p>Multiplying or dividing both sides by a <strong>negative</strong> number flips the inequality sign. Adding/subtracting never flips it.</p>" },
@@ -195,7 +195,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Factoring, the discriminant, and reading a parabola.",
   lessons: [
     {
-      id: "gm6-l1", title: "Quadratics",
+      id: "gm6-l1", title: "Quadratics", video: { id: "T5CAaynO-4k", title: "The Quadratic Formula & Discriminant in Algebra", channel: "Math and Science" },
       widget: "quadraticGrapher",
       blocks: [
         { type: "html", content: "<p>Use the grapher above to see how $a$, $b$, and $c$ shape the parabola, its roots, and its vertex.</p><h4>Factoring a Quadratic</h4><p>To solve $x^2 - 5x + 6 = 0$, find two numbers that multiply to $6$ and add to $-5$: $-2$ and $-3$.</p>$$(x-2)(x-3) = 0 \\implies x = 2 \\text{ or } x = 3$$" },
@@ -231,7 +231,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Evaluating functions and finding terms in a sequence.",
   lessons: [
     {
-      id: "gm7-l1", title: "Sequences",
+      id: "gm7-l1", title: "Sequences", video: { id: "UqCZXbwqiwA", title: "Introduction to Sequences (Arithmetic and Geometric) – FULL LESSON", channel: "TabletClass Math" },
       widget: "sequenceExplorer",
       blocks: [
         { type: "html", content: "<p>Build your own sequence above and check the term/sum formulas instantly.</p><h4>Arithmetic Sequences</h4>$$a_n = a_1 + (n-1)d$$<h4>Geometric Sequences</h4>$$a_n = a_1 \\cdot r^{(n-1)}$$" },
@@ -266,7 +266,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Work rate, mixtures, and revenue problems — translating words into equations.",
   lessons: [
     {
-      id: "gm8-l1", title: "Work, Mixture & Revenue Problems",
+      id: "gm8-l1", title: "Work, Mixture & Revenue Problems", video: { id: "L_hr2PYs4To", title: "The #1 Most Common GMAT Math Word Problem - Work Rate", channel: "Magoosh GMAT & MBA Admissions" },
       blocks: [
         { type: "html", content: "<h4>Work Rate</h4><p>Individual rates add:</p>$$\\frac{1}{T_{\\text{combined}}} = \\frac{1}{t_1} + \\frac{1}{t_2}$$" },
         { type: "html", content: "<h4>Mixture Balance</h4>$$C_1V_1 + C_2V_2 = C_{\\text{final}}(V_1+V_2)$$" },
@@ -304,7 +304,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Mean, median, and standard deviation — and what actually changes them.",
   lessons: [
     {
-      id: "gm9-l1", title: "Central Tendency & Spread",
+      id: "gm9-l1", title: "Central Tendency & Spread", video: { id: "e3uY2LraXts", title: "Mean, Median, Mode, and Range", channel: "Math with Mr. J" },
       blocks: [
         { type: "html", content: "<h4>Mean vs. Median</h4><p>Mean is pulled by outliers; median is not. For an even-sized set, the median is the average of the two middle values.</p>" },
         { type: "html", content: "<h4>Standard Deviation Shortcuts</h4><ul><li>Adding/subtracting a constant to every term: mean shifts, <strong>SD unchanged</strong>.</li><li>Multiplying every term by $k$: both mean and SD scale by $|k|$.</li></ul>" },
@@ -339,7 +339,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "Counting outcomes and computing probability without listing everything out.",
   lessons: [
     {
-      id: "gm10-l1", title: "Counting & Probability",
+      id: "gm10-l1", title: "Counting & Probability", video: { id: "j_863d3QWvs", title: "How to Calculate Permutations and Combinations - Probability", channel: "Jeremy Blitz-Jones" },
       widget: "combinatoricsCalculator",
       blocks: [
         { type: "html", content: "<p>Use the calculator above to check $P(n,r)$ and $C(n,r)$ for any values.</p><h4>Permutations vs. Combinations</h4><ul><li><strong>Order matters</strong> (arranging): $P(n,r) = \\dfrac{n!}{(n-r)!}$</li><li><strong>Order doesn't matter</strong> (selecting): $C(n,r) = \\dfrac{n!}{r!(n-r)!}$</li></ul>" },
@@ -374,7 +374,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "A lighter geometry pass — the GMAT Focus Edition tests it less than the old GMAT, but it still shows up.",
   lessons: [
     {
-      id: "gm11-l1", title: "Triangles & the Coordinate Plane",
+      id: "gm11-l1", title: "Triangles & the Coordinate Plane", video: { id: "IAsesh9oLhQ", title: "Pythagorean Theorem: Right Triangle Basics and Applications", channel: "IXL" },
       widget: "triangleExplorer",
       blocks: [
         { type: "html", content: "<p>Drag the triangle above to explore how side lengths and angles relate.</p><h4>Pythagorean Theorem</h4>$$a^2+b^2=c^2$$<p>Know the common triples: 3-4-5, 5-12-13, 8-15-17 (and their multiples).</p>" },
@@ -410,7 +410,7 @@ const GMAT_QUANT_CHAPTERS = [
   blurb: "The GMAT's signature question format — a strategy chapter, not a math chapter.",
   lessons: [
     {
-      id: "gm12-l1", title: "The AD/BCE Method",
+      id: "gm12-l1", title: "The AD/BCE Method", video: { id: "YPb38wBdhJM", title: "Data Insights Ep. 9: How to Approach Data Sufficiency", channel: "GMAT Ninja" },
       widget: "dataSufficiencyCoach",
       blocks: [
         { type: "html", content: "<p>Use the coach above to practice the elimination logic before you even look at the math.</p><h4>The Golden Rule</h4><p>Data Sufficiency never asks you to <em>solve</em> — only to decide whether you have <strong>enough information to solve</strong>. Evaluate each statement completely independently; once you've used information from Statement (1), <strong>forget it</strong> before you look at Statement (2).</p>" },

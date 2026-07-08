@@ -16,6 +16,19 @@
   .dash-ring { flex-shrink: 0; }
   .dash-ring-label .big { font-family: "Fredoka", sans-serif; font-size: 2.2rem; }
   .dash-ring-label .small { color: #C9C4B6; font-size: 0.85rem; }
+
+  .honeypot-wrap { display: flex; align-items: center; gap: 20px; }
+  .honeypot-svg { flex-shrink: 0; overflow: visible; }
+  .honey-fill { transition: y 0.8s cubic-bezier(.34,1.56,.64,1), height 0.8s cubic-bezier(.34,1.56,.64,1); }
+  .honey-drop { animation: honeyDrip 2.2s ease-in infinite; }
+  .honey-drop:nth-child(2) { animation-delay: 0.7s; }
+  .honey-drop:nth-child(3) { animation-delay: 1.4s; }
+  @keyframes honeyDrip {
+    0%   { transform: translateY(-18px); opacity: 0; }
+    12%  { opacity: 1; }
+    78%  { opacity: 1; }
+    100% { transform: translateY(22px); opacity: 0; }
+  }
   .dash-section-title { font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.1rem; margin: 28px 0 14px; }
   .chapter-progress-list { display: flex; flex-direction: column; gap: 10px; }
   .chapter-progress-row { background: var(--white); border-radius: 14px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; }
@@ -31,6 +44,8 @@
     .dash-hero { padding: 32px 24px; }
   }
 </style>
+<script src="auth.js"></script>
+<script src="auth-gate.js"></script>
 </head>
 <body class="course-body" data-page="dashboard">
 
@@ -68,14 +83,38 @@
     catch (e) { return new Set(); }
   }
 
-  function ringSVG(pct) {
-    const r = 34, c = 2 * Math.PI * r;
-    const offset = c * (1 - pct / 100);
-    return `<svg class="dash-ring" width="84" height="84" viewBox="0 0 84 84">
-      <circle cx="42" cy="42" r="${r}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="9"/>
-      <circle cx="42" cy="42" r="${r}" fill="none" stroke="#FFC629" stroke-width="9" stroke-linecap="round"
-        stroke-dasharray="${c}" stroke-dashoffset="${offset}" transform="rotate(-90 42 42)"/>
-    </svg>`;
+  function honeyPotSVG(pct) {
+    // Window (the fill gauge) spans y=85..145 inside the pot belly.
+    const winTop = 85, winBottom = 145, winHeight = winBottom - winTop;
+    const honeyH = Math.max(4, (pct / 100) * winHeight);
+    const honeyY = winBottom - honeyH;
+    return `
+      <svg class="honeypot-svg" width="150" height="190" viewBox="0 0 160 190">
+        <defs>
+          <clipPath id="honeyWindowClip">
+            <rect x="35" y="${winTop}" width="90" height="${winHeight}" rx="10"/>
+          </clipPath>
+        </defs>
+
+        <!-- drips -->
+        <g>
+          <ellipse class="honey-drop" cx="68" cy="14" rx="3.4" ry="5" fill="#F5B700"/>
+          <ellipse class="honey-drop" cx="80" cy="10" rx="3.8" ry="5.6" fill="#FFC629"/>
+          <ellipse class="honey-drop" cx="93" cy="14" rx="3.2" ry="4.6" fill="#F5B700"/>
+        </g>
+
+        <!-- pot body -->
+        <path d="M50,35 C50,35 40,55 30,70 C20,90 20,120 25,140 C30,158 55,167 80,167 C105,167 130,158 135,140 C140,120 140,90 130,70 C120,55 110,35 110,35 Z"
+              fill="#D98D46" stroke="#8A4A22" stroke-width="3"/>
+
+        <!-- window (fill gauge background) -->
+        <rect x="35" y="${winTop}" width="90" height="${winHeight}" rx="10" fill="#FFF8E7" stroke="#8A4A22" stroke-width="2"/>
+        <rect class="honey-fill" x="35" y="${honeyY}" width="90" height="${honeyH}" clip-path="url(#honeyWindowClip)" fill="#F5B700"/>
+
+        <!-- rim -->
+        <path d="M50,35 C50,35 60,28 80,28 C100,28 110,35 110,35 C110,35 100,42 80,42 C60,42 50,35 50,35 Z" fill="#8A4A22"/>
+        <ellipse cx="80" cy="34" rx="24" ry="7" fill="#5C2E14"/>
+      </svg>`;
   }
 
   function render() {
@@ -126,9 +165,9 @@
           <span class="eyebrow" style="background:var(--yellow);">${exam} progress</span>
           <h1 style="margin-top:14px;">You've completed ${totalDone} of ${totalLessons} lessons.</h1>
         </div>
-        <div class="dash-ring-wrap">
-          ${ringSVG(overallPct)}
-          <div class="dash-ring-label"><div class="big">${overallPct}%</div><div class="small">overall</div></div>
+        <div class="honeypot-wrap">
+          ${honeyPotSVG(overallPct)}
+          <div class="dash-ring-label"><div class="big">${overallPct}%</div><div class="small">honey pot filled</div></div>
         </div>
       </div>
       ${sectionBlocks}

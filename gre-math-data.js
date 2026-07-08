@@ -19,7 +19,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "The full number system, divisibility, factorization, and remainders.",
   lessons: [
     {
-      id: "ch1-l1", title: "Types of Numbers",
+      id: "ch1-l1", title: "Types of Numbers", video: { id: "0M8isaEu1EU", title: "Number Systems (Natural, Integer, Rational, Irrational, & Real Numbers)", channel: "MrBrownCS" },
       widget: "numberSystemFlowchart",
       blocks: [
         { type: "html", content: "<p>Click any box in the diagram above to flip it and reveal its definition. Every number on the GRE belongs somewhere on this tree — knowing the tree cold means you'll never be tricked by a \"which of the following is irrational\" question again.</p>" },
@@ -45,7 +45,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch1-l2", title: "Divisibility Rules",
+      id: "ch1-l2", title: "Divisibility Rules", video: { id: "uO9DjoNzihI", title: "Divisibility Rules With Examples | Math is Fun", channel: "Mathematics is Fun" },
       blocks: [
         { type: "html", content: "<p>Memorize these — they turn 30-second long division into 3-second pattern checks. Click any row to flip it and see a worked example.</p>" },
         { type: "flip-table", rows: [
@@ -66,7 +66,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch1-l3", title: "Factorization",
+      id: "ch1-l3", title: "Factorization", video: { id: "zvaxUJOv6jM", title: "GCF and LCM Explained | Greatest Common Factor & Least Common Multiple", channel: "Math with Mr. J" },
       blocks: [
         { type: "html", content: "<h4>The Fundamental Theorem of Arithmetic</h4><p>Every integer $n > 1$ can be uniquely expressed as a product of prime powers:</p>$$n = p_1^{a} \\cdot p_2^{b} \\cdot p_3^{c} \\cdots$$<p>where $p_1, p_2, p_3, ...$ are distinct primes and $a, b, c, ...$ are positive integers.</p>" },
         { type: "html", content: "<h4>The Factor Count Formula</h4><p>If $n = p_1^{a} \\cdot p_2^{b} \\cdot p_3^{c}$, the total number of distinct positive factors of $n$ is:</p>$$\\text{Total Factors} = (a+1)(b+1)(c+1)\\cdots$$<ul><li><strong>Perfect square property:</strong> if a number has an <em>odd</em> number of total factors, it must be a perfect square. An even number of factors means it's not a perfect square.</li><li><strong>Prime power shortcut:</strong> if an integer has exactly $k$ factors and $k$ is prime, the integer must be of the form $p^{k-1}$ for some prime $p$.</li></ul>" },
@@ -116,7 +116,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch1-l4", title: "Remainders",
+      id: "ch1-l4", title: "Remainders", video: { id: "88pWjrsuB0s", title: "How to do Remainders: GRE & GMAT", channel: "The Tested Tutor" },
       blocks: [
         { type: "html", content: "<h4>The Remainder Formula</h4><p>For any integer dividend $A$ divided by a positive integer divisor $D$:</p>$$A = D \\cdot Q + R, \\quad 0 \\leq R < D$$" },
         { type: "html", content: "<h4>Arithmetic of Remainders</h4><p>If $A \\div D$ leaves remainder $R_1$ and $B \\div D$ leaves remainder $R_2$:</p><ul><li><strong>Addition:</strong> $(A+B) \\div D$ leaves the same remainder as $(R_1+R_2) \\div D$.</li><li><strong>Multiplication:</strong> $(A \\times B) \\div D$ leaves the same remainder as $(R_1 \\times R_2) \\div D$.</li><li><strong>Powers:</strong> $A^k \\div D$ leaves the same remainder as $(R_1)^k \\div D$.</li></ul><p class='note'>If the resulting $R_1+R_2$ or $R_1 \\times R_2$ is $\\geq D$, divide that new number by $D$ again to get the true final remainder.</p>" },
@@ -182,7 +182,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Base traps, principal roots, estimation, and number-line reasoning.",
   lessons: [
     {
-      id: "ch2-l1", title: "Exponents and Roots — Advanced Concepts",
+      id: "ch2-l1", title: "Exponents and Roots — Advanced Concepts", video: { id: "1QH_-bwvBSs", title: "GRE Tips and Tricks | Exponents and Roots", channel: "PrepScholar GRE" },
       blocks: [
         { type: "html", content: "<h4>The Negative & Fractional Base Traps</h4><ul><li>$(-x)^n$ vs. $-x^n$: $(-3)^2 = 9$, but $-3^2 = -9$. The negative is only included if it's explicitly inside parentheses.</li><li><strong>Parity of exponents:</strong> if $x^n = y^n$ and $n$ is even, then $x=y$ or $x=-y$. If $n$ is odd, then $x=y$.</li><li><strong>Bases between 0 and 1:</strong> raising $x$ to a higher power <em>decreases</em> its value when $0<x<1$ (e.g. $0.5^2 = 0.25 < 0.5$).</li></ul>" },
         { type: "html", content: "<h4>Factoring Out Large Exponents</h4><p>You cannot combine powers when adding/subtracting terms with large exponents — factor out the lowest power instead.</p><p><em>Simplify:</em> $3^{15} + 3^{16} + 3^{17}$</p>$$3^{15}(1 + 3 + 3^2) = 3^{15}(13)$$" },
@@ -226,7 +226,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch2-l2", title: "Estimation and Number Lines",
+      id: "ch2-l2", title: "Estimation and Number Lines", video: { id: "ybyLNaQQeyk", title: "Use this Easy Trick to Find Any Square Root - The Number Line", channel: "MathBase" },
       blocks: [
         { type: "html", content: "<h4>Estimation in QC Questions</h4><p>Exact calculation is often a trap designed to waste time. Use strategic estimation:</p><ul><li><strong>Bounding:</strong> to estimate $\\sqrt{53}$, bound it: $\\sqrt{49} < \\sqrt{53} < \\sqrt{64}$, so $7 < \\sqrt{53} < 8$.</li><li><strong>Fractional approximation:</strong> $0.331 \\approx \\tfrac13$, $0.141 \\approx \\tfrac17$.</li></ul>" },
         { type: "html", content: "<h4>Number Line Intervals and Inequalities</h4><ul><li><strong>Midpoint:</strong> $\\text{Midpoint} = \\frac{a+b}{2}$</li><li><strong>Distance:</strong> $|a-b|$</li><li><strong>Product sign:</strong> if $x,y$ are on opposite sides of 0, $xy<0$; same side, $xy>0$.</li></ul>" },
@@ -256,7 +256,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Sequential percent changes and the baseline-anchor trap.",
   lessons: [
     {
-      id: "ch3-l1", title: "Percent Change",
+      id: "ch3-l1", title: "Percent Change", video: { id: "FCObY53fM-g", title: "Successive Percentage Change (GMAT/GRE/CAT/Bank PO/SSC CGL)", channel: "Sri Chaitanya Academy NEET" },
       blocks: [
         { type: "html", content: "<h4>Sequential Percent Changes</h4><p>If a quantity increases by $x\\%$ then decreases by $y\\%$, the final value is <strong>not</strong> a net change of $(x-y)\\%$. Multiply the multipliers instead:</p>$$\\text{Final} = \\text{Initial} \\times \\left(1+\\frac{x}{100}\\right)\\times\\left(1-\\frac{y}{100}\\right)$$" },
         { type: "html", content: "<h4>Percent Change Formula</h4>$$\\text{Percent Change} = \\frac{\\text{New} - \\text{Old}}{\\text{Old}} \\times 100\\%$$<p class='note'><strong>Trap:</strong> \"percent more than $B$\" means $B$ is the denominator; \"percent less than $A$\" means $A$ is the denominator.</p>" },
@@ -284,7 +284,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Merging ratios and combined work rates.",
   lessons: [
     {
-      id: "ch4-l1", title: "Ratios and Rates",
+      id: "ch4-l1", title: "Ratios and Rates", video: { id: "Y4fgwWEGQlg", title: "SAT Math Part 29 - Ratios and Proportions Word Problems", channel: "The Organic Chemistry Tutor" },
       blocks: [
         { type: "html", content: "<h4>Combining Ratios (The Bridge Principle)</h4><p>If two ratios share a common element, rescale so that element matches before merging.</p><p>If $A:B = 2:3$ and $B:C=4:5$ — the shared element is $B$. LCM of 3 and 4 is 12, so rescale: $A:B=8:12$ and $B:C=12:15$. Merged: $A:B:C = 8:12:15$.</p>" },
         { type: "html", content: "<h4>Advanced Work Rates</h4><p>When multiple entities work together, their individual <em>rates</em> add — not their times.</p>$$\\frac{1}{T_{\\text{combined}}} = \\frac{1}{t_1}+\\frac{1}{t_2}+\\frac{1}{t_3}+\\cdots$$" },
@@ -312,7 +312,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Distance interpretation and the triangle inequality.",
   lessons: [
     {
-      id: "ch5-l1", title: "Absolute Value",
+      id: "ch5-l1", title: "Absolute Value", video: { id: "4YRtjY0bPV0", title: "How to Solve Absolute Value Equations | The Two-Case Method Explained", channel: "CodeLucky" },
       blocks: [
         { type: "html", content: "<h4>Geometric Definition</h4><p>$|x-a|$ represents the <strong>distance</strong> between $x$ and the fixed point $a$ on the number line.</p><p>$|x-5|\\leq 3$ means \"the distance between $x$ and 5 is at most 3\" — so $x \\in [2, 8]$.</p>" },
         { type: "html", content: "<h4>Algebraic Properties</h4><ul><li><strong>Square root identity:</strong> $\\sqrt{x^2}=|x|$</li><li><strong>Triangle inequality:</strong> $|x+y|\\leq|x|+|y|$, with equality iff $x$ and $y$ share the same sign ($xy \\geq 0$).</li></ul>" },
@@ -340,7 +340,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Which fractions terminate, and which repeat forever.",
   lessons: [
     {
-      id: "ch6-l1", title: "Terminating vs. Repeating Decimals",
+      id: "ch6-l1", title: "Terminating vs. Repeating Decimals", video: { id: "o4M6HnNatZ0", title: "Check which fractions give terminating decimals | Real numbers", channel: "Khan Academy India - English" },
       blocks: [
         { type: "html", content: "<h4>The Denominator Rule</h4><p>A fully simplified fraction $\\frac{a}{b}$ yields a <strong>terminating decimal</strong> if and only if the prime factorization of $b$ contains no primes other than 2 or 5.</p><ul><li>$\\frac{7}{40}$ terminates: $40 = 2^3 \\times 5$.</li><li>$\\frac{5}{12}$ repeats: $12 = 2^2 \\times 3$ (the 3 causes repetition).</li></ul>" },
         { type: "html", content: "<h4>Place Value Shifts</h4><p>Multiplying by $10^n$ shifts the decimal point $n$ places right; dividing by $10^n$ shifts it $n$ places left.</p>" },
@@ -369,7 +369,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Arithmetic, geometric, and recursive sequences.",
   lessons: [
     {
-      id: "ch7-l1", title: "Sequences",
+      id: "ch7-l1", title: "Sequences", video: { id: "UqCZXbwqiwA", title: "Introduction to Sequences (Arithmetic and Geometric) – FULL LESSON", channel: "TabletClass Math" },
       widget: "sequenceExplorer",
       blocks: [
         { type: "html", content: "<h4>Arithmetic Sequences</h4><p>The difference between consecutive terms is constant ($d$).</p><ul><li><strong>$n$-th term:</strong> $a_n = a_1 + (n-1)d$</li><li><strong>Sum of $n$ terms:</strong> $S_n = \\frac{n(a_1+a_n)}{2} = n \\times \\text{(average of the sequence)}$</li></ul>" },
@@ -400,7 +400,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Base exceptions and exponential inequalities.",
   lessons: [
     {
-      id: "ch8-l1", title: "Advanced Base Manipulations & Sign Traps",
+      id: "ch8-l1", title: "Advanced Base Manipulations & Sign Traps", video: { id: "m4sX4FQOyoo", title: "Negative Exponents and Fractional Exponents - Examples", channel: "Patrick J" },
       blocks: [
         { type: "html", content: "<h4>The Three Critical Base Exceptions</h4><p>The rule \"if $b^x=b^y$ then $x=y$\" breaks down if:</p><ol><li>$b=1$: $1^5=1^{12}$, but $5\\neq12$.</li><li>$b=0$: $0^2=0^{33}$, but $2\\neq33$.</li><li>$b=-1$: $(-1)^2=(-1)^4=1$, but $2\\neq4$.</li></ol>" },
         { type: "html", content: "<h4>Exponential Inequalities (0 < base < 1)</h4><p>If $0<b<1$ and $b^x>b^y$, then $x<y$ — raising a fractional base to a higher power makes it <em>smaller</em>.</p><p><em>Example:</em> $(0.5)^2=0.25$ and $(0.5)^3=0.125$. Since $0.25>0.125$, the lower exponent gave the larger value.</p>" },
@@ -429,7 +429,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "The AC method, higher-order difference of squares, and conjugates.",
   lessons: [
     {
-      id: "ch9-l1", title: "Splitting Middle Terms & Advanced Difference of Squares",
+      id: "ch9-l1", title: "Splitting Middle Terms & Advanced Difference of Squares", video: { id: "vypGuPy6g2A", title: "How To Factor Difference of Squares - Algebra", channel: "The Organic Chemistry Tutor" },
       blocks: [
         { type: "html", content: "<h4>Higher-Order Difference of Squares</h4>$$x^4-y^4=(x^2-y^2)(x^2+y^2)=(x-y)(x+y)(x^2+y^2)$$" },
         { type: "html", content: "<h4>Rationalizing via Conjugates</h4><p>Multiply numerator and denominator by the algebraic conjugate to exploit the difference of squares:</p>$$\\frac{1}{\\sqrt{x}-\\sqrt{y}} = \\frac{1}{\\sqrt{x}-\\sqrt{y}}\\cdot\\frac{\\sqrt{x}+\\sqrt{y}}{\\sqrt{x}+\\sqrt{y}} = \\frac{\\sqrt{x}+\\sqrt{y}}{x-y}$$" },
@@ -457,7 +457,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Compound inequalities and the sign-flip division trap.",
   lessons: [
     {
-      id: "ch10-l1", title: "Compound Inequalities and Absolute Range Limits",
+      id: "ch10-l1", title: "Compound Inequalities and Absolute Range Limits", video: { id: "AKSnaGHiFMc", title: "Compound Inequalities | Graphing, Writing, and Solving", channel: "Math with Mr. J" },
       blocks: [
         { type: "html", content: "<h4>Multi-Variable Product Logic</h4><ul><li>If $ab>0$, $a$ and $b$ share the same sign.</li><li>If $ab<0$, $a$ and $b$ have opposite signs.</li><li><strong>The division trap:</strong> if $a>b$, it is <em>not</em> always true that $\\frac1a<\\frac1b$ — this only holds if $a,b$ share the same sign. If $a=2, b=-3$: $\\frac12 > -\\frac13$.</li></ul>" },
         { type: "practice", questions: [
@@ -484,7 +484,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "The discriminant and vertex optimization.",
   lessons: [
     {
-      id: "ch11-l1", title: "The Discriminant & Vertex Optimization",
+      id: "ch11-l1", title: "The Discriminant & Vertex Optimization", video: { id: "T5CAaynO-4k", title: "The Quadratic Formula & Discriminant in Algebra", channel: "Math and Science" },
       widget: "quadraticGrapher",
       blocks: [
         { type: "html", content: "<h4>The Discriminant Framework ($\\Delta = b^2-4ac$)</h4><ul><li>$b^2-4ac>0$: 2 distinct real roots (parabola crosses the x-axis twice).</li><li>$b^2-4ac=0$: exactly 1 real root (tangent to the x-axis).</li><li>$b^2-4ac<0$: 0 real roots (never touches the x-axis).</li></ul>" },
@@ -513,7 +513,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "One, none, or infinite solutions — spotted from the coefficients alone.",
   lessons: [
     {
-      id: "ch12-l1", title: "Infinite vs. Zero Solution Configurations",
+      id: "ch12-l1", title: "Infinite vs. Zero Solution Configurations", video: { id: "9itGIP8gns4", title: "Solving Systems of Linear Equations Using Substitution and Elimination", channel: "Mario's Math Tutoring" },
       blocks: [
         { type: "html", content: "<p>A system of two linear equations in two variables has exactly one of three outcomes: a unique solution (intersecting lines), no solution (parallel lines), or infinitely many solutions (coincident lines).</p>" },
         { type: "html", content: "<h4>The Coefficient Proportionality Rule</h4><p>For $A_1x+B_1y=C_1$ and $A_2x+B_2y=C_2$:</p><ul><li><strong>Exactly one solution:</strong> $\\frac{A_1}{A_2} \\neq \\frac{B_1}{B_2}$</li><li><strong>No solution:</strong> $\\frac{A_1}{A_2} = \\frac{B_1}{B_2} \\neq \\frac{C_1}{C_2}$</li><li><strong>Infinitely many:</strong> $\\frac{A_1}{A_2} = \\frac{B_1}{B_2} = \\frac{C_1}{C_2}$</li></ul>" },
@@ -541,7 +541,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Overlapping groups and mixture balance equations.",
   lessons: [
     {
-      id: "ch13-l1", title: "Matrix Setups for Weighted Mixtures",
+      id: "ch13-l1", title: "Matrix Setups for Weighted Mixtures", video: { id: "8rYOIVhIL9w", title: "Algebra Mixture Word Problems Explained — Step-by-Step Solution & Example", channel: "TabletClass Math" },
       blocks: [
         { type: "html", content: "<h4>The Overlapping Group Formula</h4>$$\\text{Total} = \\text{Group A} + \\text{Group B} - \\text{Both} + \\text{Neither}$$" },
         { type: "html", content: "<h4>Fluid Mixture Balance Equation</h4><p>The total amount of pure substance stays constant when mixing:</p>$$C_1 V_1 + C_2 V_2 = C_{\\text{final}}(V_1+V_2)$$<p>where $C$ = concentration, $V$ = volume.</p>" },
@@ -569,7 +569,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Reflections, midpoints, and triangle areas from intercepts.",
   lessons: [
     {
-      id: "ch14-l1", title: "Reflections, Midpoints, and Area Intercepts",
+      id: "ch14-l1", title: "Reflections, Midpoints, and Area Intercepts", video: { id: "GhAxN5ohg2k", title: "Reflections on the Coordinate Plane", channel: "MooMooMath and Science" },
       widget: "reflectionTool",
       blocks: [
         { type: "html", content: "<h4>Reflection Rules</h4><ul><li>Across the x-axis: $(x,y)\\to(x,-y)$</li><li>Across the y-axis: $(x,y)\\to(-x,y)$</li><li>Through the origin: $(x,y)\\to(-x,-y)$</li><li>Across $y=x$: $(x,y)\\to(y,x)$</li></ul><p>Drag the point above to see all four reflections update live.</p>" },
@@ -599,7 +599,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Transversals, parallel lines, and the angle relationships that always hold.",
   lessons: [
     {
-      id: "ch15-l1", title: "Fundamental Angle Mechanics",
+      id: "ch15-l1", title: "Fundamental Angle Mechanics", video: { id: "Y5f1ojx4RkQ", title: "Complementary, Supplementary, and Vertical Angles", channel: "MooMooMath and Science" },
       blocks: [
         { type: "html", content: "<h4>Exact Angular Classifications</h4><ul><li><strong>Acute:</strong> $0°<\\theta<90°$</li><li><strong>Right:</strong> $\\theta=90°$</li><li><strong>Obtuse:</strong> $90°<\\theta<180°$</li><li><strong>Straight:</strong> $\\theta=180°$</li></ul>" },
         { type: "html", content: "<h4>The \"Not Drawn to Scale\" Trap</h4><p>Unless a diagram is explicitly marked to scale, never rely on visual estimation. Trust only stated constraints, equations, and right-angle marks.</p>" },
@@ -607,7 +607,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch15-l2", title: "Parallel Lines Cut by a Transversal",
+      id: "ch15-l2", title: "Parallel Lines Cut by a Transversal", video: { id: "kR3oOKUNJjM", title: "Angle Pairs-Parallel Lines Cut by a Transversal", channel: "MooMooMath and Science" },
       widget: "angleHashtag",
       blocks: [
         { type: "html", content: "<p>When $l_1 \\parallel l_2$ and a transversal $T$ crosses both, 8 angles form but only <strong>two unique measures</strong> exist. Click any angle in the diagram above to see every angle that must equal it, and drag the slider to change the transversal's tilt.</p>" },
@@ -639,7 +639,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Mean, median, mode, and everything that governs how spread out data is.",
   lessons: [
     {
-      id: "ch16-l1", title: "Central Tendency",
+      id: "ch16-l1", title: "Central Tendency", video: { id: "e3uY2LraXts", title: "Mean, Median, Mode, and Range", channel: "Math with Mr. J" },
       blocks: [
         { type: "html", content: "<h4>The Algebraic Mean</h4>$$\\mu = \\frac{\\sum_{i=1}^{n}x_i}{n} \\quad\\Longrightarrow\\quad \\text{Sum} = \\text{Mean}\\times n$$<p class='note'><strong>Strategy:</strong> when tracking changes to an average, convert means into <em>sums</em> — sums can be added and subtracted algebraically, averages cannot.</p>" },
         { type: "html", content: "<h4>The Weighted Mean</h4><p>Combining two groups of sizes $n_1, n_2$ with averages $M_1, M_2$:</p>$$M_c = \\frac{n_1 M_1 + n_2 M_2}{n_1+n_2}$$<p><strong>Balancing rule:</strong> $M_c$ always lies closer to the average of the larger group.</p>" },
@@ -662,7 +662,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch16-l2", title: "Dispersion",
+      id: "ch16-l2", title: "Dispersion", video: { id: "ApT_UJfIeAc", title: "Standard deviation Simply Explained", channel: "Kirkman's Academy" },
       blocks: [
         { type: "html", content: "<h4>Range and IQR</h4><ul><li><strong>Range</strong> $=$ Max $-$ Min. Very sensitive to outliers.</li><li><strong>Quartiles:</strong> $Q_1$ (25th percentile), $Q_2$ (median), $Q_3$ (75th percentile).</li><li><strong>IQR</strong> $= Q_3-Q_1$ — spread of the middle 50%, resistant to outliers.</li></ul>" },
         { type: "html", content: "<h4>Standard Deviation — Structural Rules</h4><p>You'll almost never compute $\\sigma$ from its formula directly. Instead, master these:</p><ul><li><strong>Shifting:</strong> adding/subtracting a constant $k$ to every term shifts the mean by $k$ but leaves $\\sigma$ <strong>unchanged</strong>.</li><li><strong>Scaling:</strong> multiplying every term by a positive constant $k$ multiplies both the mean and $\\sigma$ by $k$.</li><li><strong>Clustering:</strong> the closer data points sit to the mean, the smaller $\\sigma$.</li></ul>" },
@@ -690,7 +690,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Boxplots, scatterplots, and frequency histograms.",
   lessons: [
     {
-      id: "ch17-l1", title: "Deconstructing Advanced Charts",
+      id: "ch17-l1", title: "Deconstructing Advanced Charts", video: { id: "1MXcyrNkprk", title: "Mastering Data Visualization: Histograms, Bar Charts, Box Plots, and Scatter Plots Explained", channel: "Fatima's Digital Space" },
       widget: "boxplotCompare",
       blocks: [
         { type: "html", content: "<h4>Boxplots (5-Number Summary)</h4><p>A boxplot splits data into four quartile zones, each holding exactly <strong>25% of the data points</strong> — regardless of the zone's physical width.</p><ul><li><strong>Whiskers</strong> extend to the min and max.</li><li><strong>The box</strong> spans $Q_1$ to $Q_3$; its width is the IQR.</li><li><strong>The internal line</strong> marks the median ($Q_2$).</li></ul><p>Hover over either boxplot above to see its exact five-number summary.</p>" },
@@ -720,7 +720,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Permutations, combinations, and conditional probability.",
   lessons: [
     {
-      id: "ch18-l1", title: "Permutations, Combinations, and Group Constraints",
+      id: "ch18-l1", title: "Permutations, Combinations, and Group Constraints", video: { id: "j_863d3QWvs", title: "How to Calculate Permutations and Combinations - Probability", channel: "Jeremy Blitz-Jones" },
       widget: "combinatoricsCalculator",
       blocks: [
         { type: "html", content: "<h4>The Fundamental Counting Principle</h4><p>If task 1 has $a$ ways and task 2 has $b$ ways, both together have $a \\times b$ ways.</p>" },
@@ -759,7 +759,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "The empirical rule, z-scores, and percentiles under the bell curve.",
   lessons: [
     {
-      id: "ch19-l1", title: "The Empirical Rule and Z-Score Mechanics",
+      id: "ch19-l1", title: "The Empirical Rule and Z-Score Mechanics", video: { id: "mtbJbDwqWLE", title: "The Normal Distribution and the 68-95-99.7 Rule (5.2)", channel: "Simple Learning Pro" },
       widget: "normalCurve",
       blocks: [
         { type: "html", content: "<p>A continuous random variable is <strong>normally distributed</strong> if its probability density function forms a symmetric, bell-shaped curve centered on the mean ($\\mu$). Use the slider above to shade different $\\sigma$ ranges and see exactly what percentage of data falls inside.</p>" },
@@ -789,7 +789,7 @@ const GRE_MATH_CHAPTERS = [
   blurb: "Triangles, circles, polygons, and 3D solids — the shapes the GRE loves to test.",
   lessons: [
     {
-      id: "ch20-l1", title: "Triangles",
+      id: "ch20-l1", title: "Triangles", video: { id: "IAsesh9oLhQ", title: "Pythagorean Theorem: Right Triangle Basics and Applications", channel: "IXL" },
       widget: "triangleExplorer",
       blocks: [
         { type: "html", content: "<p>Drag any vertex above to reshape the triangle and watch every measurement update live.</p><h4>Angle Sum & Exterior Angles</h4><p>The three interior angles of any triangle always sum to $180°$. An <strong>exterior angle</strong> equals the sum of the two non-adjacent interior angles.</p>" },
@@ -837,7 +837,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch20-l2", title: "Circles",
+      id: "ch20-l2", title: "Circles", video: { id: "hhkW5nW2tJY", title: "Arc Length and Sector Area: The Complete Guide (6 Examples!)", channel: "Mario's Math Tutoring" },
       widget: "circleExplorer",
       blocks: [
         { type: "html", content: "<p>Adjust the radius and central angle above to see circumference, area, arc length, and sector area update live.</p><h4>Core Formulas</h4><ul><li><strong>Circumference:</strong> $C = 2\\pi r$</li><li><strong>Area:</strong> $A = \\pi r^2$</li></ul>" },
@@ -870,7 +870,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch20-l3", title: "Polygons & Quadrilaterals",
+      id: "ch20-l3", title: "Polygons & Quadrilaterals", video: { id: "9DK8FRklVrw", title: "Quadrilaterals Explained (Mini Course) | Intro, Properties, and Types", channel: "Math with Mr. J" },
       blocks: [
         { type: "html", content: "<h4>Interior Angle Sum</h4><p>For any polygon with $n$ sides:</p>$$\\text{Sum of interior angles} = (n-2) \\times 180°$$<p>For a <em>regular</em> polygon (all sides/angles equal), each interior angle measures:</p>$$\\frac{(n-2)\\times 180°}{n}$$" },
         { type: "table", headers: ["Quadrilateral", "Key properties"], rows: [
@@ -894,7 +894,7 @@ const GRE_MATH_CHAPTERS = [
       ]
     },
     {
-      id: "ch20-l4", title: "3D Solids",
+      id: "ch20-l4", title: "3D Solids", video: { id: "alSGsV9UvNQ", title: "Find the Volume and Surface Area of Cylinders, Cones, and Spheres", channel: "Math and Science" },
       blocks: [
         { type: "table", headers: ["Solid", "Volume", "Surface area"], rows: [
           ["Rectangular solid", "$l \\times w \\times h$", "$2(lw + lh + wh)$"],

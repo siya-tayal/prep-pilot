@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — Stumblebee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+<main class="auth-wrap">
+  <div class="auth-brand">
+    <a href="index" class="brand">
+      <svg class="bee-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
+        <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="9" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(-20 9 11)"/>
+        <ellipse cx="23" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(20 23 11)"/>
+        <circle cx="16" cy="9" r="2" fill="#18140C"/>
+      </svg>
+      stumblebee
+    </a>
+  </div>
+
+  <div class="auth-card">
+    <div class="auth-step">
+      <h2>Welcome back</h2>
+      <p class="step-sub">Log in to keep studying.</p>
+
+      <div class="field-group" id="fg-id">
+        <label>Email or phone</label>
+        <input type="text" id="loginId" placeholder="you@email.com">
+        <div class="error-text">Enter your email or phone.</div>
+      </div>
+      <div class="field-group" id="fg-pw">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Your password">
+        <div class="error-text">Incorrect email/phone or password.</div>
+      </div>
+
+      <button class="btn btn-black" id="loginBtn" style="width:100%; margin-top:8px;">Log in →</button>
+    </div>
+  </div>
+
+  <p class="auth-switch">New here? <a href="signup">Create an account</a></p>
+</main>
+
+<script src="exam-lock.js"></script>
+<script src="auth.js"></script>
+<script>
+  document.getElementById("loginBtn").addEventListener("click", async () => {
+    const id = document.getElementById("loginId").value.trim();
+    const pw = document.getElementById("loginPassword").value;
+    document.getElementById("fg-id").classList.remove("has-error");
+    document.getElementById("fg-pw").classList.remove("has-error");
+
+    if (!id || !pw) {
+      if (!id) document.getElementById("fg-id").classList.add("has-error");
+      if (!pw) document.getElementById("fg-pw").classList.add("has-error");
+      return;
+    }
+
+    const user = await Auth.verifyLogin(id, pw);
+    if (!user) {
+      document.getElementById("fg-pw").classList.add("has-error");
+      return;
+    }
+
+    Auth.startSession(user);
+    const params = new URLSearchParams(window.location.search);
+    const next = params.get("next");
+    if (!ExamLock.get() && user.examChoice) ExamLock.set(user.examChoice);
+    window.location.href = next ? decodeURIComponent(next) : "course";
+  });
+
+  document.getElementById("loginPassword").addEventListener("keydown", e => {
+    if (e.key === "Enter") document.getElementById("loginBtn").click();
+  });
+</script>
+</body>
+</html>

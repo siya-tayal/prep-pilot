@@ -30,6 +30,12 @@ function renderNav() {
     return `<a href="${href}" class="${cls.join(" ")}">${key}${isLocked ? ' <span class="pill">🔒</span>' : ""}</a>`;
   }
 
+  const user = (typeof Auth !== "undefined") ? Auth.currentUser() : null;
+  const userChip = user ? `
+    <span style="font-size:0.85rem; font-weight:600; color:var(--ink-soft);">Hi, ${user.fullName.split(" ")[0]}</span>
+    <button class="btn btn-outline btn-sm" id="navLogoutBtn" type="button">Log out</button>
+  ` : `<a href="login" class="btn btn-outline btn-sm">Log in</a>`;
+
   root.innerHTML = `
     <div class="wrap">
       <nav class="site-nav">
@@ -41,12 +47,16 @@ function renderNav() {
           <a href="dashboard" class="nav-link ${page === "dashboard" ? "active" : ""}">Dashboard</a>
         </div>
         <div style="display:flex; gap:10px; align-items:center;">
+          ${userChip}
           <a href="settings" class="btn btn-outline btn-sm" title="Settings">⚙️</a>
           <a href="${exam ? `course?exam=${exam}` : "index"}" class="btn btn-black btn-sm">${exam ? "Continue" : "Home"}</a>
         </div>
       </nav>
     </div>
   `;
+
+  const logoutBtn = document.getElementById("navLogoutBtn");
+  if (logoutBtn) logoutBtn.addEventListener("click", () => { Auth.endSession(); window.location.href = "index"; });
 }
 
 document.addEventListener("DOMContentLoaded", renderNav);

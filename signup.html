@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up — Stumblebee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+<main class="auth-wrap">
+  <div class="auth-brand">
+    <a href="index" class="brand">
+      <svg class="bee-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
+        <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="9" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(-20 9 11)"/>
+        <ellipse cx="23" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(20 23 11)"/>
+        <circle cx="16" cy="9" r="2" fill="#18140C"/>
+      </svg>
+      stumblebee
+    </a>
+  </div>
+
+  <div class="auth-card">
+    <div class="step-dots" id="stepDots"></div>
+    <div id="stepContainer"></div>
+  </div>
+
+  <p class="auth-switch">Already have an account? <a href="login">Log in</a></p>
+</main>
+
+<script src="geo-data.js"></script>
+<script src="aptitude-data.js"></script>
+<script src="auth.js"></script>
+<script src="exam-lock.js"></script>
+<script src="signup.js"></script>
+</body>
+</html>

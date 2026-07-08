@@ -82,6 +82,17 @@
   .stat-strip .stat .num { font-family: "Fredoka", sans-serif; font-size: 2.1rem; font-weight: 600; }
   .stat-strip .stat .label { font-size: 0.85rem; color: var(--ink-soft); font-weight: 600; }
 
+  .credibility-line {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 44px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    position: relative;
+    z-index: 1;
+  }
+  .credibility-line strong { color: var(--ink); }
+
   .feature-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -208,7 +219,7 @@
       <h1 style="margin-top:18px;">Find everything you need to know about the GRE and GMAT, right over here.</h1>
       <p class="motto">We're glad you stumbled onto our website 🐝 — free, interactive Quant lessons built like a real course for both exams, plus the best free resources on the internet.</p>
       <div class="hero-cta">
-        <a href="course" class="btn btn-black">Pick your exam →</a>
+        <a href="signup" class="btn btn-black">Get started free →</a>
         <a href="resources" class="btn btn-outline">Browse free resources</a>
       </div>
     </div>
@@ -223,6 +234,8 @@
       <div class="stat"><div class="num">30+</div><div class="label">free resources curated</div></div>
       <div class="stat"><div class="num">$0</div><div class="label">cost, always</div></div>
     </div>
+
+    <p class="credibility-line">Built after consulting <strong>6 students</strong> who scored <strong>327+ on the GRE</strong> and <strong>760+ on the GMAT</strong> — so the advice in here is the same stuff that actually worked for them.</p>
 
     <div class="feature-grid">
       <a href="course?exam=GRE" class="feature-card f-yellow">
@@ -291,6 +304,7 @@
   </div>
 </footer>
 
+<script src="auth.js"></script>
 <script src="exam-lock.js"></script>
 <script src="nav.js"></script>
 </body>

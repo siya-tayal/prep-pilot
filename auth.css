@@ -1,0 +1,92 @@
+body.auth-body { background: var(--cream); min-height: 100vh; }
+
+.auth-wrap { max-width: 640px; margin: 0 auto; padding: 40px 24px 80px; }
+
+.auth-card { background: var(--white); border-radius: var(--radius-lg); padding: 44px 40px; }
+
+.auth-brand { display: flex; justify-content: center; margin-bottom: 24px; }
+
+.step-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+.step-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--line); transition: all 0.2s ease; }
+.step-dot.active { background: var(--yellow-deep); width: 22px; }
+.step-dot.done { background: var(--yellow); }
+
+.auth-step h2 { font-size: 1.5rem; margin-bottom: 6px; text-align: center; }
+.auth-step .step-sub { color: var(--ink-soft); text-align: center; margin-bottom: 28px; font-size: 0.92rem; }
+
+.field-group { margin-bottom: 18px; }
+.field-group label { display: block; font-weight: 700; font-size: 0.84rem; margin-bottom: 6px; color: var(--ink-soft); }
+.field-group input[type=text], .field-group input[type=email], .field-group input[type=tel],
+.field-group input[type=password], .field-group input[type=month], .field-group input[type=date],
+.field-group select {
+  width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--line);
+  font-size: 0.95rem; font-family: "Inter", sans-serif; background: var(--white); color: var(--ink);
+}
+.field-group input:focus, .field-group select:focus { outline: none; border-color: var(--yellow-deep); }
+.field-group .hint { font-size: 0.78rem; color: var(--ink-faint); margin-top: 4px; }
+.field-group .error-text { font-size: 0.8rem; color: var(--red); margin-top: 4px; display: none; }
+.field-group.has-error input, .field-group.has-error select { border-color: var(--red); }
+.field-group.has-error .error-text { display: block; }
+
+.field-row { display: flex; gap: 14px; }
+.field-row .field-group { flex: 1; }
+
+.radio-row { display: flex; gap: 10px; }
+.radio-pill {
+  flex: 1; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px; text-align: center;
+  cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.12s ease;
+}
+.radio-pill.selected { border-color: var(--ink); background: var(--yellow-soft); }
+
+.channel-row { display: flex; gap: 10px; margin-bottom: 20px; }
+
+.otp-inputs { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
+.otp-inputs input {
+  width: 44px; height: 54px; text-align: center; font-size: 1.4rem; font-weight: 700;
+  border-radius: 10px; border: 1.5px solid var(--line); font-family: "Fredoka", sans-serif;
+}
+.otp-inputs input:focus { outline: none; border-color: var(--yellow-deep); }
+
+.otp-dev-banner {
+  background: var(--yellow-soft); border-radius: 12px; padding: 12px 16px; font-size: 0.85rem;
+  text-align: center; margin-bottom: 6px;
+}
+.otp-dev-banner b { font-family: "Fredoka", sans-serif; font-size: 1.1rem; letter-spacing: 0.1em; }
+
+.exam-choice-grid { display: flex; flex-direction: column; gap: 12px; }
+.exam-choice-card {
+  border: 1.5px solid var(--line); border-radius: 14px; padding: 18px 20px; cursor: pointer;
+  display: flex; align-items: center; gap: 14px; transition: all 0.12s ease;
+}
+.exam-choice-card:hover { border-color: var(--yellow-deep); }
+.exam-choice-card.selected { border-color: var(--ink); background: var(--yellow-soft); }
+.exam-choice-card .ec-icon { font-size: 1.6rem; }
+.exam-choice-card .ec-title { font-weight: 700; }
+.exam-choice-card .ec-sub { font-size: 0.82rem; color: var(--ink-soft); }
+
+.apt-progress { font-size: 0.8rem; color: var(--ink-faint); text-align: center; margin-bottom: 10px; font-weight: 700; }
+.apt-question { background: var(--cream); border-radius: 14px; padding: 22px; margin-bottom: 20px; }
+.apt-question .apt-prompt { font-weight: 700; margin-bottom: 14px; font-size: 1.02rem; }
+.apt-options { display: flex; flex-direction: column; gap: 8px; }
+.apt-option {
+  text-align: left; border: 1.5px solid var(--line); background: var(--white); border-radius: 10px;
+  padding: 11px 14px; cursor: pointer; font-size: 0.92rem;
+}
+.apt-option.selected { border-color: var(--ink); background: var(--yellow-soft); font-weight: 600; }
+
+.apt-result { text-align: center; }
+.apt-result .result-badge {
+  display: inline-block; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 2rem;
+  background: var(--yellow); border-radius: 16px; padding: 14px 30px; margin-bottom: 16px;
+}
+
+.auth-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 10px; }
+.auth-actions .btn { flex: 1; }
+.auth-switch { text-align: center; margin-top: 20px; font-size: 0.88rem; color: var(--ink-soft); }
+.auth-switch a { font-weight: 700; color: var(--ink); text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .auth-card { padding: 32px 22px; }
+  .field-row { flex-direction: column; gap: 0; }
+  .radio-row { flex-direction: column; }
+}
