@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRE & GMAT Free Resource Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <h1>GRE &amp; GMAT Free Resource Hub</h1>
+    <p class="tagline">The most comprehensive collection of <strong>free</strong> prep resources — practice tests, question banks, vocab, video courses, and communities. No paywalls, no signups required (unless noted).</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="controls">
+    <div class="tabs" id="examTabs">
+      <button class="tab active" data-exam="all">All</button>
+      <button class="tab" data-exam="GRE">GRE</button>
+      <button class="tab" data-exam="GMAT">GMAT</button>
+    </div>
+
+    <input type="search" id="searchInput" placeholder="Search resources (e.g. vocab, quant, official practice test)..." aria-label="Search resources">
+
+    <div class="chips" id="categoryChips"></div>
+  </section>
+
+  <p class="result-count" id="resultCount"></p>
+
+  <section class="grid" id="resourceGrid"></section>
+
+  <p class="empty-state" id="emptyState" hidden>No resources match your filters. Try clearing the search or category.</p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>All resources here are free or offer a substantial free tier. Prep companies change their sites often — if a link is stale, search the resource name directly.</p>
+    <p class="muted">Built for students, by a student. Not affiliated with ETS, GMAC, or any listed company.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
