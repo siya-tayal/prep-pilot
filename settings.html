@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — Stumblebee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="course.css">
+<style>
+  .settings-wrap { padding: 48px 0 80px; }
+  .settings-card { background: var(--white); border-radius: var(--radius-lg); padding: 44px; max-width: 620px; margin: 0 auto; }
+  .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); gap: 16px; flex-wrap: wrap; }
+  .settings-row:last-child { border-bottom: none; }
+  .settings-row h3 { font-size: 1rem; margin-bottom: 4px; }
+  .settings-row p { color: var(--ink-soft); font-size: 0.86rem; }
+  .current-exam-badge { font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.4rem; background:var(--yellow-soft); border-radius:12px; padding:10px 20px; display:inline-block; }
+  .warn-box { background: var(--red-bg); color: #8A2A22; border-radius: 12px; padding: 14px 18px; font-size: 0.86rem; margin-top: 16px; display:none; }
+  .warn-box.shown { display: block; }
+</style>
+</head>
+<body class="course-body" data-page="settings">
+
+<div id="siteNavRoot"></div>
+
+<main class="wrap settings-wrap">
+  <div class="settings-card">
+    <span class="eyebrow">Settings</span>
+    <h1 style="margin-top:16px; margin-bottom:8px;">Manage your track</h1>
+    <p class="muted" id="lockedNotice" style="margin-bottom:20px;"></p>
+
+    <div class="settings-row">
+      <div>
+        <h3>Current exam</h3>
+        <p>This is locked everywhere else on the site.</p>
+      </div>
+      <div id="currentExamDisplay" class="current-exam-badge">—</div>
+    </div>
+
+    <div class="settings-row">
+      <div>
+        <h3>Switch exam</h3>
+        <p>Changes what you see under GRE/GMAT. Your lesson progress for each exam is kept separately, so nothing is lost.</p>
+      </div>
+      <button class="btn btn-outline btn-sm" id="switchBtn">Change exam</button>
+    </div>
+
+    <div class="settings-row">
+      <div>
+        <h3>Reset all progress</h3>
+        <p>Clears every completed-lesson checkmark for both GRE and GMAT.</p>
+      </div>
+      <button class="btn btn-outline btn-sm" id="resetProgressBtn">Reset progress</button>
+    </div>
+
+    <div class="warn-box" id="resetWarn">Progress reset. Refresh any open lesson to see it update.</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <a href="index" class="brand" style="font-size:1.15rem;">
+        <svg class="bee-icon" style="width:22px;height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
+          <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+          <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        stumblebee
+      </a>
+      <div class="footer-links">
+        <a href="resources">Resources</a>
+        <a href="dashboard">Dashboard</a>
+      </div>
+      <p class="footer-copy">© 2026 Stumblebee.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="exam-lock.js"></script>
+<script src="nav.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const lockedParam = params.get("locked");
+  const current = ExamLock.get();
+
+  document.getElementById("currentExamDisplay").textContent = current || "None selected yet";
+  if (lockedParam) {
+    document.getElementById("lockedNotice").textContent = `You tried to open ${lockedParam}, but you're locked to ${current}. Change it below if you'd like.`;
+  } else if (!current) {
+    document.getElementById("lockedNotice").textContent = "You haven't picked an exam yet — head to the homepage to choose one.";
+  } else {
+    document.getElementById("lockedNotice").textContent = `You're currently set up for ${current}.`;
+  }
+
+  document.getElementById("switchBtn").addEventListener("click", () => {
+    if (confirm("Switch exams? Your progress for each exam is saved separately, so switching back later won't lose anything.")) {
+      ExamLock.clear();
+      window.location.href = "course";
+    }
+  });
+
+  document.getElementById("resetProgressBtn").addEventListener("click", () => {
+    if (confirm("Reset all lesson progress for both GRE and GMAT? This can't be undone.")) {
+      Object.keys(localStorage)
+        .filter(k => k.startsWith("stumblebee_progress_"))
+        .forEach(k => localStorage.removeItem(k));
+      document.getElementById("resetWarn").classList.add("shown");
+    }
+  });
+</script>
+</body>
+</html>

@@ -47,19 +47,19 @@ const GRE_MATH_CHAPTERS = [
     {
       id: "ch1-l2", title: "Divisibility Rules",
       blocks: [
-        { type: "html", content: "<p>Memorize these — they turn 30-second long division into 3-second pattern checks.</p>" },
-        { type: "table", headers: ["Divisor", "Rule"], rows: [
-          ["2", "Last digit is even (0, 2, 4, 6, 8)."],
-          ["3", "Sum of all digits is divisible by 3."],
-          ["4", "Last two digits form a number divisible by 4."],
-          ["5", "Last digit is 0 or 5."],
-          ["6", "Divisible by both 2 and 3."],
-          ["7", "Double the last digit, subtract it from the rest; repeat until you can tell if the result is divisible by 7."],
-          ["8", "Last three digits form a number divisible by 8."],
-          ["9", "Sum of all digits is divisible by 9."],
-          ["10", "Last digit is 0."],
-          ["11", "Alternating sum of digits (from the right) is divisible by 11."],
-          ["12", "Divisible by both 3 and 4."]
+        { type: "html", content: "<p>Memorize these — they turn 30-second long division into 3-second pattern checks. Click any row to flip it and see a worked example.</p>" },
+        { type: "flip-table", rows: [
+          { key: "2", rule: "Last digit is even (0, 2, 4, 6, 8).", example: "128 — last digit 8 is even, so 128 is divisible by 2 (128 ÷ 2 = 64)." },
+          { key: "3", rule: "Sum of all digits is divisible by 3.", example: "156 — digit sum 1+5+6 = 12, divisible by 3, so 156 ÷ 3 = 52." },
+          { key: "4", rule: "Last two digits form a number divisible by 4.", example: "316 — last two digits \"16\", and 16 ÷ 4 = 4, so 316 is divisible by 4." },
+          { key: "5", rule: "Last digit is 0 or 5.", example: "245 — last digit is 5, so 245 ÷ 5 = 49." },
+          { key: "6", rule: "Divisible by both 2 and 3.", example: "138 — even, and digit sum 1+3+8 = 12 is divisible by 3, so 138 ÷ 6 = 23." },
+          { key: "7", rule: "Double the last digit, subtract it from the rest; repeat until you can tell if the result is divisible by 7.", example: "203 — double the last digit: 3×2=6. Subtract from the rest: 20−6=14, which is divisible by 7, so 203 ÷ 7 = 29." },
+          { key: "8", rule: "Last three digits form a number divisible by 8.", example: "1,928 — last three digits \"928\", and 928 ÷ 8 = 116, so 1,928 is divisible by 8." },
+          { key: "9", rule: "Sum of all digits is divisible by 9.", example: "549 — digit sum 5+4+9 = 18, divisible by 9, so 549 ÷ 9 = 61." },
+          { key: "10", rule: "Last digit is 0.", example: "370 — last digit is 0, so 370 ÷ 10 = 37." },
+          { key: "11", rule: "Alternating sum of digits (from the right) is divisible by 11.", example: "2,728 — alternating sum from the right: 8−2+7−2 = 11, divisible by 11, so 2,728 ÷ 11 = 248." },
+          { key: "12", rule: "Divisible by both 3 and 4.", example: "156 — digit sum 1+5+6=12 (div. by 3) and last two digits 56÷4=14 (div. by 4), so 156 ÷ 12 = 13." }
         ]},
         { type: "reveal", label: "Try it: Is 81,925,361,407 divisible by 11?", prompt: "Use the alternating-digit-sum rule for 11.", answer: "No. From the right, the alternating sum of digits is $(7+4+6+5+9+8) - (0+1+3+2+1) = 39 - 7 = 32$. Since $32$ is not a multiple of $11$, the number is **not** divisible by 11." },
         { type: "reveal", label: "Try it: Is 10,000,000,032 divisible by 44?", prompt: "44 = 4 × 11 — check both.", answer: "Yes. Divisible by 4: the last two digits, \"32\", are divisible by 4. Divisible by 11: the alternating digit sum from the right is $(2+0+0+0+0+1) - (3+0+0+0+0) = 3 - 3 = 0$, which is a multiple of 11. Since it's divisible by both 4 and 11, it's divisible by 44." }
@@ -783,6 +783,154 @@ const GRE_MATH_CHAPTERS = [
   ]
 },
 
+// ================= CHAPTER 20 =================
+{
+  id: "ch20", number: 20, title: "Geometry — Triangles, Circles & Solids",
+  blurb: "Triangles, circles, polygons, and 3D solids — the shapes the GRE loves to test.",
+  lessons: [
+    {
+      id: "ch20-l1", title: "Triangles",
+      widget: "triangleExplorer",
+      blocks: [
+        { type: "html", content: "<p>Drag any vertex above to reshape the triangle and watch every measurement update live.</p><h4>Angle Sum & Exterior Angles</h4><p>The three interior angles of any triangle always sum to $180°$. An <strong>exterior angle</strong> equals the sum of the two non-adjacent interior angles.</p>" },
+        { type: "html", content: "<h4>The Pythagorean Theorem</h4><p>For a right triangle with legs $a, b$ and hypotenuse $c$:</p>$$a^2 + b^2 = c^2$$<p><strong>Common Pythagorean triples:</strong> 3-4-5, 6-8-10, 5-12-13, 8-15-17 (and any multiple of these).</p>" },
+        { type: "html", content: "<h4>Special Right Triangles</h4><ul><li><strong>45-45-90:</strong> sides are in ratio $x : x : x\\sqrt{2}$ (legs equal, hypotenuse is leg $\\times \\sqrt2$).</li><li><strong>30-60-90:</strong> sides are in ratio $x : x\\sqrt{3} : 2x$ (short leg, long leg, hypotenuse).</li></ul>" },
+        { type: "html", content: "<h4>The Triangle Inequality</h4><p>The sum of any two sides must exceed the third side, and each side must exceed the positive difference of the other two:</p>$$|b - c| < a < b + c$$<h4>Similar Triangles</h4><p>If two triangles are similar with side ratio $k$, their perimeters scale by $k$ and their <strong>areas scale by $k^2$</strong>.</p>" },
+        { type: "html", content: "<h4>Area</h4>$$\\text{Area} = \\frac{1}{2} \\times \\text{base} \\times \\text{height}$$" },
+        { type: "practice", questions: [
+          {
+            kind: "QC", title: "Question 1 · Quantitative Comparison",
+            context: "A triangle has two sides of length 7 and 10.",
+            quantityA: "The maximum possible integer value of the third side",
+            quantityB: "16",
+            correct: "C",
+            steps: [
+              "By the triangle inequality, the third side must be less than $7 + 10 = 17$ and greater than $10 - 7 = 3$.",
+              "The largest integer strictly less than 17 is 16.",
+              "Both quantities equal 16."
+            ]
+          },
+          {
+            kind: "MC", title: "Question 2 · Multiple Choice",
+            context: "A right triangle has legs of length 9 and 12. What is the length of the hypotenuse?",
+            options: [ {key:"A", text:"15"}, {key:"B", text:"21"}, {key:"C", text:"10.5"}, {key:"D", text:"18"}, {key:"E", text:"13"} ],
+            correct: "A",
+            steps: [
+              "$9^2 + 12^2 = 81 + 144 = 225$.",
+              "$\\sqrt{225} = 15$.",
+              "This is just the 3-4-5 triple scaled by 3 (9-12-15)."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 3 · Quantitative Comparison",
+            context: "Triangle $ABC$ is similar to Triangle $DEF$, with corresponding sides in ratio $2:3$.",
+            quantityA: "The ratio of the area of $ABC$ to the area of $DEF$",
+            quantityB: "$4/9$",
+            correct: "C",
+            steps: [
+              "For similar triangles, the ratio of areas equals the square of the ratio of sides.",
+              "$(2/3)^2 = 4/9$.",
+              "Both quantities equal $4/9$."
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      id: "ch20-l2", title: "Circles",
+      widget: "circleExplorer",
+      blocks: [
+        { type: "html", content: "<p>Adjust the radius and central angle above to see circumference, area, arc length, and sector area update live.</p><h4>Core Formulas</h4><ul><li><strong>Circumference:</strong> $C = 2\\pi r$</li><li><strong>Area:</strong> $A = \\pi r^2$</li></ul>" },
+        { type: "html", content: "<h4>Arcs and Sectors</h4><p>A central angle of $\\theta°$ carves out a fraction $\\frac{\\theta}{360}$ of the whole circle:</p><ul><li><strong>Arc length:</strong> $\\dfrac{\\theta}{360} \\times 2\\pi r$</li><li><strong>Sector area:</strong> $\\dfrac{\\theta}{360} \\times \\pi r^2$</li></ul>" },
+        { type: "html", content: "<h4>Inscribed vs. Central Angles</h4><p>An inscribed angle is always <strong>half</strong> the central angle that subtends the same arc. Any inscribed angle subtending a diameter is exactly $90°$.</p><h4>Tangent Lines</h4><p>A tangent line touches a circle at exactly one point and is always <strong>perpendicular</strong> to the radius drawn to that point.</p>" },
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question 1 · Multiple Choice",
+            context: "A circle has radius 6. What is the area of a sector with a central angle of 60°?",
+            options: [ {key:"A", text:"3π"}, {key:"B", text:"6π"}, {key:"C", text:"9π"}, {key:"D", text:"12π"}, {key:"E", text:"36π"} ],
+            correct: "B",
+            steps: [
+              "Full circle area $= \\pi(6)^2 = 36\\pi$.",
+              "Sector fraction $= \\frac{60}{360} = \\frac16$.",
+              "Sector area $= \\frac16 \\times 36\\pi = 6\\pi$."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 2 · Quantitative Comparison",
+            quantityA: "The arc length of a 90° sector in a circle of radius 8",
+            quantityB: "$4\\pi$",
+            correct: "C",
+            steps: [
+              "Circumference $= 2\\pi(8) = 16\\pi$.",
+              "Arc length $= \\frac{90}{360} \\times 16\\pi = \\frac14 \\times 16\\pi = 4\\pi$.",
+              "Both quantities equal $4\\pi$."
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      id: "ch20-l3", title: "Polygons & Quadrilaterals",
+      blocks: [
+        { type: "html", content: "<h4>Interior Angle Sum</h4><p>For any polygon with $n$ sides:</p>$$\\text{Sum of interior angles} = (n-2) \\times 180°$$<p>For a <em>regular</em> polygon (all sides/angles equal), each interior angle measures:</p>$$\\frac{(n-2)\\times 180°}{n}$$" },
+        { type: "table", headers: ["Quadrilateral", "Key properties"], rows: [
+          ["Parallelogram", "Opposite sides parallel & equal; opposite angles equal; diagonals bisect each other."],
+          ["Rectangle", "A parallelogram with four right angles; diagonals are equal in length."],
+          ["Rhombus", "A parallelogram with four equal sides; diagonals are perpendicular bisectors of each other."],
+          ["Square", "A rectangle and a rhombus at once — all sides equal, all angles 90°."],
+          ["Trapezoid", "Exactly one pair of parallel sides (the \"bases\")."]
+        ]},
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question · Multiple Choice",
+            context: "What is the sum of the interior angles of a regular hexagon (6 sides)?",
+            options: [ {key:"A", text:"540°"}, {key:"B", text:"600°"}, {key:"C", text:"720°"}, {key:"D", text:"900°"}, {key:"E", text:"1080°"} ],
+            correct: "C",
+            steps: [
+              "$(n-2) \\times 180 = (6-2) \\times 180 = 4 \\times 180 = 720°$."
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      id: "ch20-l4", title: "3D Solids",
+      blocks: [
+        { type: "table", headers: ["Solid", "Volume", "Surface area"], rows: [
+          ["Rectangular solid", "$l \\times w \\times h$", "$2(lw + lh + wh)$"],
+          ["Cube (side $s$)", "$s^3$", "$6s^2$"],
+          ["Cylinder (radius $r$, height $h$)", "$\\pi r^2 h$", "$2\\pi r^2 + 2\\pi r h$"],
+          ["Sphere (radius $r$)", "$\\frac{4}{3}\\pi r^3$", "$4\\pi r^2$"]
+        ]},
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question 1 · Multiple Choice",
+            context: "What is the volume of a cylinder with radius 3 and height 10?",
+            options: [ {key:"A", text:"30π"}, {key:"B", text:"60π"}, {key:"C", text:"90π"}, {key:"D", text:"120π"}, {key:"E", text:"300π"} ],
+            correct: "C",
+            steps: [
+              "$V = \\pi r^2 h = \\pi (3)^2 (10) = 90\\pi$."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 2 · Quantitative Comparison",
+            context: "A sphere has radius 3.",
+            quantityA: "The sphere's surface area",
+            quantityB: "The sphere's volume",
+            correct: "C",
+            steps: [
+              "Surface area $= 4\\pi r^2 = 4\\pi(9) = 36\\pi$.",
+              "Volume $= \\frac43 \\pi r^3 = \\frac43 \\pi (27) = 36\\pi$.",
+              "At $r=3$, these happen to come out numerically equal — both are $36\\pi$. (Careful: they're different quantities with different units in real life, but the GRE is only asking you to compare the two computed values.)"
+            ]
+          }
+        ]}
+      ]
+    }
+  ]
+},
+
 ];
 
+if (typeof window !== "undefined") window.GRE_MATH_CHAPTERS = GRE_MATH_CHAPTERS;
 if (typeof module !== "undefined") module.exports = { GRE_MATH_CHAPTERS };

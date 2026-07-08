@@ -189,30 +189,9 @@
   }
 </style>
 </head>
-<body>
+<body data-page="home">
 
-<div class="wrap">
-  <nav class="site-nav">
-    <a href="index.html" class="brand">
-      <svg class="bee-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
-        <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
-        <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
-        <ellipse cx="9" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(-20 9 11)"/>
-        <ellipse cx="23" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(20 23 11)"/>
-        <circle cx="16" cy="9" r="2" fill="#18140C"/>
-        <path d="M15 8 L12 4M17 8 L20 4" stroke="#18140C" stroke-width="1.4" stroke-linecap="round"/>
-      </svg>
-      stumblebee
-    </a>
-    <div class="nav-links">
-      <a href="gre-math.html">GRE Math</a>
-      <a href="resources.html">Resources</a>
-      <a href="gmat.html" class="tag-soon">GMAT <span class="pill">SOON</span></a>
-    </div>
-    <a href="gre-math.html" class="btn btn-black btn-sm">Start Learning</a>
-  </nav>
-</div>
+<div id="siteNavRoot"></div>
 
 <main>
   <div class="wrap hero-section">
@@ -225,12 +204,12 @@
     </div>
 
     <div class="hero-card">
-      <span class="eyebrow">GRE prep, decoded</span>
-      <h1 style="margin-top:18px;">Find everything you need to know about the GRE, right over here.</h1>
-      <p class="motto">We're glad you stumbled onto our website 🐝 — free, interactive GRE Math lessons built like a real course, plus the best free resources on the internet for GRE and (soon) GMAT prep.</p>
+      <span class="eyebrow">GRE + GMAT prep, decoded</span>
+      <h1 style="margin-top:18px;">Find everything you need to know about the GRE and GMAT, right over here.</h1>
+      <p class="motto">We're glad you stumbled onto our website 🐝 — free, interactive Quant lessons built like a real course for both exams, plus the best free resources on the internet.</p>
       <div class="hero-cta">
-        <a href="gre-math.html" class="btn btn-black">Start GRE Math →</a>
-        <a href="resources.html" class="btn btn-outline">Browse free resources</a>
+        <a href="course" class="btn btn-black">Pick your exam →</a>
+        <a href="resources" class="btn btn-outline">Browse free resources</a>
       </div>
     </div>
 
@@ -239,38 +218,37 @@
     </div>
 
     <div class="stat-strip">
-      <div class="stat"><div class="num">19</div><div class="label">GRE Math chapters</div></div>
-      <div class="stat"><div class="num">40+</div><div class="label">interactive practice Qs</div></div>
+      <div class="stat"><div class="num">20</div><div class="label">GRE Quant chapters</div></div>
+      <div class="stat"><div class="num">12</div><div class="label">GMAT Quant chapters</div></div>
       <div class="stat"><div class="num">30+</div><div class="label">free resources curated</div></div>
       <div class="stat"><div class="num">$0</div><div class="label">cost, always</div></div>
     </div>
 
     <div class="feature-grid">
-      <a href="gre-math.html" class="feature-card f-yellow">
+      <a href="course?exam=GRE" class="feature-card f-yellow">
         <div class="icon-badge">📐</div>
-        <h3>GRE Math</h3>
-        <p>All 19 Quant chapters — Numbers through Probability — with clean explanations, worked examples, and interactive graphics you can actually play with.</p>
-        <span class="go">Explore chapters →</span>
+        <h3>GRE</h3>
+        <p>Quantitative Reasoning fully built out — Numbers through Geometry — with clean explanations, worked examples, and interactive graphics you can actually play with.</p>
+        <span class="go">Explore GRE →</span>
       </a>
-      <a href="resources.html" class="feature-card f-yellow">
-        <div class="icon-badge">🔗</div>
-        <h3>Free Resources</h3>
-        <p>The most comprehensive list of genuinely free GRE & GMAT resources — official practice tests, vocab, video courses, and communities.</p>
-        <span class="go">Browse resources →</span>
+      <a href="course?exam=GMAT" class="feature-card f-yellow">
+        <div class="icon-badge">🎯</div>
+        <h3>GMAT</h3>
+        <p>Quantitative Reasoning for the GMAT Focus Edition, including a dedicated Data Sufficiency trainer — the format that trips up everyone at first.</p>
+        <span class="go">Explore GMAT →</span>
       </a>
-      <a href="gmat.html" class="feature-card f-black" style="background:var(--ink); color:var(--white);">
-        <span class="soon-badge">Coming soon</span>
-        <div class="icon-badge" style="background:var(--yellow);">🎯</div>
-        <h3 style="color:var(--white);">GMAT</h3>
-        <p style="color:#C9C4B6;">The same interactive treatment is coming for GMAT Quant and Verbal. Get notified the day it lands.</p>
-        <span class="go" style="color:var(--yellow);">Learn more →</span>
+      <a href="resources" class="feature-card f-black" style="background:var(--ink); color:var(--white);">
+        <div class="icon-badge" style="background:var(--yellow);">🔗</div>
+        <h3 style="color:var(--white);">Free Resources</h3>
+        <p style="color:#C9C4B6;">The most comprehensive list of genuinely free GRE & GMAT resources — official practice tests, vocab, video courses, and communities.</p>
+        <span class="go" style="color:var(--yellow);">Browse resources →</span>
       </a>
     </div>
   </div>
 
   <div class="wrap why-section">
     <div class="why-inner">
-      <h2>Built to feel like Khan Academy, focused entirely on the GRE.</h2>
+      <h2>Built to feel like Khan Academy, for both the GRE and GMAT.</h2>
       <div class="why-grid">
         <div class="why-item">
           <div class="n">1</div>
@@ -295,7 +273,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-inner">
-      <a href="index.html" class="brand" style="font-size:1.15rem;">
+      <a href="index" class="brand" style="font-size:1.15rem;">
         <svg class="bee-icon" style="width:22px;height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
           <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
@@ -304,14 +282,16 @@
         stumblebee
       </a>
       <div class="footer-links">
-        <a href="gre-math.html">GRE Math</a>
-        <a href="resources.html">Resources</a>
-        <a href="gmat.html">GMAT</a>
+        <a href="course?exam=GRE">GRE Math</a>
+        <a href="resources">Resources</a>
+        <a href="course?exam=GMAT">GMAT</a>
       </div>
       <p class="footer-copy">Built for students, by a student. Not affiliated with ETS, GMAC, or any listed company. © 2026 Stumblebee.</p>
     </div>
   </div>
 </footer>
 
+<script src="exam-lock.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>

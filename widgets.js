@@ -63,6 +63,12 @@ window.StumblebeeWidgets = {};
   .sb-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; font-size:0.78rem; font-weight:600; }
   .sb-legend span { display:inline-flex; align-items:center; gap:6px; }
   .sb-legend .dot { width:10px; height:10px; border-radius:999px; display:inline-block; }
+
+  /* data sufficiency coach */
+  .sb-ds-box { background:var(--white); border-radius:14px; padding:22px 24px; }
+  .sb-ds-q { font-size:0.96rem; margin-bottom:16px; line-height:1.6; }
+  .sb-ds-result { display:flex; align-items:center; gap:18px; margin-bottom:16px; }
+  .sb-ds-letter { font-family:"Fredoka",sans-serif; font-weight:600; font-size:2.4rem; background:var(--yellow); border-radius:16px; width:64px; height:64px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   `;
   const style = document.createElement("style");
   style.id = "stumblebee-widget-styles";
@@ -618,4 +624,205 @@ window.StumblebeeWidgets.normalCurve = function (container) {
   });
 
   draw();
+};
+
+// ================= 9. Triangle explorer =================
+
+window.StumblebeeWidgets.triangleExplorer = function (container) {
+  const W = 420, H = 320;
+  const SCALE = 20; // px per unit
+  let pts = [ { x: 90, y: 260 }, { x: 340, y: 260 }, { x: 200, y: 60 } ];
+
+  container.innerHTML = `
+    <div class="sb-widget-title">Drag any vertex to reshape the triangle</div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" class="sb-refl-svg"></svg>
+      <div class="sb-angle-info" id="triInfo" style="flex:1; min-width:200px;"></div>
+    </div>
+  `;
+  const svg = container.querySelector("svg");
+  const info = container.querySelector("#triInfo");
+
+  function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y) / SCALE; }
+  function angleAt(p, q, r) {
+    const a = dist(p, q), b = dist(p, r), c = dist(q, r);
+    const cos = (a * a + b * b - c * c) / (2 * a * b);
+    return Math.acos(Math.max(-1, Math.min(1, cos))) * 180 / Math.PI;
+  }
+
+  function draw() {
+    const [A, B, C] = pts;
+    const a = dist(B, C), b = dist(A, C), c = dist(A, B);
+    const angA = angleAt(A, B, C), angB = angleAt(B, A, C), angC = 180 - angA - angB;
+    const area = Math.abs(A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)) / 2 / (SCALE * SCALE);
+    const perimeter = a + b + c;
+
+    svg.innerHTML = `
+      <polygon points="${pts.map(p => `${p.x},${p.y}`).join(" ")}" fill="#FFC629" fill-opacity="0.35" stroke="#18140C" stroke-width="2.5"/>
+      <text x="${(pts[0].x+pts[1].x)/2}" y="${(pts[0].y+pts[1].y)/2 + 16}" font-size="11" text-anchor="middle" fill="#5B5546">c = ${c.toFixed(2)}</text>
+      <text x="${(pts[1].x+pts[2].x)/2 + 14}" y="${(pts[1].y+pts[2].y)/2}" font-size="11" text-anchor="middle" fill="#5B5546">a = ${a.toFixed(2)}</text>
+      <text x="${(pts[0].x+pts[2].x)/2 - 14}" y="${(pts[0].y+pts[2].y)/2}" font-size="11" text-anchor="middle" fill="#5B5546">b = ${b.toFixed(2)}</text>
+      ${pts.map((p, i) => `<circle cx="${p.x}" cy="${p.y}" r="8" fill="#18140C" data-idx="${i}" style="cursor:grab;"/>
+        <text x="${p.x}" y="${p.y - 14}" font-size="12" font-weight="700" text-anchor="middle" fill="#18140C">${["A","B","C"][i]}</text>`).join("")}
+    `;
+
+    info.innerHTML = `
+      <div class="sb-readout"><b>Sides</b><br>a = ${a.toFixed(2)}, b = ${b.toFixed(2)}, c = ${c.toFixed(2)}</div>
+      <div class="sb-readout" style="margin-top:8px;"><b>Angles</b><br>A = ${angA.toFixed(1)}°, B = ${angB.toFixed(1)}°, C = ${angC.toFixed(1)}°</div>
+      <div class="sb-readout" style="margin-top:8px;"><b>Perimeter</b> = ${perimeter.toFixed(2)} &nbsp;·&nbsp; <b>Area</b> = ${area.toFixed(2)}</div>
+    `;
+
+    svg.querySelectorAll("circle[data-idx]").forEach(c => {
+      const idx = parseInt(c.dataset.idx, 10);
+      let dragging = false;
+      c.addEventListener("pointerdown", () => { dragging = true; });
+      svg.addEventListener("pointermove", e => {
+        if (!dragging) return;
+        const rect = svg.getBoundingClientRect();
+        pts[idx] = {
+          x: Math.max(15, Math.min(W - 15, (e.clientX - rect.left) * (W / rect.width))),
+          y: Math.max(15, Math.min(H - 15, (e.clientY - rect.top) * (H / rect.height)))
+        };
+        draw();
+      });
+      window.addEventListener("pointerup", () => { dragging = false; });
+    });
+  }
+
+  draw();
+};
+
+// ================= 10. Circle explorer =================
+
+window.StumblebeeWidgets.circleExplorer = function (container) {
+  let r = 6, theta = 90;
+  const W = 360, H = 300, cx = 180, cy = 150;
+
+  container.innerHTML = `
+    <div class="sb-widget-title">Adjust radius and central angle</div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"></svg>
+      <div style="flex:1; min-width:200px;">
+        <div class="sb-slider-row">Radius r = <span id="rVal">6</span><input type="range" min="2" max="10" step="1" value="6" id="rSlider"></div>
+        <div class="sb-slider-row">Central angle θ = <span id="thVal">90</span>°<input type="range" min="0" max="360" step="15" value="90" id="thSlider"></div>
+        <div class="sb-readout" id="circleReadout" style="margin-top:12px;"></div>
+      </div>
+    </div>
+  `;
+  const svg = container.querySelector("svg");
+  const readout = container.querySelector("#circleReadout");
+  const px = 14; // px per unit radius
+
+  function draw() {
+    const R = r * px;
+    const rad = theta * Math.PI / 180;
+    const x2 = cx + R * Math.cos(-Math.PI/2);
+    const y2 = cy + R * Math.sin(-Math.PI/2);
+    const endAngle = -Math.PI/2 + rad;
+    const x3 = cx + R * Math.cos(endAngle);
+    const y3 = cy + R * Math.sin(endAngle);
+    const largeArc = theta > 180 ? 1 : 0;
+
+    const sectorPath = theta >= 360
+      ? `M ${cx-R} ${cy} A ${R} ${R} 0 1 1 ${cx+R} ${cy} A ${R} ${R} 0 1 1 ${cx-R} ${cy} Z`
+      : `M ${cx} ${cy} L ${x2} ${y2} A ${R} ${R} 0 ${largeArc} 1 ${x3} ${y3} Z`;
+
+    svg.innerHTML = `
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#D8CDA9" stroke-width="2"/>
+      <path d="${sectorPath}" fill="#FFC629" fill-opacity="0.6" stroke="#18140C" stroke-width="2"/>
+      <circle cx="${cx}" cy="${cy}" r="3" fill="#18140C"/>
+    `;
+
+    const circumference = 2 * Math.PI * r;
+    const area = Math.PI * r * r;
+    const arcLength = (theta / 360) * circumference;
+    const sectorArea = (theta / 360) * area;
+
+    readout.innerHTML = `
+      Circumference = ${circumference.toFixed(2)} &nbsp;·&nbsp; Area = ${area.toFixed(2)}<br>
+      Arc length = ${arcLength.toFixed(2)} &nbsp;·&nbsp; Sector area = ${sectorArea.toFixed(2)}
+    `;
+  }
+
+  container.querySelector("#rSlider").addEventListener("input", e => { r = parseFloat(e.target.value); container.querySelector("#rVal").textContent = r; draw(); });
+  container.querySelector("#thSlider").addEventListener("input", e => { theta = parseFloat(e.target.value); container.querySelector("#thVal").textContent = theta; draw(); });
+
+  draw();
+};
+
+// ================= 11. Data Sufficiency coach (AD/BCE trainer) =================
+
+window.StumblebeeWidgets.dataSufficiencyCoach = function (container) {
+  let step = 1; // 1: ask about (1), 2: ask about (2), 3: ask about together, 4: result
+  let s1 = null, s2 = null, together = null;
+
+  function reset() { step = 1; s1 = null; s2 = null; together = null; render(); }
+
+  function resultLetter() {
+    if (s1 && s2) return "D";
+    if (s1 && !s2) return "A";
+    if (!s1 && s2) return "B";
+    if (!s1 && !s2) return together ? "C" : "E";
+  }
+
+  function resultText(letter) {
+    const map = {
+      A: "Statement (1) ALONE is sufficient, but statement (2) alone is not.",
+      B: "Statement (2) ALONE is sufficient, but statement (1) alone is not.",
+      C: "BOTH statements TOGETHER are sufficient, but neither alone is.",
+      D: "EACH statement ALONE is sufficient.",
+      E: "Statements (1) and (2) TOGETHER are still not sufficient."
+    };
+    return map[letter];
+  }
+
+  function render() {
+    let body = "";
+    if (step === 1) {
+      body = `
+        <p class="sb-ds-q">Imagine you're evaluating a real DS question. Ignoring Statement (2) entirely — is <b>Statement (1) alone</b> enough to answer the question?</p>
+        <div class="sb-toggle-group">
+          <button class="btn btn-black btn-sm" data-ans="yes">Yes, sufficient</button>
+          <button class="btn btn-outline btn-sm" data-ans="no">No, not sufficient</button>
+        </div>`;
+    } else if (step === 2) {
+      body = `
+        <p class="sb-ds-q">Now completely forget Statement (1). Is <b>Statement (2) alone</b> enough to answer the question?</p>
+        <div class="sb-toggle-group">
+          <button class="btn btn-black btn-sm" data-ans="yes">Yes, sufficient</button>
+          <button class="btn btn-outline btn-sm" data-ans="no">No, not sufficient</button>
+        </div>`;
+    } else if (step === 3) {
+      body = `
+        <p class="sb-ds-q">Neither statement worked alone. Now use <b>both statements together</b> — is that enough?</p>
+        <div class="sb-toggle-group">
+          <button class="btn btn-black btn-sm" data-ans="yes">Yes, sufficient</button>
+          <button class="btn btn-outline btn-sm" data-ans="no">No, still not enough</button>
+        </div>`;
+    } else {
+      const letter = resultLetter();
+      body = `
+        <div class="sb-ds-result">
+          <div class="sb-ds-letter">${letter}</div>
+          <p>${resultText(letter)}</p>
+        </div>
+        <button class="btn btn-outline btn-sm" id="dsReset">Try another path →</button>`;
+    }
+
+    container.innerHTML = `<div class="sb-widget-title">The AD/BCE decision path</div><div class="sb-ds-box">${body}</div>`;
+
+    container.querySelectorAll("[data-ans]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const val = btn.dataset.ans === "yes";
+        if (step === 1) { s1 = val; step = 2; }
+        else if (step === 2) { s2 = val; step = (!s1 && !s2) ? 3 : 4; }
+        else if (step === 3) { together = val; step = 4; }
+        render();
+      });
+    });
+    const resetBtn = container.querySelector("#dsReset");
+    if (resetBtn) resetBtn.addEventListener("click", reset);
+  }
+
+  render();
 };

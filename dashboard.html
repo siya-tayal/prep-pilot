@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Stumblebee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="course.css">
+<style>
+  .dash-wrap { padding: 40px 0 80px; }
+  .dash-hero { background: var(--ink); color: var(--white); border-radius: var(--radius-lg); padding: 40px 44px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .dash-hero h1 { color: var(--white); font-size: clamp(1.5rem, 3vw, 2.1rem); }
+  .dash-ring-wrap { display: flex; align-items: center; gap: 18px; }
+  .dash-ring { flex-shrink: 0; }
+  .dash-ring-label .big { font-family: "Fredoka", sans-serif; font-size: 2.2rem; }
+  .dash-ring-label .small { color: #C9C4B6; font-size: 0.85rem; }
+  .dash-section-title { font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.1rem; margin: 28px 0 14px; }
+  .chapter-progress-list { display: flex; flex-direction: column; gap: 10px; }
+  .chapter-progress-row { background: var(--white); border-radius: 14px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; }
+  .chapter-progress-row .cp-num { width: 30px; height: 30px; border-radius: 999px; background: var(--yellow-soft); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.82rem; flex-shrink: 0; }
+  .chapter-progress-row .cp-title { flex: 1; font-weight: 600; font-size: 0.94rem; }
+  .chapter-progress-row .cp-track { width: 140px; height: 8px; background: var(--yellow-soft); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+  .chapter-progress-row .cp-fill { height: 100%; background: var(--yellow-deep); }
+  .chapter-progress-row .cp-fraction { font-size: 0.8rem; color: var(--ink-faint); width: 46px; text-align: right; flex-shrink: 0; }
+  .empty-dash { background: var(--white); border-radius: var(--radius-lg); padding: 60px 40px; text-align: center; }
+  @media (max-width: 560px) {
+    .chapter-progress-row { flex-wrap: wrap; }
+    .chapter-progress-row .cp-track { width: 100%; order: 3; }
+    .dash-hero { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body class="course-body" data-page="dashboard">
+
+<div id="siteNavRoot"></div>
+
+<main class="wrap dash-wrap" id="dashRoot"></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <a href="index" class="brand" style="font-size:1.15rem;">
+        <svg class="bee-icon" style="width:22px;height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
+          <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+          <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        stumblebee
+      </a>
+      <div class="footer-links">
+        <a href="resources">Resources</a>
+        <a href="settings">Settings</a>
+      </div>
+      <p class="footer-copy">© 2026 Stumblebee.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="exam-lock.js"></script>
+<script src="gre-math-data.js"></script>
+<script src="gmat-quant-data.js"></script>
+<script src="nav.js"></script>
+<script>
+  function getProgressSet(exam, sub) {
+    try { return new Set(JSON.parse(localStorage.getItem(`stumblebee_progress_${exam}_${sub}`) || "[]")); }
+    catch (e) { return new Set(); }
+  }
+
+  function ringSVG(pct) {
+    const r = 34, c = 2 * Math.PI * r;
+    const offset = c * (1 - pct / 100);
+    return `<svg class="dash-ring" width="84" height="84" viewBox="0 0 84 84">
+      <circle cx="42" cy="42" r="${r}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="9"/>
+      <circle cx="42" cy="42" r="${r}" fill="none" stroke="#FFC629" stroke-width="9" stroke-linecap="round"
+        stroke-dasharray="${c}" stroke-dashoffset="${offset}" transform="rotate(-90 42 42)"/>
+    </svg>`;
+  }
+
+  function render() {
+    const exam = ExamLock.get();
+    const root = document.getElementById("dashRoot");
+
+    if (!exam) {
+      root.innerHTML = `
+        <div class="empty-dash">
+          <span class="eyebrow">No exam selected</span>
+          <h1 style="margin-top:16px;">Pick an exam to start tracking progress.</h1>
+          <p class="muted" style="margin:14px 0 26px;">Your dashboard will fill up as you complete lessons.</p>
+          <a href="course" class="btn btn-black">Choose GRE or GMAT →</a>
+        </div>`;
+      return;
+    }
+
+    const subject = SUBJECTS[exam];
+    const liveSections = subject.sections.filter(s => s.status === "live");
+
+    let totalDone = 0, totalLessons = 0;
+    const sectionBlocks = liveSections.map(sec => {
+      const chapters = getChaptersFor(exam, sec.key);
+      const progress = getProgressSet(exam, sec.key);
+      let secTotal = 0;
+      const rows = chapters.map(ch => {
+        const done = ch.lessons.filter(ls => progress.has(ls.id)).length;
+        secTotal += ch.lessons.length;
+        totalLessons += ch.lessons.length;
+        totalDone += done;
+        const pct = Math.round((done / ch.lessons.length) * 100);
+        return `
+          <div class="chapter-progress-row">
+            <div class="cp-num">${ch.number}</div>
+            <div class="cp-title">${ch.title}</div>
+            <div class="cp-track"><div class="cp-fill" style="width:${pct}%;"></div></div>
+            <div class="cp-fraction">${done}/${ch.lessons.length}</div>
+          </div>`;
+      }).join("");
+      return `<div class="dash-section-title">${sec.icon} ${sec.label}</div><div class="chapter-progress-list">${rows}</div>`;
+    }).join("");
+
+    const overallPct = totalLessons ? Math.round((totalDone / totalLessons) * 100) : 0;
+
+    root.innerHTML = `
+      <div class="dash-hero">
+        <div>
+          <span class="eyebrow" style="background:var(--yellow);">${exam} progress</span>
+          <h1 style="margin-top:14px;">You've completed ${totalDone} of ${totalLessons} lessons.</h1>
+        </div>
+        <div class="dash-ring-wrap">
+          ${ringSVG(overallPct)}
+          <div class="dash-ring-label"><div class="big">${overallPct}%</div><div class="small">overall</div></div>
+        </div>
+      </div>
+      ${sectionBlocks}
+    `;
+  }
+
+  render();
+</script>
+</body>
+</html>

@@ -10,29 +10,9 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="resources.css">
 </head>
-<body class="resources-body">
+<body class="resources-body" data-page="resources">
 
-<div class="wrap">
-  <nav class="site-nav">
-    <a href="index.html" class="brand">
-      <svg class="bee-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
-        <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
-        <path d="M7.8 20.5 Q16 24 24.2 20.5" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
-        <ellipse cx="9" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(-20 9 11)"/>
-        <ellipse cx="23" cy="11" rx="5.5" ry="4" fill="#FFFFFF" fill-opacity="0.85" transform="rotate(20 23 11)"/>
-        <circle cx="16" cy="9" r="2" fill="#18140C"/>
-      </svg>
-      stumblebee
-    </a>
-    <div class="nav-links">
-      <a href="gre-math.html">GRE Math</a>
-      <a href="resources.html" class="active">Resources</a>
-      <a href="gmat.html" class="tag-soon">GMAT <span class="pill">SOON</span></a>
-    </div>
-    <a href="index.html" class="btn btn-black btn-sm">Home</a>
-  </nav>
-</div>
+<div id="siteNavRoot"></div>
 
 <header class="wrap res-header">
   <h1>Free GRE &amp; GMAT resources</h1>
@@ -64,7 +44,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-inner">
-      <a href="index.html" class="brand" style="font-size:1.15rem;">
+      <a href="index" class="brand" style="font-size:1.15rem;">
         <svg class="bee-icon" style="width:22px;height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="16" cy="18" rx="9.5" ry="7.5" fill="#18140C"/>
           <path d="M7 16 Q16 12.5 25 16" stroke="#FFC629" stroke-width="3" stroke-linecap="round"/>
@@ -73,15 +53,17 @@
         stumblebee
       </a>
       <div class="footer-links">
-        <a href="gre-math.html">GRE Math</a>
-        <a href="resources.html">Resources</a>
-        <a href="gmat.html">GMAT</a>
+        <a href="course">GRE / GMAT</a>
+        <a href="dashboard">Dashboard</a>
+        <a href="settings">Settings</a>
       </div>
       <p class="footer-copy">All resources here are free or offer a substantial free tier. Not affiliated with ETS, GMAC, or any listed company. © 2026 Stumblebee.</p>
     </div>
   </div>
 </footer>
 
+<script src="exam-lock.js"></script>
+<script src="nav.js"></script>
 <script src="data.js"></script>
 <script src="script.js"></script>
 </body>
