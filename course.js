@@ -16,6 +16,9 @@ const DS_OPTIONS = [
   { key: "E", text: "Statements (1) and (2) TOGETHER are not sufficient." }
 ];
 
+const KIND_SHORT = { MC: "PS", NE: "NE", MS: "MAC", QC: "QCQ", DS: "DS" };
+const KIND_LABEL = { MC: "Problem Solving", NE: "Numeric Entry", MS: "Multiple Answer Choice", QC: "Quantitative Comparison", DS: "Data Sufficiency" };
+
 function qs(key) {
   return new URLSearchParams(window.location.search).get(key);
 }
@@ -345,7 +348,8 @@ function renderRevealBlock(block) {
 let questionCounter = 0;
 function renderQuestionCard(q) {
   const qid = `q-${questionCounter++}`;
-  const options = q.kind === "QC" ? QC_OPTIONS : q.kind === "DS" ? DS_OPTIONS : q.options;
+  const isNE = q.kind === "NE";
+  const options = isNE ? [] : (q.kind === "QC" ? QC_OPTIONS : q.kind === "DS" ? DS_OPTIONS : q.options);
   const correctArr = Array.isArray(q.correct) ? q.correct : [q.correct];
   const multi = q.kind === "MS";
 
@@ -358,20 +362,27 @@ function renderQuestionCard(q) {
   const dsStatements = q.kind === "DS" && q.statements ? `
     <ol class="ds-statements">${q.statements.map(s => `<li>${s}</li>`).join("")}</ol>` : "";
 
-  const optionsHtml = options.map(o => `
+  const optionsHtml = isNE ? "" : options.map(o => `
     <button class="q-option" type="button" data-key="${o.key}" aria-pressed="false">
       <span class="opt-key">${o.key}</span><span>${o.text}</span>
     </button>`).join("");
+
+  const neHtml = isNE ? `
+    <div class="ne-input-row">
+      <input type="text" inputmode="decimal" class="ne-input" placeholder="Enter your answer">
+      <button class="btn btn-black btn-sm ne-submit-btn" type="button">Submit</button>
+    </div>` : "";
 
   const stepsHtml = q.steps.map(s => `<li>${s}</li>`).join("");
 
   return `
     <div class="question-card" id="${qid}" data-kind="${q.kind}" data-correct='${JSON.stringify(correctArr)}' data-multi="${multi}">
+      <div class="q-tag">${KIND_SHORT[q.kind] || q.kind}</div>
       <div class="q-title">${q.title}</div>
       ${q.context ? `<div class="q-context">${q.context}</div>` : ""}
       ${dsStatements}
       ${qtyHtml}
-      <div class="q-options">${optionsHtml}</div>
+      ${isNE ? neHtml : `<div class="q-options">${optionsHtml}</div>`}
       ${multi ? `<div class="q-submit-row"><button class="btn btn-black btn-sm q-submit-btn" type="button">Submit answer${correctArr.length !== 1 ? "s" : ""}</button></div>` : ""}
       <div class="q-feedback" hidden></div>
       <div class="q-explanation" hidden>
@@ -434,6 +445,20 @@ function gradeMultiSelect(card) {
   card.querySelector(".q-explanation").hidden = false;
 }
 
+function gradeNumericEntry(card) {
+  const correct = parseFloat(JSON.parse(card.dataset.correct)[0]);
+  const input = card.querySelector(".ne-input");
+  const val = parseFloat(input.value);
+  const isRight = !isNaN(val) && Math.abs(val - correct) < 0.01;
+  input.disabled = true;
+  card.querySelector(".ne-submit-btn").disabled = true;
+  const feedback = card.querySelector(".q-feedback");
+  feedback.hidden = false;
+  feedback.textContent = isRight ? "Correct!" : `Not quite. The correct answer is ${correct}.`;
+  feedback.className = "q-feedback " + (isRight ? "is-correct" : "is-incorrect");
+  card.querySelector(".q-explanation").hidden = false;
+}
+
 function wireInteractions(container) {
   container.addEventListener("click", e => {
     const revealBtn = e.target.closest(".reveal-btn");
@@ -454,8 +479,17 @@ function wireInteractions(container) {
       return;
     }
 
+    const neSubmitBtn = e.target.closest(".ne-submit-btn");
+    if (neSubmitBtn) { gradeNumericEntry(neSubmitBtn.closest(".question-card")); return; }
+
     const submitBtn = e.target.closest(".q-submit-btn");
     if (submitBtn) { gradeMultiSelect(submitBtn.closest(".question-card")); return; }
+  });
+
+  container.addEventListener("keydown", e => {
+    if (e.key !== "Enter") return;
+    const input = e.target.closest(".ne-input");
+    if (input && !input.disabled) { gradeNumericEntry(input.closest(".question-card")); }
   });
 }
 
@@ -482,19 +516,67 @@ function renderVideoCard(video) {
     </a>`;
 }
 
+let activeLessonTab = "lesson";
+let practiceFilter = "all";
+let lastRenderedLessonId = null;
+
+function renderPracticeBank(bank) {
+  const kinds = ["MC", "NE", "MS", "QC"];
+  const chips = ["all", ...kinds].map(k => {
+    const count = k === "all" ? bank.length : bank.filter(q => q.kind === k).length;
+    if (k !== "all" && count === 0) return "";
+    const label = k === "all" ? `All (${count})` : `${KIND_SHORT[k]} (${count})`;
+    return `<button class="practice-filter-chip ${practiceFilter === k ? "active" : ""}" type="button" data-filter="${k}">${label}</button>`;
+  }).join("");
+
+  const filtered = bank.filter(q => practiceFilter === "all" || q.kind === practiceFilter);
+  const cardsHtml = filtered.map(renderQuestionCard).join("");
+
+  return `
+    <div class="practice-bank">
+      <div class="practice-filters">${chips}</div>
+      <div class="practice-cards">${cardsHtml}</div>
+    </div>`;
+}
+
 function renderLesson(lessonId) {
   const found = findLesson(lessonId) || FLAT[0];
   const { chapter, lesson } = found;
   const main = document.getElementById("courseMain");
 
+  if (lesson.id !== lastRenderedLessonId) {
+    activeLessonTab = "lesson";
+    practiceFilter = "all";
+    lastRenderedLessonId = lesson.id;
+  }
+
   const widgetSlot = lesson.widget ? `<div class="widget-slot" id="widgetSlot"></div>` : "";
   const videoCard = renderVideoCard(lesson.video);
   const blocksHtml = (lesson.blocks || []).map(renderBlock).join("");
+  const hasPracticeBank = lesson.practiceBank && lesson.practiceBank.length > 0;
 
   const flatIndex = FLAT.indexOf(found);
   const prev = FLAT[flatIndex - 1];
   const next = FLAT[flatIndex + 1];
   const isDone = getProgress(CURRENT_EXAM, CURRENT_SUB).has(lesson.id);
+
+  const tabsHtml = hasPracticeBank ? `
+    <div class="lesson-tabs">
+      <button class="lesson-tab-btn ${activeLessonTab === "lesson" ? "active" : ""}" type="button" data-tab="lesson">Lesson</button>
+      <button class="lesson-tab-btn ${activeLessonTab === "practice" ? "active" : ""}" type="button" data-tab="practice">Practice (${lesson.practiceBank.length})</button>
+    </div>` : "";
+
+  const lessonPanel = `
+    <div class="tab-panel" data-panel="lesson" ${hasPracticeBank && activeLessonTab !== "lesson" ? "hidden" : ""}>
+      ${videoCard}
+      ${widgetSlot}
+      ${blocksHtml}
+    </div>`;
+
+  const practicePanel = hasPracticeBank ? `
+    <div class="tab-panel" data-panel="practice" ${activeLessonTab !== "practice" ? "hidden" : ""}>
+      ${renderPracticeBank(lesson.practiceBank)}
+    </div>` : "";
 
   main.innerHTML = `
     <div class="crumbs">${SUBJECTS[CURRENT_EXAM].label} · Chapter ${chapter.number} · ${chapter.title}</div>
@@ -502,9 +584,9 @@ function renderLesson(lessonId) {
       <h1>${lesson.title}</h1>
       ${chapter.blurb ? `<p class="blurb">${chapter.blurb}</p>` : ""}
     </div>
-    ${videoCard}
-    ${widgetSlot}
-    ${blocksHtml}
+    ${tabsHtml}
+    ${lessonPanel}
+    ${practicePanel}
     <div class="lesson-footer">
       <button class="btn ${isDone ? "btn-black mark-complete-btn done" : "btn-outline mark-complete-btn"}" id="markCompleteBtn">
         ${isDone ? "✓ Lesson complete" : "Mark lesson complete"}
@@ -537,6 +619,21 @@ function renderLesson(lessonId) {
     refreshSidebarState();
     renderLesson(lesson.id);
   });
+
+  if (hasPracticeBank) {
+    main.querySelectorAll(".lesson-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeLessonTab = btn.dataset.tab;
+        renderLesson(lesson.id);
+      });
+    });
+    main.querySelectorAll(".practice-filter-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        practiceFilter = chip.dataset.filter;
+        renderLesson(lesson.id);
+      });
+    });
+  }
 
   main.scrollTop = 0;
   window.scrollTo({ top: 0 });

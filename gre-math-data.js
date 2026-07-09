@@ -834,6 +834,241 @@ const GRE_MATH_CHAPTERS = [
             ]
           }
         ]}
+      ],
+      practiceBank: [
+        {
+          kind: "MC", title: "Practice 1 · Problem Solving",
+          context: "A right triangle has legs of length 9 and 40. What is the length of the hypotenuse?",
+          options: [ {key:"A", text:"41"}, {key:"B", text:"45"}, {key:"C", text:"49"}, {key:"D", text:"43"}, {key:"E", text:"39"} ],
+          correct: "A",
+          steps: ["$9^2 + 40^2 = 81 + 1600 = 1681$.", "$\\sqrt{1681} = 41$."]
+        },
+        {
+          kind: "MC", title: "Practice 2 · Problem Solving",
+          context: "The interior angles of a triangle are in the ratio $2:3:4$. What is the measure of the largest angle?",
+          options: [ {key:"A", text:"60°"}, {key:"B", text:"70°"}, {key:"C", text:"80°"}, {key:"D", text:"90°"}, {key:"E", text:"100°"} ],
+          correct: "C",
+          steps: ["The three parts add to $2+3+4=9$ shares of $180°$, so each share is $20°$.", "The largest angle is $4 \\times 20° = 80°$."]
+        },
+        {
+          kind: "MC", title: "Practice 3 · Problem Solving",
+          context: "An isosceles right triangle has two legs of length 5. What is the length of the hypotenuse?",
+          options: [ {key:"A", text:"5"}, {key:"B", text:"7"}, {key:"C", text:"$5\\sqrt2$"}, {key:"D", text:"10"}, {key:"E", text:"$5\\sqrt3$"} ],
+          correct: "C",
+          steps: ["This is a 45-45-90 triangle, so the hypotenuse is leg $\\times \\sqrt2$.", "Hypotenuse $= 5\\sqrt2$."]
+        },
+        {
+          kind: "MC", title: "Practice 4 · Problem Solving",
+          context: "In triangle ABC, the exterior angle at C measures 130°, and angle A measures 55°. What is the measure of angle B?",
+          options: [ {key:"A", text:"55°"}, {key:"B", text:"65°"}, {key:"C", text:"70°"}, {key:"D", text:"75°"}, {key:"E", text:"80°"} ],
+          correct: "D",
+          steps: ["The exterior angle equals the sum of the two non-adjacent interior angles: $130° = \\angle A + \\angle B$.", "$130° = 55° + \\angle B$, so $\\angle B = 75°$."]
+        },
+        {
+          kind: "MC", title: "Practice 5 · Problem Solving",
+          context: "Two similar triangles have corresponding sides in ratio $3:5$. The smaller triangle has perimeter 18. What is the perimeter of the larger triangle?",
+          options: [ {key:"A", text:"24"}, {key:"B", text:"27"}, {key:"C", text:"30"}, {key:"D", text:"33"}, {key:"E", text:"36"} ],
+          correct: "C",
+          steps: ["Perimeters of similar figures scale with the same ratio as their sides.", "$18 \\times \\frac{5}{3} = 30$."]
+        },
+        {
+          kind: "MC", title: "Practice 6 · Problem Solving",
+          context: "A 30-60-90 triangle has a hypotenuse of length 14. What is the length of the side opposite the 30° angle?",
+          options: [ {key:"A", text:"5"}, {key:"B", text:"6"}, {key:"C", text:"7"}, {key:"D", text:"$7\\sqrt3$"}, {key:"E", text:"14"} ],
+          correct: "C",
+          steps: ["In a 30-60-90 triangle, the side opposite the 30° angle is always half the hypotenuse.", "$14 \\div 2 = 7$."]
+        },
+        {
+          kind: "MC", title: "Practice 7 · Problem Solving",
+          context: "A triangle has two sides of length 6 and 7. Which of the following CANNOT be the length of the third side?",
+          options: [ {key:"A", text:"2"}, {key:"B", text:"8"}, {key:"C", text:"12"}, {key:"D", text:"13"}, {key:"E", text:"6"} ],
+          correct: "D",
+          steps: ["By the triangle inequality, the third side must satisfy $7-6 < x < 7+6$, so $1 < x < 13$.", "13 is not strictly less than 13, so it is impossible."]
+        },
+        {
+          kind: "MC", title: "Practice 8 · Problem Solving",
+          context: "What is the area of an equilateral triangle with side length 8?",
+          options: [ {key:"A", text:"$16\\sqrt3$"}, {key:"B", text:"$32\\sqrt3$"}, {key:"C", text:"$8\\sqrt3$"}, {key:"D", text:"64"}, {key:"E", text:"16"} ],
+          correct: "A",
+          steps: ["Area of an equilateral triangle $= \\frac{\\sqrt3}{4}a^2$.", "$\\frac{\\sqrt3}{4}(8^2) = \\frac{\\sqrt3}{4}(64) = 16\\sqrt3$."]
+        },
+        {
+          kind: "MC", title: "Practice 9 · Problem Solving",
+          context: "A triangle has sides 5, 12, and 13. What is its area?",
+          options: [ {key:"A", text:"25"}, {key:"B", text:"30"}, {key:"C", text:"32.5"}, {key:"D", text:"60"}, {key:"E", text:"65"} ],
+          correct: "B",
+          steps: ["Since $5^2+12^2=25+144=169=13^2$, this is a right triangle with legs 5 and 12.", "Area $= \\frac12(5)(12) = 30$."]
+        },
+        {
+          kind: "MC", title: "Practice 10 · Problem Solving",
+          context: "A triangle has interior angles of 40° and 75°. What type of triangle is it, based on its angles?",
+          options: [ {key:"A", text:"Acute"}, {key:"B", text:"Right"}, {key:"C", text:"Obtuse"}, {key:"D", text:"Equilateral"}, {key:"E", text:"Cannot be determined"} ],
+          correct: "A",
+          steps: ["The third angle is $180° - 40° - 75° = 65°$.", "All three angles (40°, 75°, 65°) are under 90°, so the triangle is acute."]
+        },
+        {
+          kind: "NE", title: "Practice 11 · Numeric Entry",
+          context: "A right triangle has legs of length 5 and 12. What is the length of the hypotenuse?",
+          correct: 13,
+          steps: ["$5^2+12^2=25+144=169$.", "$\\sqrt{169}=13$."]
+        },
+        {
+          kind: "NE", title: "Practice 12 · Numeric Entry",
+          context: "A triangle's three interior angles measure $x$, $2x$, and $3x$ degrees. What is the value of $x$?",
+          correct: 30,
+          steps: ["$x + 2x + 3x = 180$, so $6x = 180$.", "$x = 30$."]
+        },
+        {
+          kind: "NE", title: "Practice 13 · Numeric Entry",
+          context: "An equilateral triangle has a perimeter of 36. What is the length of one side?",
+          correct: 12,
+          steps: ["All three sides of an equilateral triangle are equal.", "$36 \\div 3 = 12$."]
+        },
+        {
+          kind: "NE", title: "Practice 14 · Numeric Entry",
+          context: "A 45-45-90 triangle has a hypotenuse of length $10\\sqrt2$. What is the length of one leg?",
+          correct: 10,
+          steps: ["In a 45-45-90 triangle, hypotenuse $=$ leg $\\times \\sqrt2$.", "$10\\sqrt2 \\div \\sqrt2 = 10$."]
+        },
+        {
+          kind: "NE", title: "Practice 15 · Numeric Entry",
+          context: "An exterior angle of a triangle measures 118°. One of the two non-adjacent interior angles measures 47°. What is the measure of the other non-adjacent interior angle, in degrees?",
+          correct: 71,
+          steps: ["The exterior angle equals the sum of the two non-adjacent interior angles.", "$118° - 47° = 71°$."]
+        },
+        {
+          kind: "NE", title: "Practice 16 · Numeric Entry",
+          context: "A triangle has a base of 14 and a corresponding height of 9. What is its area?",
+          correct: 63,
+          steps: ["Area $= \\frac12 \\times \\text{base} \\times \\text{height}$.", "$\\frac12 (14)(9) = 63$."]
+        },
+        {
+          kind: "NE", title: "Practice 17 · Numeric Entry",
+          context: "Two similar triangles have areas in ratio $4:25$. What is the ratio of their corresponding side lengths, smaller to larger, expressed as a decimal?",
+          correct: 0.4,
+          steps: ["The ratio of sides is the square root of the ratio of areas.", "$\\sqrt{4/25} = 2/5 = 0.4$."]
+        },
+        {
+          kind: "NE", title: "Practice 18 · Numeric Entry",
+          context: "A right triangle has legs in ratio $3:4$ and a hypotenuse of length 25. What is the length of the longer leg?",
+          correct: 20,
+          steps: ["Legs are $3k$ and $4k$, with hypotenuse $5k$ (a scaled 3-4-5 triple).", "$5k = 25$, so $k=5$, and the longer leg is $4(5)=20$."]
+        },
+        {
+          kind: "MS", title: "Practice 19 · Multiple Answer Choice",
+          context: "Which of the following sets of three side lengths CAN form a triangle? Select all that apply.",
+          options: [ {key:"A", text:"3, 4, 5"}, {key:"B", text:"1, 2, 3"}, {key:"C", text:"5, 5, 9"}, {key:"D", text:"2, 2, 5"}, {key:"E", text:"6, 8, 10"} ],
+          correct: ["A", "C", "E"],
+          steps: [
+            "A triangle forms only if the sum of the two shorter sides exceeds the longest side.",
+            "A: $3+4=7>5$, valid. B: $1+2=3$, not greater than 3, invalid (degenerate). C: $5+5=10>9$, valid.",
+            "D: $2+2=4$, not greater than 5, invalid. E: $6+8=14>10$, valid.",
+            "Valid sets: A, C, and E."
+          ]
+        },
+        {
+          kind: "MS", title: "Practice 20 · Multiple Answer Choice",
+          context: "A triangle has angles 50°, 60°, and 70°. Which of the following must be true? Select all that apply.",
+          options: [ {key:"A", text:"The triangle is acute."}, {key:"B", text:"The triangle is scalene."}, {key:"C", text:"The side opposite the 70° angle is the longest side."}, {key:"D", text:"The triangle is isosceles."}, {key:"E", text:"The triangle is a right triangle."} ],
+          correct: ["A", "B", "C"],
+          steps: [
+            "All three angles are under 90°, so the triangle is acute (A true).",
+            "All three angles are different, so all three sides are different lengths, making it scalene (B true) and not isosceles (D false).",
+            "The longest side is always opposite the largest angle, which is 70° (C true).",
+            "No angle is 90°, so it is not a right triangle (E false)."
+          ]
+        },
+        {
+          kind: "MS", title: "Practice 21 · Multiple Answer Choice",
+          context: "Which of the following sets of three side lengths form a right triangle? Select all that apply.",
+          options: [ {key:"A", text:"5, 12, 13"}, {key:"B", text:"8, 15, 17"}, {key:"C", text:"7, 10, 13"}, {key:"D", text:"9, 12, 15"}, {key:"E", text:"6, 9, 12"} ],
+          correct: ["A", "B", "D"],
+          steps: [
+            "Check whether the square of the longest side equals the sum of squares of the other two.",
+            "A: $5^2+12^2=169=13^2$, valid. B: $8^2+15^2=289=17^2$, valid.",
+            "C: $7^2+10^2=149 \\ne 13^2=169$, invalid. D: $9^2+12^2=225=15^2$, valid (a scaled 3-4-5). E: $6^2+9^2=117 \\ne 12^2=144$, invalid."
+          ]
+        },
+        {
+          kind: "MS", title: "Practice 22 · Multiple Answer Choice",
+          context: "A triangle has side lengths 4, 4, and $4\\sqrt2$. Which of the following are true? Select all that apply.",
+          options: [ {key:"A", text:"The triangle is isosceles."}, {key:"B", text:"The triangle is a right triangle."}, {key:"C", text:"The triangle is equilateral."}, {key:"D", text:"The largest angle is 90°."}, {key:"E", text:"The perimeter is $8 + 4\\sqrt2$."} ],
+          correct: ["A", "B", "D", "E"],
+          steps: [
+            "Two sides are equal (4 and 4), so the triangle is isosceles (A true), and not equilateral since the third side differs (C false).",
+            "Check the Pythagorean theorem: $4^2+4^2=32=(4\\sqrt2)^2$, so it is a right triangle (B true), with the 90° angle opposite the longest side, $4\\sqrt2$ (D true).",
+            "Perimeter $=4+4+4\\sqrt2=8+4\\sqrt2$ (E true)."
+          ]
+        },
+        {
+          kind: "MS", title: "Practice 23 · Multiple Answer Choice",
+          context: "In triangle ABC, side $a=7$ and side $b=9$. Side $c$ has an unknown length $x$. Which of the following values of $x$ are possible? Select all that apply.",
+          options: [ {key:"A", text:"1"}, {key:"B", text:"2"}, {key:"C", text:"3"}, {key:"D", text:"10"}, {key:"E", text:"16"} ],
+          correct: ["C", "D"],
+          steps: [
+            "By the triangle inequality, $9-7 < x < 9+7$, so $2 < x < 16$.",
+            "A (1) and B (2) fail the lower bound. E (16) fails the upper bound. C (3) and D (10) both fall strictly between 2 and 16."
+          ]
+        },
+        {
+          kind: "MS", title: "Practice 24 · Multiple Answer Choice",
+          context: "Which of the following are properties of every isosceles triangle? Select all that apply.",
+          options: [ {key:"A", text:"At least two sides are equal."}, {key:"B", text:"At least two angles are equal."}, {key:"C", text:"It has a line of symmetry."}, {key:"D", text:"All of its angles are less than 90°."}, {key:"E", text:"The bisector of the apex angle is also a median and an altitude to the base."} ],
+          correct: ["A", "B", "C", "E"],
+          steps: [
+            "By definition, an isosceles triangle has at least two equal sides (A) and the base angles opposite them are equal (B), giving it a line of symmetry (C).",
+            "D is false: an isosceles triangle can have an obtuse apex angle, for example sides 2, 2, 3 give an apex angle of about 97°.",
+            "E is a standard property: in an isosceles triangle, the bisector from the apex angle coincides with the median and altitude to the base."
+          ]
+        },
+        {
+          kind: "QC", title: "Practice 25 · Quantitative Comparison",
+          context: "A triangle has sides 8, 15, and 17.",
+          quantityA: "The area of the triangle",
+          quantityB: "60",
+          correct: "C",
+          steps: ["Since $8^2+15^2=64+225=289=17^2$, this is a right triangle with legs 8 and 15.", "Area $=\\frac12(8)(15)=60$.", "Both quantities equal 60."]
+        },
+        {
+          kind: "QC", title: "Practice 26 · Quantitative Comparison",
+          context: "In triangle ABC, angle A = 50° and angle B = 60°.",
+          quantityA: "Angle C",
+          quantityB: "70°",
+          correct: "C",
+          steps: ["$\\angle C = 180° - 50° - 60° = 70°$.", "Both quantities equal 70°."]
+        },
+        {
+          kind: "QC", title: "Practice 27 · Quantitative Comparison",
+          context: "A triangle has sides of length 5 and 9.",
+          quantityA: "The maximum possible integer value of the third side",
+          quantityB: "13",
+          correct: "C",
+          steps: ["By the triangle inequality, the third side must be less than $5+9=14$.", "The largest integer strictly less than 14 is 13.", "Both quantities equal 13."]
+        },
+        {
+          kind: "QC", title: "Practice 28 · Quantitative Comparison",
+          context: "A right triangle has legs of length 6 and 8.",
+          quantityA: "The length of the hypotenuse",
+          quantityB: "Half the triangle's perimeter",
+          correct: "B",
+          steps: ["Hypotenuse $=\\sqrt{6^2+8^2}=\\sqrt{100}=10$.", "Perimeter $=6+8+10=24$, half of that is 12.", "Quantity A (10) is less than Quantity B (12)."]
+        },
+        {
+          kind: "QC", title: "Practice 29 · Quantitative Comparison",
+          context: "Two similar triangles have corresponding sides in ratio $2:3$.",
+          quantityA: "The ratio of their areas",
+          quantityB: "$2/3$",
+          correct: "B",
+          steps: ["The ratio of areas is the square of the ratio of sides: $(2/3)^2 = 4/9 \\approx 0.44$.", "Quantity B is $2/3 \\approx 0.67$.", "Quantity A is less than Quantity B."]
+        },
+        {
+          kind: "QC", title: "Practice 30 · Quantitative Comparison",
+          context: "In triangle PQR, PQ = PR, and angle P = 40°.",
+          quantityA: "Angle Q",
+          quantityB: "70°",
+          correct: "C",
+          steps: ["Since $PQ = PR$, the base angles $\\angle Q$ and $\\angle R$ are equal.", "$\\angle Q = \\frac{180° - 40°}{2} = 70°$.", "Both quantities equal 70°."]
+        }
       ]
     },
     {
