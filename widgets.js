@@ -922,3 +922,328 @@ window.StumblebeeWidgets.crLogicTree = function (container) {
   container.innerHTML = "";
   container.appendChild(wrap);
 };
+
+// ================= 14. Circle theorems explorer =================
+
+window.StumblebeeWidgets.circleTheoremsExplorer = function (container) {
+  const cx = 190, cy = 170;
+  const r = 5, scale = 16;
+  let mode = "power";
+  let d = 8;
+  let delta = 15;
+  let centralAngle = 100;
+  let apos = 50;
+
+  container.innerHTML = `
+    <div class="sb-widget-title">Circle theorems in action</div>
+    <div class="sb-toggle-group">
+      <button class="sb-toggle-btn active" data-mode="power">Power of a Point</button>
+      <button class="sb-toggle-btn" data-mode="inscribed">Inscribed Angle</button>
+    </div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; margin-top:14px;">
+      <svg width="380" height="340" viewBox="0 0 380 340"></svg>
+      <div style="flex:1; min-width:220px;">
+        <div id="ctControls"></div>
+        <div class="sb-readout" id="ctReadout" style="margin-top:12px;"></div>
+      </div>
+    </div>
+  `;
+
+  const svg = container.querySelector("svg");
+  const controls = container.querySelector("#ctControls");
+  const readout = container.querySelector("#ctReadout");
+
+  function toPx(x, y) { return { x: cx + x * scale, y: cy - y * scale }; }
+  function dist(p, q) { return Math.hypot(p.x - q.x, p.y - q.y); }
+  function angleAt(p, q, s) {
+    const a = dist(p, q), b = dist(p, s), c = dist(q, s);
+    const cosv = (a * a + b * b - c * c) / (2 * a * b);
+    return Math.acos(Math.max(-1, Math.min(1, cosv))) * 180 / Math.PI;
+  }
+
+  function drawPower() {
+    const deltaMaxDeg = Math.asin(r / d) * 180 / Math.PI * 0.92;
+    if (Math.abs(delta) > deltaMaxDeg) delta = 0;
+
+    controls.innerHTML = `
+      <div class="sb-slider-row">Distance from center, d = <span id="dVal">${d.toFixed(2)}</span> (circle radius r = 5)<input type="range" min="6" max="10" step="0.25" value="${d}" id="dSlider"></div>
+      <div class="sb-slider-row">Secant tilt &delta; = <span id="deltaVal">${delta.toFixed(0)}</span>&deg;<input type="range" min="${(-deltaMaxDeg).toFixed(1)}" max="${deltaMaxDeg.toFixed(1)}" step="1" value="${delta}" id="deltaSlider"></div>
+    `;
+
+    const P = { x: d, y: 0 };
+    const thetaRad = (180 - delta) * Math.PI / 180;
+    const u = { x: Math.cos(thetaRad), y: Math.sin(thetaRad) };
+    const b = P.x * u.x + P.y * u.y;
+    const cPow = d * d - r * r;
+    const disc = Math.max(0, b * b - cPow);
+    const sq = Math.sqrt(disc);
+    const t1 = -b - sq, t2 = -b + sq;
+    const A = { x: P.x + t1 * u.x, y: P.y + t1 * u.y };
+    const B = { x: P.x + t2 * u.x, y: P.y + t2 * u.y };
+    const tanLen = Math.sqrt(d * d - r * r);
+    const T = { x: (r * r) / d, y: (r * tanLen) / d };
+
+    const Ppx = toPx(P.x, P.y), Apx = toPx(A.x, A.y), Bpx = toPx(B.x, B.y), Tpx = toPx(T.x, T.y), Opx = toPx(0, 0);
+
+    svg.innerHTML = `
+      <circle cx="${Opx.x}" cy="${Opx.y}" r="${r*scale}" fill="none" stroke="#D8CDA9" stroke-width="2"/>
+      <circle cx="${Opx.x}" cy="${Opx.y}" r="3" fill="#8A8370"/>
+      <line x1="${Ppx.x}" y1="${Ppx.y}" x2="${Apx.x}" y2="${Apx.y}" stroke="#2F6FED" stroke-width="2.5"/>
+      <line x1="${Ppx.x}" y1="${Ppx.y}" x2="${Tpx.x}" y2="${Tpx.y}" stroke="#F2784B" stroke-width="2.5"/>
+      <circle cx="${Apx.x}" cy="${Apx.y}" r="5" fill="#2F6FED"/>
+      <circle cx="${Bpx.x}" cy="${Bpx.y}" r="5" fill="#2F6FED"/>
+      <circle cx="${Tpx.x}" cy="${Tpx.y}" r="5" fill="#F2784B"/>
+      <circle cx="${Ppx.x}" cy="${Ppx.y}" r="6" fill="#18140C"/>
+      <text x="${Ppx.x+10}" y="${Ppx.y-8}" font-size="12" font-weight="700">P</text>
+      <text x="${Apx.x-16}" y="${Apx.y+4}" font-size="12" font-weight="700" fill="#2F6FED">A</text>
+      <text x="${Bpx.x+8}" y="${Bpx.y+4}" font-size="12" font-weight="700" fill="#2F6FED">B</text>
+      <text x="${Tpx.x+8}" y="${Tpx.y-6}" font-size="12" font-weight="700" fill="#F2784B">T</text>
+    `;
+
+    readout.innerHTML = `
+      <b>PA &times; PB</b> = ${t1.toFixed(2)} &times; ${t2.toFixed(2)} = <b>${(t1*t2).toFixed(2)}</b><br>
+      <b>PT&sup2;</b> = ${tanLen.toFixed(2)}&sup2; = <b>${(tanLen*tanLen).toFixed(2)}</b><br>
+      <span style="color:var(--ink-soft);">Drag either slider: PA &times; PB and PT&sup2; always come out equal. That is the Power of a Point.</span>
+    `;
+  }
+
+  function drawInscribed() {
+    controls.innerHTML = `
+      <div class="sb-slider-row">Arc BC (central angle) = <span id="cVal">${centralAngle}</span>&deg;<input type="range" min="40" max="300" step="5" value="${centralAngle}" id="cSlider"></div>
+      <div class="sb-slider-row">Slide point A around the circle<input type="range" min="2" max="98" step="1" value="${apos}" id="aSlider"></div>
+    `;
+
+    const half = centralAngle / 2;
+    const angB = (90 - half) * Math.PI / 180;
+    const angC = (90 + half) * Math.PI / 180;
+    const majorSpan = 360 - centralAngle;
+    const angA = (90 + half + (apos / 100) * majorSpan) * Math.PI / 180;
+
+    const Bp = { x: r * Math.cos(angB), y: r * Math.sin(angB) };
+    const Cp = { x: r * Math.cos(angC), y: r * Math.sin(angC) };
+    const Ap = { x: r * Math.cos(angA), y: r * Math.sin(angA) };
+    const inscribed = angleAt(Ap, Bp, Cp);
+
+    const Bpx = toPx(Bp.x, Bp.y), Cpx = toPx(Cp.x, Cp.y), Apx = toPx(Ap.x, Ap.y), Opx = toPx(0, 0);
+    const largeArc = centralAngle > 180 ? 1 : 0;
+
+    svg.innerHTML = `
+      <circle cx="${Opx.x}" cy="${Opx.y}" r="${r*scale}" fill="none" stroke="#D8CDA9" stroke-width="2"/>
+      <path d="M ${Bpx.x} ${Bpx.y} A ${r*scale} ${r*scale} 0 ${largeArc} 0 ${Cpx.x} ${Cpx.y}" fill="none" stroke="#FFC629" stroke-width="5"/>
+      <line x1="${Apx.x}" y1="${Apx.y}" x2="${Bpx.x}" y2="${Bpx.y}" stroke="#18140C" stroke-width="2"/>
+      <line x1="${Apx.x}" y1="${Apx.y}" x2="${Cpx.x}" y2="${Cpx.y}" stroke="#18140C" stroke-width="2"/>
+      <line x1="${Opx.x}" y1="${Opx.y}" x2="${Bpx.x}" y2="${Bpx.y}" stroke="#8A8370" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <line x1="${Opx.x}" y1="${Opx.y}" x2="${Cpx.x}" y2="${Cpx.y}" stroke="#8A8370" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <circle cx="${Opx.x}" cy="${Opx.y}" r="3" fill="#8A8370"/>
+      <circle cx="${Bpx.x}" cy="${Bpx.y}" r="5" fill="#F2784B"/>
+      <circle cx="${Cpx.x}" cy="${Cpx.y}" r="5" fill="#F2784B"/>
+      <circle cx="${Apx.x}" cy="${Apx.y}" r="5" fill="#2F6FED"/>
+      <text x="${Bpx.x+8}" y="${Bpx.y-6}" font-size="12" font-weight="700" fill="#F2784B">B</text>
+      <text x="${Cpx.x+8}" y="${Cpx.y-6}" font-size="12" font-weight="700" fill="#F2784B">C</text>
+      <text x="${Apx.x+8}" y="${Apx.y-6}" font-size="12" font-weight="700" fill="#2F6FED">A</text>
+    `;
+
+    readout.innerHTML = `
+      <b>Central angle (arc BC)</b> = ${centralAngle}&deg;<br>
+      <b>Inscribed angle &ang;BAC</b> = ${inscribed.toFixed(1)}&deg;<br>
+      <span style="color:var(--ink-soft);">Slide A anywhere on the far arc: the inscribed angle never changes. It is always half the central angle.${centralAngle === 180 ? " Right now BC is a diameter, so this is the special case: any angle inscribed in a semicircle is 90°." : ""}</span>
+    `;
+  }
+
+  function attachControlListeners() {
+    controls.querySelectorAll("input[type=range]").forEach(inp => {
+      inp.addEventListener("input", e => {
+        if (mode === "power") {
+          if (e.target.id === "dSlider") d = parseFloat(e.target.value);
+          if (e.target.id === "deltaSlider") delta = parseFloat(e.target.value);
+        } else {
+          if (e.target.id === "cSlider") centralAngle = parseFloat(e.target.value);
+          if (e.target.id === "aSlider") apos = parseFloat(e.target.value);
+        }
+        draw();
+      });
+    });
+  }
+
+  function draw() {
+    if (mode === "power") drawPower(); else drawInscribed();
+    attachControlListeners();
+  }
+
+  container.querySelectorAll(".sb-toggle-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      mode = btn.dataset.mode;
+      container.querySelectorAll(".sb-toggle-btn").forEach(b => b.classList.toggle("active", b === btn));
+      draw();
+    });
+  });
+
+  draw();
+};
+
+// ================= 15. Triangle centers explorer =================
+
+window.StumblebeeWidgets.triangleCentersExplorer = function (container) {
+  const W = 420, H = 320;
+  const SCALE = 20;
+  let pts = [ { x: 90, y: 260 }, { x: 340, y: 260 }, { x: 200, y: 60 } ];
+  let mode = "centroid";
+
+  container.innerHTML = `
+    <div class="sb-widget-title">Drag any vertex, then compare the two triangle centers</div>
+    <div class="sb-toggle-group">
+      <button class="sb-toggle-btn active" data-mode="centroid">Medians &amp; Centroid</button>
+      <button class="sb-toggle-btn" data-mode="incenter">Bisectors &amp; Incenter</button>
+    </div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; margin-top:14px;">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" class="sb-refl-svg"></svg>
+      <div class="sb-angle-info" id="tcInfo" style="flex:1; min-width:200px;"></div>
+    </div>
+  `;
+  const svg = container.querySelector("svg");
+  const info = container.querySelector("#tcInfo");
+
+  function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y) / SCALE; }
+
+  function draw() {
+    const [A, B, C] = pts;
+    const a = dist(B, C), b = dist(A, C), c = dist(A, B);
+    const s = (a + b + c) / 2;
+    const areaUnits = Math.abs(A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)) / 2 / (SCALE * SCALE);
+
+    let overlay = "", infoHtml = "";
+
+    if (mode === "centroid") {
+      const Ma = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2 };
+      const Mb = { x: (A.x + C.x) / 2, y: (A.y + C.y) / 2 };
+      const Mc = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+      const G = { x: (A.x + B.x + C.x) / 3, y: (A.y + B.y + C.y) / 3 };
+      const ratio = Math.hypot(A.x - G.x, A.y - G.y) / Math.hypot(G.x - Ma.x, G.y - Ma.y);
+
+      overlay = `
+        <line x1="${A.x}" y1="${A.y}" x2="${Ma.x}" y2="${Ma.y}" stroke="#2F6FED" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="${B.x}" y1="${B.y}" x2="${Mb.x}" y2="${Mb.y}" stroke="#2F6FED" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="${C.x}" y1="${C.y}" x2="${Mc.x}" y2="${Mc.y}" stroke="#2F6FED" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="${G.x}" cy="${G.y}" r="6" fill="#F2784B"/>
+        <text x="${G.x+10}" y="${G.y+4}" font-size="12" font-weight="700" fill="#F2784B">G</text>
+      `;
+      infoHtml = `
+        <div class="sb-readout"><b>Centroid G</b> is where all three medians meet.</div>
+        <div class="sb-readout" style="margin-top:8px;"><b>AG : GM&#8336;</b> = ${ratio.toFixed(2)} : 1 (always 2 : 1)</div>
+      `;
+    } else {
+      const I = {
+        x: (a * A.x + b * B.x + c * C.x) / (a + b + c),
+        y: (a * A.y + b * B.y + c * C.y) / (a + b + c)
+      };
+      const inradiusUnits = areaUnits / s;
+      const inradiusPx = inradiusUnits * SCALE;
+
+      overlay = `
+        <line x1="${A.x}" y1="${A.y}" x2="${I.x}" y2="${I.y}" stroke="#2F6FED" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="${B.x}" y1="${B.y}" x2="${I.x}" y2="${I.y}" stroke="#2F6FED" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="${C.x}" y1="${C.y}" x2="${I.x}" y2="${I.y}" stroke="#2F6FED" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="${I.x}" cy="${I.y}" r="${inradiusPx}" fill="none" stroke="#1E8E3E" stroke-width="2"/>
+        <circle cx="${I.x}" cy="${I.y}" r="5" fill="#F2784B"/>
+        <text x="${I.x+10}" y="${I.y+4}" font-size="12" font-weight="700" fill="#F2784B">I</text>
+      `;
+      infoHtml = `
+        <div class="sb-readout"><b>Incenter I</b> is where all three angle bisectors meet.</div>
+        <div class="sb-readout" style="margin-top:8px;"><b>Inradius r</b> = Area / s = ${inradiusUnits.toFixed(2)}. The green circle touches all three sides.</div>
+      `;
+    }
+
+    svg.innerHTML = `
+      <polygon points="${pts.map(p => `${p.x},${p.y}`).join(" ")}" fill="#FFC629" fill-opacity="0.25" stroke="#18140C" stroke-width="2.5"/>
+      ${overlay}
+      ${pts.map((p, i) => `<circle cx="${p.x}" cy="${p.y}" r="8" fill="#18140C" data-idx="${i}" style="cursor:grab;"/>
+        <text x="${p.x}" y="${p.y - 14}" font-size="12" font-weight="700" text-anchor="middle" fill="#18140C">${["A","B","C"][i]}</text>`).join("")}
+    `;
+
+    info.innerHTML = `
+      <div class="sb-readout"><b>Sides</b> (opposite each vertex): a=${a.toFixed(2)}, b=${b.toFixed(2)}, c=${c.toFixed(2)}</div>
+      ${infoHtml}
+    `;
+
+    svg.querySelectorAll("circle[data-idx]").forEach(c => {
+      const idx = parseInt(c.dataset.idx, 10);
+      let dragging = false;
+      c.addEventListener("pointerdown", () => { dragging = true; });
+      svg.addEventListener("pointermove", e => {
+        if (!dragging) return;
+        const rect = svg.getBoundingClientRect();
+        pts[idx] = {
+          x: Math.max(15, Math.min(W - 15, (e.clientX - rect.left) * (W / rect.width))),
+          y: Math.max(15, Math.min(H - 15, (e.clientY - rect.top) * (H / rect.height)))
+        };
+        draw();
+      });
+      window.addEventListener("pointerup", () => { dragging = false; });
+    });
+  }
+
+  container.querySelectorAll(".sb-toggle-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      mode = btn.dataset.mode;
+      container.querySelectorAll(".sb-toggle-btn").forEach(b => b.classList.toggle("active", b === btn));
+      draw();
+    });
+  });
+
+  draw();
+};
+
+// ================= 16. Trig ratio explorer =================
+
+window.StumblebeeWidgets.trigRatioExplorer = function (container) {
+  const W = 380, H = 300;
+  let theta = 40;
+
+  container.innerHTML = `
+    <div class="sb-widget-title">Drag the angle slider and watch sin, cos, and tan update live</div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"></svg>
+      <div style="flex:1; min-width:200px;">
+        <div class="sb-slider-row">&theta; = <span id="thetaVal">40</span>&deg;<input type="range" min="5" max="85" step="1" value="40" id="thetaSlider"></div>
+        <div class="sb-result-grid">
+          <div class="sb-result-card"><div class="rlabel">sin &theta;</div><div class="rvalue" id="sinOut">-</div></div>
+          <div class="sb-result-card"><div class="rlabel">cos &theta;</div><div class="rvalue" id="cosOut">-</div></div>
+          <div class="sb-result-card"><div class="rlabel">tan &theta;</div><div class="rvalue" id="tanOut">-</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const svg = container.querySelector("svg");
+
+  function draw() {
+    const rad = theta * Math.PI / 180;
+    const Ax = 40, Ay = H - 40;
+    const hypLen = 220;
+    const oppLen = hypLen * Math.sin(rad);
+    const adjLen = hypLen * Math.cos(rad);
+    const Bx = Ax + adjLen, By = Ay;
+    const Cx = Bx, Cy = Ay - oppLen;
+
+    svg.innerHTML = `
+      <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}" fill="#FFC629" fill-opacity="0.3" stroke="#18140C" stroke-width="2.5"/>
+      <path d="M ${Bx-14} ${By} L ${Bx-14} ${By-14} L ${Bx} ${By-14}" fill="none" stroke="#18140C" stroke-width="1.5"/>
+      <text x="${Ax+18}" y="${Ay-10}" font-size="13" font-weight="700">&theta;</text>
+      <text x="${(Ax+Bx)/2}" y="${Ay+18}" font-size="11" text-anchor="middle" fill="#5B5546">adjacent</text>
+      <text x="${Bx+10}" y="${(By+Cy)/2}" font-size="11" fill="#5B5546">opposite</text>
+      <text x="${(Ax+Cx)/2 - 30}" y="${(Ay+Cy)/2 - 6}" font-size="11" fill="#5B5546">hypotenuse</text>
+    `;
+
+    container.querySelector("#sinOut").textContent = Math.sin(rad).toFixed(3);
+    container.querySelector("#cosOut").textContent = Math.cos(rad).toFixed(3);
+    container.querySelector("#tanOut").textContent = Math.tan(rad).toFixed(3);
+  }
+
+  container.querySelector("#thetaSlider").addEventListener("input", e => {
+    theta = parseFloat(e.target.value);
+    container.querySelector("#thetaVal").textContent = theta;
+    draw();
+  });
+
+  draw();
+};

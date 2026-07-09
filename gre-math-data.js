@@ -926,6 +926,176 @@ const GRE_MATH_CHAPTERS = [
           }
         ]}
       ]
+    },
+    {
+      id: "ch20-l5", title: "Advanced Circle Theorems", video: { id: "KFV70dj5OMw", title: "Power Theorems - Chords, Secants & Tangents - Circle Theorems - Geometry", channel: "The Organic Chemistry Tutor" },
+      widget: "circleTheoremsExplorer",
+      blocks: [
+        { type: "html", content: "<p>Toggle between the two theorems above. Drag the sliders and watch the numbers stay consistent no matter how you move the points, that consistency is the whole point of a theorem.</p><p><em>Scope note: the official GRE review covers central and inscribed angles directly. Power of a Point problems below show up less often, mostly in harder Quantitative Comparison questions, but they are useful tools once you spot two lines crossing through a circle.</em></p>" },
+        { type: "html", content: "<h4>Tangent Basics</h4><ul><li>A tangent line touches a circle at exactly one point and is always <strong>perpendicular</strong> to the radius drawn to that point.</li><li>Two tangent segments drawn from the same external point to a circle are always <strong>equal in length</strong>: if $PA$ and $PB$ are tangent from external point $P$, then $PA = PB$.</li><li>The segment from $P$ to the center bisects the angle between the two tangents.</li></ul>" },
+        { type: "html", content: "<h4>Power of a Point</h4><p>From an external point $P$, any line through a circle hits it at two points. Multiply the two distances from $P$ to those points, and you get the <strong>same number no matter which line you draw</strong>, as long as it starts at $P$.</p><ul><li><strong>Secant-secant:</strong> if one line through $P$ hits the circle at $A$ and $B$, and another hits it at $C$ and $D$, then $$PA \\cdot PB = PC \\cdot PD$$</li><li><strong>Tangent-secant:</strong> if $PT$ is tangent and $PBC$ is a secant through the same point, then $$PT^2 = PB \\cdot PC$$</li></ul>" },
+        { type: "html", content: "<h4>Inscribed Angle Theorem</h4><p>An inscribed angle (formed by two chords meeting at a point on the circle) is always <strong>half</strong> the central angle that subtends the same arc:</p>$$\\text{Inscribed angle} = \\frac{\\text{Central angle}}{2}$$<p>Two useful consequences:</p><ul><li><strong>Angles in the same segment are equal.</strong> Any two inscribed angles that subtend the same arc from the same side are equal to each other, since they are both half of the same central angle.</li><li><strong>Angle in a semicircle.</strong> If the chord is a diameter, the central angle is $180°$, so every inscribed angle subtending it is exactly $90°$. This is why a right triangle inscribed in a circle always has its hypotenuse on a diameter.</li></ul>" },
+        { type: "html", content: "<h4>Alternate Segment Theorem</h4><p>The angle between a tangent and a chord drawn from the point of tangency equals the inscribed angle in the alternate segment, the angle subtending that same chord from the other side of the circle.</p>" },
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question 1 · Multiple Choice",
+            context: "From external point P, a tangent segment has length 12. A secant from P passes through the circle, with the near intersection 8 units from P.",
+            options: [ {key:"A", text:"6"}, {key:"B", text:"9"}, {key:"C", text:"10"}, {key:"D", text:"18"}, {key:"E", text:"24"} ],
+            correct: "D",
+            steps: [
+              "By the tangent-secant relationship, $PT^2 = PB \\cdot PC$.",
+              "$12^2 = 8 \\cdot PC$, so $144 = 8 \\cdot PC$.",
+              "$PC = 18$."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 2 · Quantitative Comparison",
+            context: "In a circle, a central angle measures 70°. An inscribed angle subtends the same arc.",
+            quantityA: "The inscribed angle",
+            quantityB: "35°",
+            correct: "C",
+            steps: [
+              "Inscribed angle = central angle ÷ 2 = $70° \\div 2 = 35°$.",
+              "Both quantities equal $35°$."
+            ]
+          },
+          {
+            kind: "MC", title: "Question 3 · Multiple Choice",
+            context: "Triangle XYZ is inscribed in a circle so that side XZ is a diameter. What is the measure of angle Y?",
+            options: [ {key:"A", text:"It depends on the triangle"}, {key:"B", text:"45°"}, {key:"C", text:"60°"}, {key:"D", text:"90°"}, {key:"E", text:"Cannot be determined"} ],
+            correct: "D",
+            steps: [
+              "Any angle inscribed in a semicircle subtends a diameter, so its central angle is $180°$.",
+              "Angle Y $= 180° \\div 2 = 90°$, true for every such triangle."
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      id: "ch20-l6", title: "Triangle Centers: Bisectors & Medians", video: { id: "p52H7YcoDO8", title: "Incenter, Circumcenter, Centroid, Orthocenter (Properties & Diagrams)", channel: "Mario's Math Tutoring" },
+      widget: "triangleCentersExplorer",
+      blocks: [
+        { type: "html", content: "<p>Drag any vertex above, then toggle between the two views to compare how medians and angle bisectors behave differently even in the same triangle.</p><p><em>Scope note: medians and the centroid appear in the official GRE math review. Angle bisectors and the incenter show up less often directly, but they sharpen your sense of proportion and ratio, which the GRE tests constantly.</em></p>" },
+        { type: "html", content: "<h4>The Angle Bisector Theorem</h4><p>An angle bisector splits the opposite side into two pieces that are proportional to the two sides adjacent to the angle. If $AD$ bisects angle $A$ in triangle $ABC$, with $D$ on side $BC$:</p>$$\\frac{BD}{DC} = \\frac{AB}{AC}$$<p>All three internal angle bisectors of a triangle meet at a single point, the <strong>incenter</strong> $I$. It is the center of the triangle's inscribed circle (the <strong>incircle</strong>), the largest circle that fits inside the triangle and touches all three sides. Its radius is $r = \\dfrac{\\text{Area}}{s}$, where $s$ is the semiperimeter.</p>" },
+        { type: "html", content: "<h4>Medians and the Centroid</h4><p>A <strong>median</strong> runs from a vertex to the midpoint of the opposite side. Every triangle has three medians, and they always meet at one point, the <strong>centroid</strong> $G$, the triangle's center of mass.</p><p>The centroid always splits each median in a <strong>2:1 ratio</strong>, measured from the vertex:</p>$$AG : GM_a = 2 : 1$$<p>where $M_a$ is the midpoint of side $BC$. Each median also bisects the triangle into two regions of equal area, and all three medians together divide it into six equal-area pieces.</p>" },
+        { type: "html", content: "<h4>Median Length Formula</h4><p>If you know all three sides $a$, $b$, $c$, the length of the median $m_a$ drawn to side $a$ is:</p>$$m_a^2 = \\frac{2b^2 + 2c^2 - a^2}{4}$$" },
+        { type: "table", headers: ["Center", "Formed by", "Key property"], rows: [
+          ["Incenter (I)", "Angle bisectors", "Equidistant from all three sides; center of the incircle."],
+          ["Centroid (G)", "Medians", "Splits each median 2:1 from the vertex; the triangle's balance point."]
+        ]},
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question 1 · Multiple Choice",
+            context: "In triangle ABC, AD bisects angle A with D on BC. AB = 8 and AC = 12. If BD = 6, what is DC?",
+            options: [ {key:"A", text:"4"}, {key:"B", text:"6"}, {key:"C", text:"9"}, {key:"D", text:"12"}, {key:"E", text:"16"} ],
+            correct: "C",
+            steps: [
+              "By the angle bisector theorem, $\\frac{BD}{DC} = \\frac{AB}{AC} = \\frac{8}{12} = \\frac{2}{3}$.",
+              "$\\frac{6}{DC} = \\frac{2}{3}$, so $DC = \\frac{6 \\times 3}{2} = 9$."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 2 · Quantitative Comparison",
+            context: "In triangle ABC, G is the centroid and M is the midpoint of BC. AG = 10.",
+            quantityA: "GM",
+            quantityB: "5",
+            correct: "C",
+            steps: [
+              "The centroid splits the median $AM$ in a 2:1 ratio, so $AG:GM = 2:1$.",
+              "$GM = \\frac{AG}{2} = \\frac{10}{2} = 5$.",
+              "Both quantities equal 5."
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      id: "ch20-l7", title: "Triangle Area, Inequality & Classification", video: { id: "5zuU0UiQOf4", title: "Heron's formula (example and proof)", channel: "bprp math basics" },
+      blocks: [
+        { type: "html", content: "<p><em>Scope note: the triangle inequality and classifying triangles by sides and angles are core GRE topics, expect them on Quantitative Comparison questions. Heron's Formula is not official ETS content, but it is a fast backup when you know all three sides and have no height to work with.</em></p>" },
+        { type: "html", content: "<h4>Heron's Formula</h4><p>When you know all three sides $a$, $b$, $c$ but not the height, you can still find the area:</p>$$s = \\frac{a+b+c}{2} \\quad \\text{(the semiperimeter)}$$$$\\text{Area} = \\sqrt{s(s-a)(s-b)(s-c)}$$<p>No height or angle required, just the three side lengths.</p>" },
+        { type: "table", headers: ["What you know", "Area formula"], rows: [
+          ["Base and height", "$\\frac{1}{2} \\times \\text{base} \\times \\text{height}$"],
+          ["Two sides and the included angle", "$\\frac{1}{2}ab\\sin C$"],
+          ["All three sides", "Heron's Formula: $\\sqrt{s(s-a)(s-b)(s-c)}$"],
+          ["All three sides and the circumradius $R$", "$\\frac{abc}{4R}$"],
+          ["All three sides and the inradius $r$", "$rs$, where $s$ is the semiperimeter"]
+        ]},
+        { type: "html", content: "<h4>The Triangle Inequality</h4><p>Three lengths can only form a triangle if the sum of any two sides is greater than the third:</p>$$a + b > c, \\quad b + c > a, \\quad a + c > b$$<p>In practice, once you know two sides, the third must fall strictly between their difference and their sum: if $a=7$ and $b=10$, then $3 < c < 17$.</p><h4>Exterior Angle Theorem</h4><p>An exterior angle of a triangle equals the sum of the two non-adjacent (remote) interior angles, and it is always greater than either one alone.</p>" },
+        { type: "table", headers: ["Classify by sides", "Meaning"], rows: [
+          ["Scalene", "No sides equal, no angles equal."],
+          ["Isosceles", "Exactly two sides equal, and the two angles opposite them are equal too."],
+          ["Equilateral", "All three sides equal, all three angles are 60°. Area $= \\frac{\\sqrt3}{4}a^2$, and the circumradius is always exactly double the inradius."]
+        ]},
+        { type: "table", headers: ["Classify by angles", "Meaning"], rows: [
+          ["Acute", "All three angles under 90°."],
+          ["Right", "One angle is exactly 90°; the Pythagorean theorem applies."],
+          ["Obtuse", "One angle is over 90°."]
+        ]},
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question 1 · Multiple Choice",
+            context: "A triangle has sides 5, 6, and 7.",
+            options: [ {key:"A", text:"$\\sqrt{60}$"}, {key:"B", text:"$6\\sqrt6$"}, {key:"C", text:"18"}, {key:"D", text:"$\\sqrt{216}$"}, {key:"E", text:"21"} ],
+            correct: "B",
+            steps: [
+              "$s = \\frac{5+6+7}{2} = 9$.",
+              "Area $= \\sqrt{9(9-5)(9-6)(9-7)} = \\sqrt{9 \\cdot 4 \\cdot 3 \\cdot 2} = \\sqrt{216} = 6\\sqrt6$."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 2 · Quantitative Comparison",
+            context: "A triangle has two sides of length 4 and 9.",
+            quantityA: "The greatest possible integer length of the third side",
+            quantityB: "12",
+            correct: "C",
+            steps: [
+              "By the triangle inequality, the third side must be less than $4 + 9 = 13$.",
+              "The largest integer strictly less than 13 is 12.",
+              "Both quantities equal 12."
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      id: "ch20-l8", title: "Basic Trigonometry", video: { id: "WFH_7n7hpHo", title: "Trigonometry | SOH CAH TOA | Sin, Cos, Tan", channel: "Cognito" },
+      widget: "trigRatioExplorer",
+      blocks: [
+        { type: "html", content: "<p><em>Scope note: the GRE does not test trigonometry directly, no sin, cos, or tan questions will appear. This lesson is here because understanding these ratios makes special right triangles click faster, and it carries straight over if you are also prepping for the GMAT or another test that does use trig.</em></p>" },
+        { type: "html", content: "<h4>The Three Basic Ratios</h4><p>In a right triangle, pick one of the non-right angles and call it $\\theta$. Every side gets a name relative to that angle: the side across from it is <strong>opposite</strong>, the side next to it (that is not the hypotenuse) is <strong>adjacent</strong>, and the longest side is the <strong>hypotenuse</strong>.</p>$$\\sin(\\theta) = \\frac{\\text{opposite}}{\\text{hypotenuse}} \\qquad \\cos(\\theta) = \\frac{\\text{adjacent}}{\\text{hypotenuse}} \\qquad \\tan(\\theta) = \\frac{\\text{opposite}}{\\text{adjacent}} = \\frac{\\sin(\\theta)}{\\cos(\\theta)}$$<p><strong>SOH-CAH-TOA</strong> is the standard memory aid: Sine is Opposite over Hypotenuse, Cosine is Adjacent over Hypotenuse, Tangent is Opposite over Adjacent.</p>" },
+        { type: "table", headers: ["θ", "sin θ", "cos θ", "tan θ"], rows: [
+          ["30°", "1/2", "√3/2", "1/√3"],
+          ["45°", "1/√2", "1/√2", "1"],
+          ["60°", "√3/2", "1/2", "√3"]
+        ]},
+        { type: "html", content: "<h4>Reciprocal Functions and the Pythagorean Identity</h4>$$\\csc(\\theta) = \\frac{1}{\\sin(\\theta)} \\qquad \\sec(\\theta) = \\frac{1}{\\cos(\\theta)} \\qquad \\cot(\\theta) = \\frac{1}{\\tan(\\theta)}$$<p>And for any angle:</p>$$\\sin^2(\\theta) + \\cos^2(\\theta) = 1$$" },
+        { type: "html", content: "<h4>Law of Sines and Law of Cosines</h4><p>These extend trig ratios beyond right triangles, to any triangle:</p>$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R \\quad \\text{(Law of Sines, R = circumradius)}$$$$c^2 = a^2 + b^2 - 2ab\\cos C \\quad \\text{(Law of Cosines)}$$<p>Use the Law of Cosines when you know two sides and the included angle, or all three sides and need an angle. Use the Law of Sines when you know an angle-side pair plus one more piece of information.</p>" },
+        { type: "practice", questions: [
+          {
+            kind: "MC", title: "Question 1 · Multiple Choice",
+            context: "In a right triangle, the side opposite a 30° angle has length 5. What is the length of the hypotenuse?",
+            options: [ {key:"A", text:"5"}, {key:"B", text:"$5\\sqrt2$"}, {key:"C", text:"$5\\sqrt3$"}, {key:"D", text:"10"}, {key:"E", text:"$10\\sqrt3$"} ],
+            correct: "D",
+            steps: [
+              "$\\sin(30°) = \\frac{\\text{opposite}}{\\text{hypotenuse}} = \\frac{5}{\\text{hyp}}$.",
+              "$\\sin(30°) = \\frac12$, so $\\frac12 = \\frac{5}{\\text{hyp}}$, giving hyp $= 10$."
+            ]
+          },
+          {
+            kind: "QC", title: "Question 2 · Quantitative Comparison",
+            context: "θ is an angle strictly between 0° and 90°.",
+            quantityA: "$\\sin^2(\\theta) + \\cos^2(\\theta)$",
+            quantityB: "1",
+            correct: "C",
+            steps: [
+              "The Pythagorean identity holds for every angle: $\\sin^2(\\theta) + \\cos^2(\\theta) = 1$ always.",
+              "Both quantities equal 1, regardless of the specific value of θ."
+            ]
+          }
+        ]}
+      ]
     }
   ]
 },
